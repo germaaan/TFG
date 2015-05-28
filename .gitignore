@@ -1,0 +1,4 @@
+# Archivos generados por pdflatex
+*.aux
+*.log
+*.out
