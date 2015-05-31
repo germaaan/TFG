@@ -1,11 +1,10 @@
 \documentclass[a4paper,11pt]{book}
-%\documentclass[a4paper,twoside,11pt,titlepage]{book}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-tabla]{babel}
 
-% \usepackage[style=list, number=none]{glossary} %
-%\usepackage{titlesec}
+%\usepackage[style=list,number=none]{glossary}
+\usepackage{titlesec}
 %\usepackage{pailatino}
 
 \decimalpoint
@@ -15,57 +14,50 @@
 \addto\shorthandsspanish{\let\esperiod\es@period@code}
 \makeatother
 
-
-%\usepackage[chapter]{algorithm}
-\RequirePackage{verbatim}
+%\RequirePackage{verbatim}
 %\RequirePackage[Glenn]{fncychap}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{afterpage}
-
 \usepackage{longtable}
-
 \usepackage[pdfborder={000}]{hyperref} %referencia
 
 % ********************************************************************
-% Re-usable information
+% Información reutilizable
 % ********************************************************************
-\newcommand{\myTitle}{Un portal de transparencia para datos libres\xspace}
-\newcommand{\myDegree}{Grado en Ingeniería Informática\xspace}
-\newcommand{\myName}{Germán Martínez Maldonado\xspace}
-\newcommand{\myProf}{Juan Julián Merelo Guervós\xspace}
-\newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación\xspace}
-\newcommand{\myFacultyShort}{E.T.S. de Ingenierías Informática y de Telecomunicación\xspace}
-\newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
-\newcommand{\myLocation}{Granada\xspace}
-\newcommand{\myTime}{\today\xspace}
-\newcommand{\myVersion}{Version 0.1\xspace}
-
+\newcommand{\asunto}{Trabajo de Fin de Grado}
+\newcommand{\titulo}{Un portal de transparencia para datos libres}
+\newcommand{\tituloEng}{A transparency portal for open data}
+\newcommand{\titulacion}{Grado en Ingeniería Informática}
+\newcommand{\autor}{Germán Martínez Maldonado}
+\newcommand{\email}{germaaan@gmail.com}
+\newcommand{\tutor}{Juan Julián Merelo Guervós}
+\newcommand{\escuela}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación}
+\newcommand{\universidad}{Universidad de Granada}
+\newcommand{\ciudad}{Granada}
+\newcommand{\version}{Version 0.1}
 
 \hypersetup{
-pdfauthor = {\myName (email (en) ugr (punto) es)},
-pdftitle = {\myTitle},
-pdfsubject = {},
-pdfkeywords = {palabra_clave1, palabra_clave2, palabra_clave3, ...},
-pdfcreator = {LaTeX con el paquete ....},
+pdfauthor = {\autor\ (\email)},
+pdftitle = {\titulo},
+pdfsubject = {\asunto},
+pdfkeywords = {palabra_clave1, palabra_clave2, palabra_clave3, palabra_clave4, palabra_clave5},
+pdfcreator = {LaTeX con el paquete texlive},
 pdfproducer = {pdflatex}
 }
 
 %\hyphenation{}
 
-
-%\usepackage{doxygen/doxygen}
-%\usepackage{pdfpages}
 \usepackage{url}
 \usepackage{colortbl,longtable}
 \usepackage[stable]{footmisc}
 %\usepackage{index}
 
 %\makeindex
-%\usepackage[style=long, cols=2,border=plain,toc=true,number=none]{glossary}
-% \makeglossary
+%\usepackage[style=long,cols=2,border=plain,toc=true,number=none]{glossary}
+%\makeglossary
 
-% Definición de comandos que me son tiles:
+% Redefinición de comandos
 %\renewcommand{\indexname}{Índice alfabético}
 %\renewcommand{\glossaryname}{Glosario}
 
@@ -80,9 +72,7 @@ pdfproducer = {pdflatex}
 \setlength{\headheight}{1.5\headheight}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-%Definimos los tipos teorema, ejemplo y definición podremos usar estos tipos
-%simplemente poniendo \begin{teorema} \end{teorema} ...
-\newtheorem{teorema}{Teorema}[chapter]
+%Definimos los tipos ejemplo y definición podremos usar estos tipos
 \newtheorem{ejemplo}{Ejemplo}[chapter]
 \newtheorem{definicion}{Definición}[chapter]
 
@@ -91,63 +81,62 @@ pdfproducer = {pdflatex}
 \definecolor{gray45}{gray}{.45}
 \definecolor{gray30}{gray}{.94}
 
-\lstset{ frame=Ltb,
-     framerule=0.5pt,
-     aboveskip=0.5cm,
-     framextopmargin=3pt,
-     framexbottommargin=3pt,
-     framexleftmargin=0.1cm,
-     framesep=0pt,
-     rulesep=.4pt,
-     backgroundcolor=\color{gray97},
-     rulesepcolor=\color{black},
-     %
-     stringstyle=\ttfamily,
-     showstringspaces = false,
-     basicstyle=\scriptsize\ttfamily,
-     commentstyle=\color{gray45},
-     keywordstyle=\bfseries,
-     %
-     numbers=left,
-     numbersep=6pt,
-     numberstyle=\tiny,
-     numberfirstline = false,
-     breaklines=true,
-   }
+\lstset{
+  frame=Ltb,
+  framerule=0.5pt,
+  aboveskip=0.5cm,
+  framextopmargin=3pt,
+  framexbottommargin=3pt,
+  framexleftmargin=0.1cm,
+  framesep=0pt,
+  rulesep=.4pt,
+  backgroundcolor=\color{gray97},
+  rulesepcolor=\color{black},
+  %
+  stringstyle=\ttfamily,
+  showstringspaces = false,
+  basicstyle=\scriptsize\ttfamily,
+  commentstyle=\color{gray45},
+  keywordstyle=\bfseries,
+  %
+  numbers=left,
+  numbersep=6pt,
+  numberstyle=\tiny,
+  numberfirstline = false,
+  breaklines=true,
+}
  
-% minimizar fragmentado de listados
+% Minimizar fragmentado de listados
 \lstnewenvironment{listing}[1][]
-   {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+  {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
 
-\lstdefinestyle{CodigoC}
-   {
-	basicstyle=\scriptsize,
-	frame=single,
-	language=C,
-	numbers=left
-   }
-\lstdefinestyle{CodigoC++}
-   {
-	basicstyle=\small,
-	frame=single,
-	backgroundcolor=\color{gray30},
-	language=C++,
-	numbers=left
-   }
+% http://tex.stackexchange.com/questions/89574/language-option-supported-in-listings
+\documentclass{article}
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof,new,true,false,catch,function,return,null,catch,switch,var,if,in,while,do,else,case,break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class,export,boolean,throw,implements,import,this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
 
- 
-\lstdefinestyle{Consola}
-   {basicstyle=\scriptsize\bf\ttfamily,
-    backgroundcolor=\color{gray30},
-    frame=single,
-    numbers=none
-   }
-
+\lstdefinestyle{Consola}{
+  basicstyle=\scriptsize\bf\ttfamily,
+  backgroundcolor=\color{gray30},
+  frame=single,
+  numbers=none
+}
 
 \newcommand{\bigrule}{\titlerule[0.5mm]}
 
-
-%Para conseguir que en las páginas en blanco no ponga cabecerass
+% Para que las páginas en blanco no tengan cabecera
 \makeatletter
 \def\clearpage{%
   \ifvmode
@@ -166,9 +155,11 @@ pdfproducer = {pdflatex}
 \makeatother
 
 \usepackage{pdfpages}
+
 \begin{document}
 \input{portada/portada}
 \input{prefacios/prefacio}
+
 %\frontmatter
 %\tableofcontents
 %\listoffigures
@@ -195,17 +186,17 @@ pdfproducer = {pdflatex}
 %
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
-%
 %%\nocite{*}
 %\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
 %
 %\appendix
 %\input{apendices/manual_usuario/manual_usuario}
-%%\input{apendices/paper/paper}
+%\input{apendices/paper/paper}
 %\input{glosario/entradas_glosario}
-% \addcontentsline{toc}{chapter}{Glosario}
-% \printglossary
+%\addcontentsline{toc}{chapter}{Glosario}
+%\printglossary
+
 \chapter*{}
 \thispagestyle{empty}
 
