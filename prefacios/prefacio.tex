@@ -1,4 +1,4 @@
-\chapter*{}
+\chapter*{Prefacio}
 %\thispagestyle{empty}
 %\cleardoublepage
 
@@ -8,24 +8,27 @@
 %\thispagestyle{empty}
 
 \begin{center}
-{\large\bfseries \titulo}\\
+{\LARGE\bfseries\titulo}\\
 \end{center}
 \begin{center}
 \autor\
 \end{center}
 
+\section*{Resumen}
+
+\bigskip
 \noindent{\textbf{Palabras clave}: software libre, transparencia, datos abiertos, sistema de control de versiones, 
 aprovisionamiento, tests, integración continua, despliegue automático\\
 
-\vspace{0.7cm}
-\noindent{\textbf{Resumen}}\\
+Se pretenden desarrollar una plataforma para la transparencia que sea desplegable en un infraestructura física o virtual basándose en el 
+trabajo realizado en el portal UGR Transparente, respaldada por los datos abiertos publicados en la OpenData UGR.
 
-Desarrollar una plataforma para la transparencia y publicación de datos abiertos que sea desplegable en un infraestructura 
-física o virtual basándose en el trabajo realizado en el portal UGR Transparente. Este desarrollo tendrá como objetivo que 
-el resultado sea una plataforma totalmente basada en el software libre que se pudiera adaptar con facilidad a otro organismo, 
-teniendo en cuenta funcionalidades y requisitos obligatorios, además de aspectos de accesibilidad y escalabilidad. 
+\bigskip
+Este desarrollo tendrá como objetivo que el resultado sea una plataforma totalmente basada en el software libre que se 
+pudiera adaptar con facilidad a otro organismo, teniendo en cuenta funcionalidades y requisitos obligatorios, además de 
+aspectos de accesibilidad y escalabilidad. 
 
-\medskip
+\bigskip
 La herramientas básicas a usar serán un sistema de control de versiones y una plataforma de desarrollo colaborativo que 
 albergue el proyecto, además usando dicho sistema de control de versiones. También se quiere que la plataforma se pueda ir 
 desarrollando y administrando a la vez, por lo que para convertir todo esto es un proceso más ágil e ininterrumpido se usarán 
@@ -43,20 +46,65 @@ otras herramientas que permitan lo siguiente:
 \thispagestyle{empty}
 
 \begin{center}
-{\large\bfseries \tituloEng}\\
+{\LARGE\bfseries\tituloEng}\\
 \end{center}
 \begin{center}
-\autor\\
+\autor\
 \end{center}
 
-%\vspace{0.7cm}
+\section*{Extended abstract}
+
+\bigskip
 \noindent{\textbf{Keywords}: free software, transparency, opendata, version control system, provisioning, tests, continuous 
 integration, automated deployment}\\
 
-\vspace{0.7cm}
-\noindent{\textbf{Abstract}}\\
+It is intended to develop a platform for transparency that is deployable on a physical or virtual infrastructure based on work 
+done on the site UGR Transparente, backed by open data published in the Open Data UGR.
 
-Write here the abstract in English.
+\bigskip
+This development aims that the result is a platform completely based on free software that could be easily adapted to another 
+organization, taking into consideration features and mandatory requirements, as well as issues of accessibility and scalability.
+It will develop in Node.js, which is a programming environment that operates at runtime based on the Google's V8 JavaScript 
+engine; also will use Express for web application development and Jade to generate HTML files based on templates.
+
+\bigskip
+Being free software, this development is not limited to the working group that started the work, but rather is focused on that 
+anyone can make their contribution to the project; therefore, for all this can be handled is necessary a version control system,
+in this case Git will be used, which is practically a standard in this area. That in addition a open collaborative development 
+platform is used and recognized as GitHub that is integrated with the Git itself, we will provide ease in the development and 
+distribution of work, because any who access the project repository can freely copy it for its open license.
+
+\bigskip
+Provisioning a machine, as the name suggests, is to provide to the machine all the resources needed for this performance, in 
+our case we refer to all the software necessary for that the platform developed works properly in such infrastructure. As the 
+entire project is hosted on GitHub, we can set up a utility like Ansible to download the project and then install on the 
+machine all the necessary software so that the platform can function properly.
+
+\bigskip
+During the development of any software application, new features are introduced to the software gradually, so must be ensured 
+that the new features do not compromise the overall stability of the project. For this purpose the unit tests are written, 
+which could be considered as small programs within the system that handles check by assertions and behavior patterns that all 
+elements operate as they should. To verify that our unit tests are sufficient also need to pass a coverage test that tells us 
+that all the functionality of our platform are properly validated by the corresponding unit test. There are many libraries that
+allow both actions, but for the facility of work between them, unit test will be passed with Mocha and coverage test will be
+with Istanbul.
+
+\bigskip
+Once we have the tests written, we don't need concern ourselves with run them manually, we have the option of running in a 
+external platform every time we make changes and directly get the results, this is continuous integration. Continuous 
+integration will be made with Travis CI and the operation is very simple: every time we make a change in GitHub, Travis CI 
+download the latest version of the code, builds it and passes the tests we have written, to finish by returning the results 
+of the tests that will make us know whether changes have produced a conflict in the system. 
+
+\bigskip
+The last thing to keep in mind is about deploying the changes automatically on our server, can be a tedious procedure having 
+to manually access to the infrastructure of our platform every time that we want to apply the new changes we have made in the 
+application, so we'll use the tool Flightplan for automatic deployment; only with specify our server as the target we can set 
+a series of tasks that will make that automatically for the updates we're making become effective on the main machine.
+
+\bigskip
+By using these tools we are getting an application in which development and management are closely related and automated, which
+makes the application much more reliable and easy recovery in case of problems.
 
 \chapter*{}
 \thispagestyle{empty}

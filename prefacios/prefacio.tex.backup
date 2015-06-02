@@ -1,54 +1,92 @@
-\chapter*{}
+\chapter*{Prefacio}
 %\thispagestyle{empty}
 %\cleardoublepage
 
 %\thispagestyle{empty}
 
-\cleardoublepage
-\thispagestyle{empty}
+%\cleardoublepage
+%\thispagestyle{empty}
 
 \begin{center}
-{\large\bfseries \titulo}\\
+{\LARGE\bfseries\titulo}\\
 \end{center}
 \begin{center}
 \autor\
 \end{center}
 
-%\vspace{0.7cm}
-\noindent{\textbf{Palabras clave}: palabra\_clave1, palabra\_clave2, palabra\_clave3, palabra\_clave4, palabra\_clave5}\\
+\section*{Resumen}
 
-\vspace{0.7cm}
-\noindent{\textbf{Resumen}}\\
+\bigskip
+\noindent{\textbf{Palabras clave}: software libre, transparencia, datos abiertos, sistema de control de versiones, 
+aprovisionamiento, tests, integración continua, despliegue automático\\
 
-Desarrollar una plataforma para la transparencia y publicación de datos abiertos que sea desplegable en un infraestructura física o virtual basándose en el trabajo realizado en el portal UGR Transparente. Este desarrollo tendrá como objetivo que el resultado sea una plataforma totalmente basada en el software libre que se pudiera adaptar con facilidad a otro organismo, teniendo en cuenta funcionalidades y requisitos obligatorios, además de aspectos de accesibilidad y escalabilidad. 
+Se pretenden desarrollar una plataforma para la transparencia que sea desplegable en un infraestructura física o virtual basándose en el 
+trabajo realizado en el portal UGR Transparente, respaldada por los datos abiertos publicados en la OpenData UGR.
 
-\vspace{0.7cm}
-La herramientas básicas a usar serán un sistema de control de versiones y una plataforma de desarrollo colaborativo que albergue el proyecto, además usando dicho sistema de control de versiones. También se quiere que la plataforma se pueda ir desarrollando y administrando a la vez, por lo que para convertir todo esto es un proceso más ágil e ininterrumpido se usarán otras herramientas que permitan lo siguiente:
+\bigskip
+Este desarrollo tendrá como objetivo que el resultado sea una plataforma totalmente basada en el software libre que se 
+pudiera adaptar con facilidad a otro organismo, teniendo en cuenta funcionalidades y requisitos obligatorios, además de 
+aspectos de accesibilidad y escalabilidad. 
 
-\vspace{0.7cm}
-Realizar aprovisionamiento de las infraestructuras
-Validación mediante test unitarios
-Comprobación de conflictos mediante integración continua
-Actualizaciones mediante despliegue automático.
+\bigskip
+La herramientas básicas a usar serán un sistema de control de versiones y una plataforma de desarrollo colaborativo que 
+albergue el proyecto, además usando dicho sistema de control de versiones. También se quiere que la plataforma se pueda ir 
+desarrollando y administrando a la vez, por lo que para convertir todo esto es un proceso más ágil e ininterrumpido se usarán 
+otras herramientas que permitan lo siguiente:
+
+\begin{itemize}
+  \item Realizar aprovisionamiento de las infraestructuras.
+  \item Validación mediante tests unitarios.
+  \item Comprobación de conflictos mediante integración continua.
+  \item Actualizaciones mediante despliegue automático.
+\end{itemize}
 
 \cleardoublepage
 
 \thispagestyle{empty}
 
 \begin{center}
-{\large\bfseries \tituloEng}\\
+{\LARGE\bfseries\tituloEng}\\
 \end{center}
 \begin{center}
-\autor\\
+\autor\
 \end{center}
 
-%\vspace{0.7cm}
-\noindent{\textbf{Keywords}: keyword1, keyword2, keyword3, keyword4, keyword5}\\
+\section*{Extended abstract}
 
-\vspace{0.7cm}
-\noindent{\textbf{Abstract}}\\
+\bigskip
+\noindent{\textbf{Keywords}: free software, transparency, opendata, version control system, provisioning, tests, continuous 
+integration, automated deployment}\\
 
-Write here the abstract in English.
+It is intended to develop a platform for transparency that is deployable on a physical or virtual infrastructure based on work 
+done on the site UGR Transparente, backed by open data published in the Open Data UGR.
+
+This development aims that the result is a platform completely based on free software that could be easily adapted to another 
+organization, taking into consideration features and mandatory requirements, as well as issues of accessibility and scalability.
+It will develop in Node.js, which is a programming environment that operates at runtime based on the Google's V8 JavaScript 
+engine; also will use Express for web application development and Jade to generate HTML files based on templates.
+
+Being free software, this development is not limited to the working group that started the work, but rather is focused on that 
+anyone can make their contribution to the project; therefore, for all this can be handled is necessary a version control system,
+in this case Git will be used, which is practically a standard in this area. That in addition a open collaborative development 
+platform is used and recognized as GitHub that is integrated with the Git itself, we will provide ease in the development and 
+distribution of work, because any who access the project repository can freely copy it for its open license.
+
+Provisioning a machine, as the name suggests, is to provide to the machine all the resources needed for this performance, in 
+our case we refer to all the software necessary for that the platform developed works properly in such infrastructure. As the 
+entire project is hosted on GitHub, we can set up a utility like Ansible to download the project and then install on the 
+machine all the necessary software so that the platform can function properly.
+
+During the development of any software application, new features are introduced to the software gradually, so must be ensured 
+that the new features do not compromise the overall stability of the project. For this purpose the unit tests are written, 
+which could be considered as small programs within the system that handles check by assertions and behavior patterns that all 
+elements operate as they should. To verify that our unit tests are sufficient also need to pass a coverage test that tells us 
+that all the functionality of our platform are properly validated by the corresponding unit test. There are many libraries that
+allow both actions, but for the facility of work between them, unit test will be passed with Mocha and coverage test will be
+with Istanbul.
+
+Once we have the tests written, we don't need concern ourselves with run them manually, we have the option of running in a 
+external platform every time we make changes and directly get the results, this is continuous integration. 
 
 \chapter*{}
 \thispagestyle{empty}
