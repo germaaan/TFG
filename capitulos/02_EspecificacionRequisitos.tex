@@ -1,0 +1,93 @@
+\chapter{Especificación de requisitos}
+
+\section{Objetivos}
+
+El objetivo de este proyecto es el de obtener un portal de transparencia para la Universidad de Granada basado en el software 
+libre que además permita una metodología de desarrollo en el que continuamente se puedan añadir nuevas funcionalidades a la 
+vez que se van testeando, para después de una fácil integración culminar con un despliegue automático.
+
+\bigskip
+La aplicación final se usará en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
+para su uso en cualquier organización sin demasiada dificultad.
+
+\bigskip
+Un resumen de los principales objetivos a alcanzar son:
+
+\begin{itemize}
+  \item \textbf{OBJ-1.} La plataforma enlazará los datos abiertos contenidos en la plataforma OpenData UGR (algo que ya hace, pero con
+  problemas existentes que se deben solucionar).
+  \item \textbf{OBJ-2.} El desarrollo de la plataforma seguirá una metodología de desarrollo que contará con tests unitarios para cada 
+  una de sus funcionalidades, test de cobertura que evalúen los test unitarios, integración continua ante cambios introducidos,
+  despliegue automático de las actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
+\end{itemize}
+  
+\section{Descripción de los usuarios finales}
+
+El usuario de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
+fácilmente. Como no se quiere enfocar en un público objetivo, el portal tiene que ser fácil de utilizar tanto para personas 
+con experiencia en la navegación de páginas web como para las que no la tengan.
+
+\section{Requisitos Funcionales}
+
+Los requisitos funcionales son las características que tiene que implementar el sistema para cubrir todas las necesidades de 
+los distintos usuarios. Al usuario lo único que le interesa es ver una página web estática con la información que desea 
+consultar, por lo que el único requisito imprescindible es que cuando pulse una categoría esta se despliegue y cuando se 
+pulse un enlace a OpenData UGR este nos lleve al conjunto de datos correspondiente. Además, se habilitará un buscador para que
+también se pueda acceder a la información mediante la introducción de palabras clave. Dicho esto podemos distinguir los
+siguientes requisitos funcionales:
+
+\begin{itemize}
+  \item \textbf{RF-1.} Acceso a la información:
+  \begin{itemize}
+    \item \textbf{RF-1.1.} Al seleccionar una categoría esta se despliega y aparecen sus subcategorías.
+    \item \textbf{RF-1.2.} Cuando se pulsa sobre el enlace de un elemento, automáticamente se accede a la información contenida de ese
+    elemento en OpenData UGR.
+    \item \textbf{RF-1.3.} Para obtener información sobre una tema en concreto se introducirá el termino clave relacionado en 
+    el buscador.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+  \item \textbf{RF-2.} Presentación de la información:
+  \begin{itemize}
+    \item \textbf{RF-2.1.} Si el elemento de información no es un archivo PDF este se podrá previsualizar desde el mismo portal
+    de transparencia sin necesidad de acceder a OpenData UGR.
+    \item \textbf{RF-2.2.} Siempre se podrá descargar el archivo con la información contenido en OpenData UGR sobre cualquier 
+    elemento visible.
+  \end{itemize}
+\end{itemize}
+	
+Esta es la parte que ya estaba implementada en mayor medida y sobre la que se va a iniciar el trabajo.
+
+\section{Requisitos no Funcionales}
+
+Los requisitos no funcionales son las características propias del desarrollo, pero que no tienen que estar relacionadas con su 
+funcionalidad. En este caso nos referimos a todas las características que se requieren para que la aplicación siga un 
+desarrollo ágil de despliegue continuo y administración automatica:
+
+\begin{itemize}
+  \item \textbf{RN-1.} Procesar la información que será mostrada en las distintas páginas del portal.
+  \item \textbf{RN-2.} Implementar tests unitarios para validar que todas las funcionalidades programadas funcionan 
+  correctamente.
+  \item \textbf{RN-3.} Realizar test de cobertura que compruebe la fiabilidad que proporcionan los tests unitarios.
+  \item \textbf{RN-4.} Usar integración continua para asegurarse que los cambios introducidos no producen conflictos en la 
+  plataforma.
+  \item \textbf{RN-5.} Usar despliegue automático para actualizar con los nuevos cambios la plataforma una vez estos han sido 
+  validados.
+  \item \textbf{RN-6.} Elaborar una aprovisionamiento que permita que en una infraestructura por determinar se pueda instalar 
+  automáticamente la plataforma y todos los elementos necesarios.
+\end{itemize}
+
+\section{Requisitos de Información}
+
+Los requisitos de información se refieren a la información que es necesaria almacenar en el sistema. La única información 
+relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR 
+que se van a mostrar en UGR Transparente.
+
+\begin{itemize}
+  \item \textbf{RI-1.} Datos abiertos.
+  \begin{itemize}
+    \item Información sobre cada uno de los elementos que se van a mostrar en el portal de transparencia como datos abiertos.
+    \item Contenido: nombre, categoría, conjunto de datos, enlace a OpenData UGR, enlace al recurso.
+  \end{itemize}
+\end{itemize}
