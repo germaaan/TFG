@@ -26,11 +26,16 @@ Un resumen de los principales objetivos a alcanzar son:
   permita una instalación con una base de CKAN más personalizada.
 \end{itemize}
   
-\section{Descripción de los usuarios finales}
+\section{Descripción de los actores}
 
 El usuario de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
 fácilmente. Como no se quiere enfocar en un público objetivo, el portal tiene que ser fácil de utilizar tanto para personas 
 con experiencia en la navegación de páginas web como para las que no la tengan.
+
+\bigskip
+También tenemos al desarrollador, que será el encargado de introducir los elementos de información que serán listado en la
+plataforma. Como es una página estática, los elementos serán mostados en la tabla correspondiente de la página correspondiente
+después de que sean leidos del archivo JSON correspondiente.
 
 \section{Requisitos}
 
@@ -47,28 +52,34 @@ también se pueda acceder a la información mediante la introducción de palabra
 tratará este proyecto están únicamente dirigidos a la plataforma UGR Transparente.
 
 \begin{itemize}
-  \item \textbf{RF-1.} Acceso a la información:
+  \item \textbf{RF-1.} Introducción de nuevos elementos de información.
+\end{itemize}
+
+\begin{itemize}
+  \item \textbf{RF-2.} Acceso a la información:
   \begin{itemize}
-    \item \textbf{RF-1.1.} Al seleccionar una categoría esta se despliega y aparecen sus subcategorías.
-    \item \textbf{RF-1.2.} Cuando se pulsa sobre el enlace de un elemento, automáticamente se accede a la información contenida 
+    \item \textbf{RF-2.1.} Al seleccionar una categoría esta se despliega y aparecen sus subcategorías.
+    \item \textbf{RF-2.2.} Al seleccionar una subcategoría se muestran todos sus elementos.
+    \item \textbf{RF-2.2.} Cuando se pulsa sobre el enlace de un elemento, automáticamente se accede a la información contenida 
     de ese elemento en OpenData UGR.
-    \item \textbf{RF-1.3.} Para obtener información sobre un tema en concreto se introducirá el termino clave relacionado en 
+    \item \textbf{RF-2.3.} Para obtener información sobre un tema en concreto se introducirá el termino clave relacionado en 
     el buscador.
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-  \item \textbf{RF-2.} Presentación de la información:
+  \item \textbf{RF-3.} Presentación de la información:
   \begin{itemize}
-    \item \textbf{RF-2.1.} Si el elemento de información no es un archivo PDF este se podrá previsualizar desde el mismo portal
+    \item \textbf{RF-.1.} Generar tablas con los elementos de información.
+    \item \textbf{RF-3.1.} Si el elemento de información no es un archivo PDF este se podrá previsualizar desde el mismo portal
     de transparencia sin necesidad de acceder a OpenData UGR.
-    \item \textbf{RF-2.2.} Siempre se podrá descargar el archivo con la información contenido en OpenData UGR sobre cualquier 
-    elemento visible.
+    \item \textbf{RF-3.2.} Siempre se podrá descargar el archivo con la información contenido en OpenData UGR sobre cualquier 
+    elemento listado.
   \end{itemize}
 \end{itemize}
 	
-Los aspectos de funcionalidad ya se encuentran implementados de una fase previa al proyecto por lo que esta será la base de la
-que se partirá para el desarrollo.
+Los aspectos de funcionalidad ya se encuentran implementados en su mayoría (solo existen problemas al cargar la información) de
+una fase previa al proyecto por lo que esta será la base de la que se partirá para el desarrollo.
 
 \subsection{Requisitos no Funcionales}
 
@@ -102,7 +113,6 @@ Los requisitos de información se refieren a la información que es necesaria al
 relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR 
 que se van a mostrar en UGR Transparente.
 
-\newpage
 \begin{itemize}
   \item \textbf{RI-1.} Datos abiertos.
   \begin{itemize}
@@ -116,22 +126,107 @@ que se van a mostrar en UGR Transparente.
 Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir
 unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general de la plataforma UGR Transparente.
 
-\subsection{Jerarquía de casos de uso}
-
-\subsection{Diagramas de modelos de casos de uso}
-
-\subsubsection*{Diagrama de paquetes}
-
-\subsubsection*{Diagrama de casos de uso}
-
-Segundo formato.
-
 \subsubsection*{Descripción básica de actores}
+
+\begin{itemize}
+  \item \textbf{Ac-1.} Usuario
+  \begin{itemize}
+   \item Descripción: Persona que usa la plataforma que consulta datos.
+   \item Características: Es el usuario común que accederá a la página.
+   \item Relaciones: Ninguna.
+   \item Atributos: Ninguno.
+   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso de la plataforma, simplemente
+   accederá y consultará los datos que sean de su interes.
+  \end{itemize}
+    \item \textbf{Ac-1.} Desarrollador
+  \begin{itemize}
+   \item Descripción: Encargado de añadir los elementos de información a la plataforma.
+   \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
+   \item Relaciones: Ninguna.
+   \item Atributos: Ninguno.
+   \item Comentarios: Es el encargado de desarrollar las funcionalidades del portal, entre ellas añadir nuevos elementos de
+   información.
+  \end{itemize}
+\end{itemize}
 
 \subsubsection*{Descripción casos de uso}
 
-\subsubsection*{Diagramas de actividad}
+\begin{itemize}
+ \item \textbf{CU-1.} Añadir elemento
+ \begin{itemize}
+  \item Actores: Desarrollador
+  \item Tipo: Primario, Esencial
+  \item Precondición: Ninguna
+  \item Postcondición: Nuevos elementos de información serán visualizados en el portal de transparencia
+  \item Propósito: Son añadidos nuevos elementos de información al portal de transparencia.
+  \item Resumen: Aparecerán nuevos elementos de informaciónen la categória que corresponda, acompañado además de su enlace
+  correspondiente al OpenData UGR, un botón para previsualizar la información y otro botón para descargar el elemento.
+ \end{itemize}
+\end{itemize}
 
-\section{Glosario de términos}
+\begin{itemize}
+ \item \textbf{CU-2.} Consultar elementos
+ \begin{itemize}
+  \item Actores: Usuario
+  \item Tipo: Primario, esencial
+  \item Precondición: Existan elementos de información.
+  \item Postcondición: Se muestran los elementos de información de un determinado conjunto de datos.
+  \item Propósito: Obtiene los elementos de información de un determinado conjunto de datos.
+  \item Resumen: Accediendo a través del panel principal o el buscador se obtiene una tabla con los elementos de información
+  de un determinado conjunto de datos.
+ \end{itemize}
+\end{itemize}
 
-Poner aquí o en otro apartado más adelante.
+\begin{itemize}
+ \item \textbf{CU-3.} Acceder enlace de elemento
+ \begin{itemize}
+  \item Actores: Usuario
+  \item Tipo: Primario, esencial
+  \item Precondición: Se hayan generado las tablas con los elementos de información.
+  \item Postcondición: 
+  \item Propósito: Accede a la información del elemento contenida en OpenData UGR.
+  \item Resumen: Cuando se pulsa el enlace, se accede al conjunto de datos que contiene la información del elemento en OpenData
+  UGR, presentándolo de distinta forma en función del formato del elemento y dando la opción de descagar ese mismo elemento en 
+  un archivo con su formato original.
+ \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+ \item \textbf{CU-4.} Previsualizar elemento de información
+ \begin{itemize}
+  \item Actores: Usuario
+  \item Tipo: Secundario
+  \item Precondición: Se hayan generado las tablas con los elementos de información.
+  \item Postcondición: 
+  \item Propósito: Previsualiza los datos del elemento.
+  \item Resumen: Cuando se selecciona el botón de ver un elemento de la tabla se abre una ventana emergente en la que se 
+  muestra la información del elemento que se contiene en OpenData UGR.
+ \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+ \item \textbf{CU-5.} Descargar elemento de información
+ \begin{itemize}
+  \item Actores: Usuario
+  \item Tipo: Secundario
+  \item Precondición: Se hayan generado las tablas con los elementos de información.
+  \item Postcondición: 
+  \item Propósito: Descagar el elemento en un archivo con su formato original.
+  \item Resumen: Cuando se selecciona el botón de descargar un elemento de la tabla se abre una ventana emergente en la que se
+  muestra la información del elemento que se contiene en OpenData UGR.
+ \end{itemize}
+\end{itemize}
+
+\subsubsection*{Diagramas de casos de uso}
+
+La figura 2.1 representa el diagrama de estado de los casos de usos considerados inicialmente para el proyecto.
+
+\begin{figure}[h]
+\caption{Diagramas de casos de uso}
+\centering
+\includegraphics[width=1\textwidth]{imagenes/diagrama_casos_uso.png}
+\end{figure}
+
+%\section{Glosario de términos}
+
+%Poner aquí o en otro apartado más adelante.
