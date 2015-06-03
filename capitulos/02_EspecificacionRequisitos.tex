@@ -4,7 +4,9 @@
 
 El objetivo de este proyecto es el de obtener un portal de transparencia para la Universidad de Granada basado en el software 
 libre que además permita una metodología de desarrollo en el que continuamente se puedan añadir nuevas funcionalidades a la 
-vez que se van testeando, para después de una fácil integración culminar con un despliegue automático.
+vez que se van testeando, para después de una fácil integración culminar con un despliegue automático. Este portal no almacenará
+los propios datos abiertos, si no que hará de presentación de los datos que estarán contenidos en otra plataforma destinada 
+únicamente a dicho fin (OpenData UGR).
 
 \bigskip
 La aplicación final se usará en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
@@ -14,11 +16,14 @@ para su uso en cualquier organización sin demasiada dificultad.
 Un resumen de los principales objetivos a alcanzar son:
 
 \begin{itemize}
-  \item \textbf{OBJ-1.} La plataforma enlazará los datos abiertos contenidos en la plataforma OpenData UGR (algo que ya hace, pero con
-  problemas existentes que se deben solucionar).
-  \item \textbf{OBJ-2.} El desarrollo de la plataforma seguirá una metodología de desarrollo que contará con tests unitarios para cada 
-  una de sus funcionalidades, test de cobertura que evalúen los test unitarios, integración continua ante cambios introducidos,
-  despliegue automático de las actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
+  \item \textbf{OBJ-1.} La plataforma UGR Transparente enlazará los datos abiertos contenidos en la plataforma OpenData UGR
+  (algo que ya hace, pero con problemas existentes que se deben solucionar).
+  \item \textbf{OBJ-2.} El desarrollo de la plataforma UGR Transparente seguirá una metodología de desarrollo continuo que 
+  contará con la implementación de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
+  cobertura que evalúen los test unitarios, integración continua ante cambios introducidos, despliegue automático de las
+  actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
+  \item \textbf{OBJ-3.} Realizar una aprovisionamiento para la plataforma contenedora de los datos abiertos OpenData UGR que 
+  permita una instalación con una base de CKAN más personalizada.
 \end{itemize}
   
 \section{Descripción de los usuarios finales}
@@ -33,16 +38,16 @@ Los requisitos funcionales son las características que tiene que implementar el
 los distintos usuarios. Al usuario lo único que le interesa es ver una página web estática con la información que desea 
 consultar, por lo que el único requisito imprescindible es que cuando pulse una categoría esta se despliegue y cuando se 
 pulse un enlace a OpenData UGR este nos lleve al conjunto de datos correspondiente. Además, se habilitará un buscador para que
-también se pueda acceder a la información mediante la introducción de palabras clave. Dicho esto podemos distinguir los
-siguientes requisitos funcionales:
+también se pueda acceder a la información mediante la introducción de palabras clave. Todos los requisitos funcionales que 
+tratará este proyecto están únicamente dirigidos a la plataforma UGR Transparente.
 
 \begin{itemize}
   \item \textbf{RF-1.} Acceso a la información:
   \begin{itemize}
     \item \textbf{RF-1.1.} Al seleccionar una categoría esta se despliega y aparecen sus subcategorías.
-    \item \textbf{RF-1.2.} Cuando se pulsa sobre el enlace de un elemento, automáticamente se accede a la información contenida de ese
-    elemento en OpenData UGR.
-    \item \textbf{RF-1.3.} Para obtener información sobre una tema en concreto se introducirá el termino clave relacionado en 
+    \item \textbf{RF-1.2.} Cuando se pulsa sobre el enlace de un elemento, automáticamente se accede a la información contenida 
+    de ese elemento en OpenData UGR.
+    \item \textbf{RF-1.3.} Para obtener información sobre un tema en concreto se introducirá el termino clave relacionado en 
     el buscador.
     \end{itemize}
 \end{itemize}
@@ -63,7 +68,7 @@ Esta es la parte que ya estaba implementada en mayor medida y sobre la que se va
 
 Los requisitos no funcionales son las características propias del desarrollo, pero que no tienen que estar relacionadas con su 
 funcionalidad. En este caso nos referimos a todas las características que se requieren para que la aplicación siga un 
-desarrollo ágil de despliegue continuo y administración automatica:
+desarrollo ágil de despliegue continuo y administración automatica de la plataforma UGR Transparente.
 
 \begin{itemize}
   \item \textbf{RN-1.} Procesar la información que será mostrada en las distintas páginas del portal.
@@ -76,6 +81,13 @@ desarrollo ágil de despliegue continuo y administración automatica:
   validados.
   \item \textbf{RN-6.} Elaborar una aprovisionamiento que permita que en una infraestructura por determinar se pueda instalar 
   automáticamente la plataforma y todos los elementos necesarios.
+\end{itemize}
+
+En cuanto a la plataforma OpenData UGR, este proyecto solo contempla un único objetivo no funcional que está relacionado con
+la administración del sistema más que con que aspectos de desarrollo software.
+
+\begin{itemize}
+  \item \textbf{RN-7.} Crear una aprovisionamiento y personalización de CKAN para OpenData UGR.
 \end{itemize}
 
 \section{Requisitos de Información}
