@@ -1,65 +1,10 @@
-\chapter{Especificación de requisitos}
-
-\section{Objetivos}
-
-El objetivo de este proyecto es el de obtener un portal de transparencia para la Universidad de Granada basado en el software 
-libre que además permita una metodología de desarrollo en el que continuamente se puedan añadir nuevas funcionalidades a la 
-vez que se van testeando, para después de una fácil integración culminar con un despliegue automático. Este portal no almacenará
-los propios datos abiertos, si no que hará de presentación de los datos que estarán contenidos en otra plataforma destinada 
-únicamente a dicho fin (OpenData UGR).
-
-\bigskip
-Un resumen de los principales objetivos a alcanzar son:
-
-\begin{itemize}
-  \item \textbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en general y en la administración pública 
-  en particular ayudan a generar confianza y demuestran compromiso con la transparencia.
-  \item \textbf{OBJ-2.} Solucionar los problemas de generación de las tablas con los elementos de información.
-  \item \textbf{OBJ-3.} Implementar en la plataforma UGR Transparente una metodología de desarrollo continuo que se base 
-  en el uso de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
-  cobertura que evalúen los test unitarios, integración continua ante cambios introducidos, despliegue automático de las
-  actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
-\end{itemize}
-
-\newpage
-Además como objetivo secundario tendremos:
-
-\begin{itemize}
-  \item \textbf{OBJ-4.} Estudiar la posibilidad de hacer una instalación totalmente personalizada del portal de datos de código
-  abierto CKAN para los datos abiertos de la Universidad de Granada, además de un aprovisionamiento que permitiera que esta 
-  instalación se pudiera realizar automáticamente en una infraestructura.
-\end{itemize}
-
-Todos los objetivos son independientes entre sí, pero el primer objetivo (\textbf{OBJ-1}) es el principal motivador de este 
-proyecto, por lo que aún sin representar el desarrollo de ningún trabajo en concreto es el que va a escudar y avalar el 
-desarrollo de los otros. En aspectos más relacionados con la realización del proyecto, el segundo objetivo (\textbf{OBJ-2}) es
-el que se solucionará de forma inmediata ya que impide el correcto funcionamiento del portal. El resto de objetivos serán 
-tratados en mayor medida durante los capítulos de implementación y pruebas.
-
-\bigskip
-Destacar en los aspectos formativos previos más utilizados para el desarrollo del proyectolos conocimientos sobre 
-infraestructuras virtuales para el tema de gestión de configuraciones, ingeniería de software para el análisis del proyecto 
-e ingeniería de servidores para la realización de pruebas desde el aspecto hardware.
-
-\subsection{Alcance de los objetivos}
-
-La aplicación resultante visualmente será idéntica que la versión actual de UGR Transparente, pero internamente habrá cambiado
-totalmente la metodología de desarrollo, pasando de un desarrollo sin control a uno totalmente controlado mediante pruebas 
-unitarias e integración continua. Además los cambios ya no se tendrá que aplicar manualmente en el servidor, sino que se hará
-uso de un despliegue automático para tal fin.
-
-\bigskip
-Esta aplicación se usará de base en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
-para su uso en cualquier organización sin demasiada dificultad, de ahí que se vaya a estudiar también la posibilidad de 
-personalización de CKAN, ya que esto permitiría generar una gran plataforma de liberación de datos totalmente personalizable
-según el ámbito y las necesidades.
+\chapter{Análisis y diseño}
 
 \section{Análisis de requisitos}
 
 Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se 
 estiman necesarios para cubrir los objetivos propuestos.
 
-\newpage
 \subsection{Descripción de los actores}
 
 El usuario de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
@@ -80,6 +25,7 @@ pulse un enlace a OpenData UGR este nos lleve al conjunto de datos correspondien
 también se pueda acceder a la información mediante la introducción de palabras clave. Todos los requisitos funcionales que 
 tratará este proyecto están únicamente dirigidos a la plataforma UGR Transparente.
 
+\newpage
 \begin{itemize}
   \item \textbf{RF-1.} Introducción de nuevos elementos de información.
 \end{itemize}
@@ -142,7 +88,6 @@ Los requisitos de información se refieren a la información que es necesaria al
 relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR 
 que se van a mostrar en UGR Transparente.
 
-\newpage
 \begin{itemize}
   \item \textbf{RI-1.} Datos abiertos.
   \begin{itemize}
@@ -168,7 +113,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
    \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso de la plataforma, simplemente
    accederá y consultará los datos que sean de su interes.
   \end{itemize}
-    \item \textbf{Ac-1.} Desarrollador
+  
+  \newpage
+  \item \textbf{Ac-1.} Desarrollador
   \begin{itemize}
    \item Descripción: Encargado de añadir los elementos de información a la plataforma.
    \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
@@ -179,7 +126,6 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
   \end{itemize}
 \end{itemize}
 
-\newpage
 \subsection{Descripción casos de uso}
 
 \begin{itemize}
@@ -208,6 +154,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
  \end{itemize}
 \end{itemize}
 
+\newpage
 \begin{itemize}
  \item \textbf{CU-3.} Acceder enlace de elemento
  \begin{itemize}
@@ -248,6 +195,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
  \end{itemize}
 \end{itemize}
 
+\newpage
 \subsection{Diagramas de casos de uso}
 
 Desde un punto de vista funcional es el usuario el que realiza la mayoria de las acciones del portal, la función del 
@@ -257,10 +205,10 @@ fuera.
 \bigskip
 La figura 2.1 representa el diagrama de estado de los casos de usos considerados inicialmente para el proyecto. 
 
-\newpage
 \begin{figure}[!h]
   \begin{center}
   \includegraphics[width=1\textwidth]{imagenes/diagrama_casos_uso.png}
   \end{center}
   \caption[Casos de uso]{Diagramas de casos de uso}
 \end{figure}
+

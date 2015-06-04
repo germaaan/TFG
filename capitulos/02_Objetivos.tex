@@ -1,0 +1,55 @@
+\chapter{Objetivos}
+
+El objetivo de este proyecto es el de obtener un portal de transparencia para la Universidad de Granada basado en el software 
+libre que además permita una metodología de desarrollo en el que continuamente se puedan añadir nuevas funcionalidades a la 
+vez que se van testeando, para después de una fácil integración culminar con un despliegue automático. Este portal no almacenará
+los propios datos abiertos, si no que hará de presentación de los datos que estarán contenidos en otra plataforma destinada 
+únicamente a dicho fin (OpenData UGR).
+
+\bigskip
+Un resumen de los principales objetivos a alcanzar son:
+
+\begin{itemize}
+  \item \textbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en general y en la administración pública 
+  en particular ayudan a generar confianza y demuestran compromiso con la transparencia.
+  \item \textbf{OBJ-2.} Solucionar los problemas de generación de las tablas con los elementos de información.
+  \item \textbf{OBJ-3.} Implementar en la plataforma UGR Transparente una metodología de desarrollo continuo que se base 
+  en el uso de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
+  cobertura que evalúen los test unitarios, integración continua ante cambios introducidos, despliegue automático de las
+  actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
+\end{itemize}
+
+Además como objetivo secundario tendremos:
+
+\begin{itemize}
+  \item \textbf{OBJ-4.} Estudiar la posibilidad de hacer una instalación totalmente personalizada del portal de datos de código
+  abierto CKAN para los datos abiertos de la Universidad de Granada, además de un aprovisionamiento que permitiera que esta 
+  instalación se pudiera realizar automáticamente en una infraestructura.
+\end{itemize}
+
+\bigskip
+Destacar en los aspectos formativos previos más utilizados para el desarrollo del proyectolos conocimientos sobre 
+infraestructuras virtuales para el tema de gestión de configuraciones, ingeniería de software para el análisis del proyecto 
+e ingeniería de servidores para la realización de pruebas desde el aspecto hardware.
+
+\section{Alcance de los objetivos}
+
+La aplicación resultante visualmente será idéntica que la versión actual de UGR Transparente, pero internamente habrá cambiado
+totalmente la metodología de desarrollo, pasando de un desarrollo sin control a uno totalmente controlado mediante pruebas 
+unitarias e integración continua. Además los cambios ya no se tendrá que aplicar manualmente en el servidor, sino que se hará
+uso de un despliegue automático para tal fin.
+
+\bigskip
+Esta aplicación se usará de base en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
+para su uso en cualquier organización sin demasiada dificultad, de ahí que se vaya a estudiar también la posibilidad de 
+personalización de CKAN, ya que esto permitiría generar una gran plataforma de liberación de datos totalmente personalizable
+según el ámbito y las necesidades.
+
+\section{Interdependencia de los objetivos}
+
+Todos los objetivos son independientes entre sí, pero el primer objetivo (\textbf{OBJ-1}) es el principal motivador de este 
+proyecto, por lo que aún sin representar el desarrollo de ningún trabajo en concreto es el que va a escudar y avalar el 
+desarrollo de los otros. En aspectos más relacionados con la realización del proyecto, el segundo objetivo (\textbf{OBJ-2}) es
+el que se solucionará de forma inmediata ya que impide el correcto funcionamiento del portal. El resto de objetivos serán 
+tratados en mayor medida durante los capítulos de implementación y pruebas.
+
