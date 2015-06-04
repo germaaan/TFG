@@ -12,8 +12,8 @@ los propios datos abiertos, si no que hará de presentación de los datos que es
 Un resumen de los principales objetivos a alcanzar son:
 
 \begin{itemize}
-  \item \textbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en la administración pública ayudan a 
-  generar confianza y demuestran compromiso con la transparencia.
+  \item \textbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en general y en la administración pública 
+  en particular ayudan a generar confianza y demuestran compromiso con la transparencia.
   \item \textbf{OBJ-2.} Solucionar los problemas de generación de las tablas con los elementos de información.
   \item \textbf{OBJ-3.} Implementar en la plataforma UGR Transparente una metodología de desarrollo continuo que se base 
   en el uso de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
@@ -30,7 +30,18 @@ Además como objetivo secundario tendremos:
   instalación se pudiera realizar automáticamente en una infraestructura.
 \end{itemize}
 
-\section{Alcance de los objetivos}
+Todos los objetivos son independientes entre sí, pero el primer objetivo (\textbf{OBJ-1}) es el principal motivador de este 
+proyecto, por lo que aún sin representar el desarrollo de ningún trabajo en concreto es el que va a escudar y avalar el 
+desarrollo de los otros. En aspectos más relacionados con la realización del proyecto, el segundo objetivo (\textbf{OBJ-2}) es
+el que se solucionará de forma inmediata ya que impide el correcto funcionamiento del portal. El resto de objetivos serán 
+tratados en mayor medida durante los capítulos de implementación y pruebas.
+
+\bigskip
+Destacar en los aspectos formativos previos más utilizados para el desarrollo del proyectolos conocimientos sobre 
+infraestructuras virtuales para el tema de gestión de configuraciones, ingeniería de software para el análisis del proyecto 
+e ingeniería de servidores para la realización de pruebas desde el aspecto hardware.
+
+\subsection{Alcance de los objetivos}
 
 La aplicación resultante visualmente será idéntica que la versión actual de UGR Transparente, pero internamente habrá cambiado
 totalmente la metodología de desarrollo, pasando de un desarrollo sin control a uno totalmente controlado mediante pruebas 
@@ -43,7 +54,12 @@ para su uso en cualquier organización sin demasiada dificultad, de ahí que se 
 personalización de CKAN, ya que esto permitiría generar una gran plataforma de liberación de datos totalmente personalizable
 según el ámbito y las necesidades.
 
-\section{Descripción de los actores}
+\section{Análisis de requisitos}
+
+Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se 
+estiman necesarios para cubrir los objetivos propuestos.
+
+\subsection{Descripción de los actores}
 
 El usuario de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
 fácilmente. Como no se quiere enfocar en un público objetivo, el portal tiene que ser fácil de utilizar tanto para personas 
@@ -53,12 +69,6 @@ con experiencia en la navegación de páginas web como para las que no la tengan
 También tenemos al desarrollador, que será el encargado de introducir los elementos de información que serán listado en la
 plataforma. Como es una página estática, los elementos serán mostados en la tabla correspondiente de la página correspondiente
 después de que sean leidos del archivo JSON correspondiente.
-
-\newpage
-\section{Requisitos}
-
-Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se 
-estiman necesarios para cubrir los objetivos propuestos.
 
 \subsection{Requisitos Funcionales}
 
@@ -85,6 +95,7 @@ tratará este proyecto están únicamente dirigidos a la plataforma UGR Transpar
     \end{itemize}
 \end{itemize}
 
+\newpage
 \begin{itemize}
   \item \textbf{RF-3.} Presentación de la información:
   \begin{itemize}
@@ -237,11 +248,17 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 
 \subsection{Diagramas de casos de uso}
 
-La figura 2.1 representa el diagrama de estado de los casos de usos considerados inicialmente para el proyecto.
+Desde un punto de vista funcional es el usuario el que realiza la mayoria de las acciones del portal, la función del 
+desarrollar aunque fundamental, solo es una acción que se realiza en un segundo plano del que no se tiene constancia desde 
+fuera.
 
-\begin{figure}[htb]
+\bigskip
+La figura 2.1 representa el diagrama de estado de los casos de usos considerados inicialmente para el proyecto. 
+
+\newpage
+\begin{figure}[!h]
   \begin{center}
-  \includegraphics[width=0.9\textwidth]{imagenes/diagrama_casos_uso.png}
+  \includegraphics[width=1\textwidth]{imagenes/diagrama_casos_uso.png}
   \end{center}
   \caption[Casos de uso]{Diagramas de casos de uso}
 \end{figure}
