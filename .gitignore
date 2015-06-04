@@ -2,6 +2,7 @@
 *.aux
 *.log
 *.out
+*.toc
 
 # Archivos de copia de seguridad
 *.backup
