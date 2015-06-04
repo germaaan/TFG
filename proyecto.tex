@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{book}
+\documentclass[a4paper,11pt,oneside]{book}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,es-tabla]{babel}
@@ -161,13 +161,16 @@ pdfproducer = {pdflatex}
 \input{prefacios/prefacio}
 
 %\frontmatter
-%\tableofcontents
+\tableofcontents
 %\listoffigures
 %\listoftables
 %
 %\mainmatter
 %\setlength{\parskip}{5pt}
 
+\newpage
+\thispagestyle{empty}
+\
 \input{capitulos/01_Introduccion}
 \input{capitulos/02_Planificacion}
 \input{capitulos/03_EspecificacionRequisitos}

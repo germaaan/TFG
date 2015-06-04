@@ -1,0 +1,20 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{12}{chapter.1}
+\contentsline {chapter}{\numberline {2}Planificaci\IeC {\'o}n}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Fases y entregas}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Fases}{13}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Lista de entregas}{13}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Desarrollo del EDT}{14}{section.2.2}
+\contentsline {section}{\numberline {2.3}Actividades y tiempo}{14}{section.2.3}
+\contentsline {section}{\numberline {2.4}Dependencias entre tareas}{14}{section.2.4}
+\contentsline {section}{\numberline {2.5}Asignaci\IeC {\'o}n de recursos}{14}{section.2.5}
+\contentsline {section}{\numberline {2.6}Diagrama de Gantt}{14}{section.2.6}
+\contentsline {section}{\numberline {2.7}An\IeC {\'a}lisis de costes}{14}{section.2.7}
+\contentsline {chapter}{\numberline {3}Especificaci\IeC {\'o}n de requisitos}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Objetivos}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Descripci\IeC {\'o}n de los actores}{16}{section.3.2}
+\contentsline {section}{\numberline {3.3}Requisitos}{16}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Requisitos Funcionales}{16}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Requisitos no Funcionales}{17}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Requisitos de Informaci\IeC {\'o}n}{18}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Modelos de casos de uso}{18}{section.3.4}
