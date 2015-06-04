@@ -12,7 +12,7 @@ los propios datos abiertos, si no que hará de presentación de los datos que es
 Un resumen de los principales objetivos a alcanzar son:
 
 \begin{itemize}
-  \item \testbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en la administración pública ayudan a 
+  \item \textbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en la administración pública ayudan a 
   generar confianza y demuestran compromiso con la transparencia.
   \item \textbf{OBJ-2.} Solucionar los problemas de generación de las tablas con los elementos de información.
   \item \textbf{OBJ-3.} Implementar en la plataforma UGR Transparente una metodología de desarrollo continuo que se base 
@@ -21,12 +21,14 @@ Un resumen de los principales objetivos a alcanzar son:
   actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
 \end{itemize}
 
+\newpage
 Además como objetivo secundario tendremos:
 
+\begin{itemize}
   \item \textbf{OBJ-4.} Estudiar la posibilidad de hacer una instalación totalmente personalizada del portal de datos de código
   abierto CKAN para los datos abiertos de la Universidad de Granada, además de un aprovisionamiento que permitiera que esta 
   instalación se pudiera realizar automáticamente en una infraestructura.
-
+\end{itemize}
 
 \section{Alcance de los objetivos}
 
@@ -35,12 +37,12 @@ totalmente la metodología de desarrollo, pasando de un desarrollo sin control a
 unitarias e integración continua. Además los cambios ya no se tendrá que aplicar manualmente en el servidor, sino que se hará
 uso de un despliegue automático para tal fin.
 
+\bigskip
 Esta aplicación se usará de base en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
 para su uso en cualquier organización sin demasiada dificultad, de ahí que se vaya a estudiar también la posibilidad de 
 personalización de CKAN, ya que esto permitiría generar una gran plataforma de liberación de datos totalmente personalizable
 según el ámbito y las necesidades.
 
-  
 \section{Descripción de los actores}
 
 El usuario de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
@@ -52,6 +54,7 @@ También tenemos al desarrollador, que será el encargado de introducir los elem
 plataforma. Como es una página estática, los elementos serán mostados en la tabla correspondiente de la página correspondiente
 después de que sean leidos del archivo JSON correspondiente.
 
+\newpage
 \section{Requisitos}
 
 Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se 
@@ -141,7 +144,7 @@ que se van a mostrar en UGR Transparente.
 Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir
 unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general de la plataforma UGR Transparente.
 
-\subsubsection*{Descripción básica de actores}
+\subsection{Descripción básica de actores}
 
 \begin{itemize}
   \item \textbf{Ac-1.} Usuario
@@ -164,7 +167,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
   \end{itemize}
 \end{itemize}
 
-\subsubsection*{Descripción casos de uso}
+\subsection{Descripción casos de uso}
 
 \begin{itemize}
  \item \textbf{CU-1.} Añadir elemento
@@ -232,15 +235,13 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
  \end{itemize}
 \end{itemize}
 
-\subsubsection*{Diagramas de casos de uso}
+\subsection{Diagramas de casos de uso}
 
 La figura 2.1 representa el diagrama de estado de los casos de usos considerados inicialmente para el proyecto.
 
-\newpage
-\thispagestyle{empty}
 \begin{figure}[htb]
   \begin{center}
-  \includegraphics[width=1\textwidth]{imagenes/diagrama_casos_uso.png}
+  \includegraphics[width=0.9\textwidth]{imagenes/diagrama_casos_uso.png}
   \end{center}
   \caption[Casos de uso]{Diagramas de casos de uso}
 \end{figure}
