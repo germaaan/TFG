@@ -9,22 +9,37 @@ los propios datos abiertos, si no que hará de presentación de los datos que es
 únicamente a dicho fin (OpenData UGR).
 
 \bigskip
-La aplicación final se usará en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
-para su uso en cualquier organización sin demasiada dificultad.
-
-\bigskip
 Un resumen de los principales objetivos a alcanzar son:
 
 \begin{itemize}
-  \item \textbf{OBJ-1.} La plataforma UGR Transparente enlazará los datos abiertos contenidos en la plataforma OpenData UGR
-  (algo que ya hace, pero con problemas existentes que se deben solucionar).
-  \item \textbf{OBJ-2.} El desarrollo de la plataforma UGR Transparente seguirá una metodología de desarrollo continuo que 
-  contará con la implementación de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
+  \item \testbf{OBJ-1.} Promover la idea de que los desarrollos bajo software libre en la administración pública ayudan a 
+  generar confianza y demuestran compromiso con la transparencia.
+  \item \textbf{OBJ-2.} Solucionar los problemas de generación de las tablas con los elementos de información.
+  \item \textbf{OBJ-3.} Implementar en la plataforma UGR Transparente una metodología de desarrollo continuo que se base 
+  en el uso de tests unitarios para cada una de las funcionalidades que se vayan añadiendo, test de 
   cobertura que evalúen los test unitarios, integración continua ante cambios introducidos, despliegue automático de las
   actualizaciones que se vayan produciendo y aprovisionamiento software para la infraestructura.
-  \item \textbf{OBJ-3.} Realizar una aprovisionamiento para la plataforma contenedora de los datos abiertos OpenData UGR que 
-  permita una instalación con una base de CKAN más personalizada.
 \end{itemize}
+
+Además como objetivo secundario tendremos:
+
+  \item \textbf{OBJ-4.} Estudiar la posibilidad de hacer una instalación totalmente personalizada del portal de datos de código
+  abierto CKAN para los datos abiertos de la Universidad de Granada, además de un aprovisionamiento que permitiera que esta 
+  instalación se pudiera realizar automáticamente en una infraestructura.
+
+
+\section{Alcance de los objetivos}
+
+La aplicación resultante visualmente será idéntica que la versión actual de UGR Transparente, pero internamente habrá cambiado
+totalmente la metodología de desarrollo, pasando de un desarrollo sin control a uno totalmente controlado mediante pruebas 
+unitarias e integración continua. Además los cambios ya no se tendrá que aplicar manualmente en el servidor, sino que se hará
+uso de un despliegue automático para tal fin.
+
+Esta aplicación se usará de base en la Universidad de Granada, pero además el objetivo del desarrollo es que se pueda exportar 
+para su uso en cualquier organización sin demasiada dificultad, de ahí que se vaya a estudiar también la posibilidad de 
+personalización de CKAN, ya que esto permitiría generar una gran plataforma de liberación de datos totalmente personalizable
+según el ámbito y las necesidades.
+
   
 \section{Descripción de los actores}
 
