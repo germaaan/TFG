@@ -9,10 +9,12 @@ porque se parte de que ya se han realizado varias reuniones y el proyecto está 
 de cero, es una ampliación de un proyecto inicial.
 
 \begin{itemize}
-  \item \textbf{Fase 0:} Gestión del proyecto
-  \item \textbf{Fase 1:} Análisis del entorno
+  \item \textbf{Fase 1:} Especificaciones del proyecto
   \item \textbf{Fase 2:} Planificación
-  \item \textbf{Fase 3:} Desarrollo técnico
+  \item \textbf{Fase 3:} Análisis y diseño
+  \item \textbf{Fase 4:} Implementación
+  \item \textbf{Fase 5:} Pruebas
+  \item \textbf{Fase 6:} Documentación
 \end{itemize}
 
 \subsection{Lista de entregas}
@@ -20,26 +22,37 @@ de cero, es una ampliación de un proyecto inicial.
 Se harán una serie de breves informes sobre el contenido de cada una de las fases de planificación del proyecto.
 
 \begin{itemize}
-  \item \textbf{Fase 0:} Gestión del proyecto
-  \begin{itemize}
-    \item Descripción: Se realizarán reuniones para concretar los objetivos del proyecto y el desarrollo necesario para 
-    cumplirlo.
-    \item Tipo: informe.
-  \end{itemize}
   \item \textbf{Fase 1:} Especificación del proyecto.
   \begin{itemize}
-    \item Descripción: Se establecen los criterios a cumplir para que el desarrollo del proyecto se considere exitoso.
+    \item Descripción: Se establecen los objetivos a cumplir para que el desarrollo del proyecto se considere completado.
     \item Tipo: informe.
   \end{itemize}
+  \newpage
   \item \textbf{Fase 2:} Planificación.
   \begin{itemize}
     \item Descripción: Se desarrolla la documentación con toda la planificación del desarrollo del proyecto.
     \item Tipo: informe.
   \end{itemize}
-  \item \textbf{Fase 3:} Desarrollo técnico
+  \item \textbf{Fase 3:} Análisis y diseño.
   \begin{itemize}
-    \item Descripción: Implementación del software necesario para cumplir los objetivos.
+    \item Descripción: Todos los aspectos del proyectos son analizados para concretar la forma de desarrollarlo.
+    \item Tipo: informe.
+  \end{itemize}
+  \item \textbf{Fase 4:} Implementación.
+  \begin{itemize}
+    \item Descripción: Con el proyecto ya planificado y diseña se pasa programar todo lo necesario para cumplir los objetivos.
+    \item Tipo: software.
+  \end{itemize}
+  \item \textbf{Fase 5:} Pruebas.
+  \begin{itemize}
+    \item Descripción: Una vez este todo programado, se pasa a validar con diferentes procedimientos que el proyecto funciona
+    correctamente tomando como referentes unas métricas propias.
     \item Tipo: informe y software.
+  \end{itemize}
+  \item \textbf{Fase 6:} Documentación.
+  \begin{itemize}
+    \item Descripción: Para finalizar el proyecto se realiza toda la documentación informativa y explicativa.
+    \item Tipo: informe.
   \end{itemize}
 \end{itemize}
 
@@ -48,42 +61,103 @@ Se harán una serie de breves informes sobre el contenido de cada una de las fas
 El diagrama de Estructura de Descomposición del Trabajo (figura 3.1) es una descomposición jerárquica de las diferentes fases y 
 entregas en las que está planificado el proyecto.
 
-\begin{figure}[htb]
-  \begin{center}
-  \includegraphics[width=1\textwidth]{imagenes/edt.png}
-  \end{center}
-  \caption[EDT]{Estructura de Descomposición del Trabajo}
-\end{figure}
+\newpage
+\begin{landscape} 
+  \begin{figure}[!h]
+    \begin{center}
+    \includegraphics[scale=0.3]{imagenes/diagrama_edt.png}
+    \caption[EDT]{Diagrama de Estructura de Descomposición de Trabajo}
+    \label{fig:edt}
+    \end{center}
+  \end{figure} 
+\end{landscape}
 
+\newpage
 \section{Lista de actividades}
 
-Las actividades 
+Las actividades que se vayan a desarrollar en cada una de las fases para cada una de las entregas se va a listar junto con una 
+estimación del tiempo que deberían tomar en ser cumplidas.
 
 \begin{itemize}
    \item \textbf{Especificaciones del proyecto:}
    \begin{itemize}
     \item Determinación de objetivos.
     \item Determinación de requisitos.
-    \item Estimación:
+    \item \underline{\textit{Estimación: 6 horas}}
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
    \item \textbf{Planificación:}
    \begin{itemize}
-    \item Lista de actividades:
-    \item Recursos humanos:
+    \item Lista de actividades.
+    \item Recursos humanos.
+    \item Presupuesto.
+    \item Temporización.
+    \item \underline{\textit{Estimación: 10 horas}}
    \end{itemize}
 \end{itemize}
 
+\begin{itemize}
+   \item \textbf{Análisis y diseño:}
+   \begin{itemize}
+    \item Análisis de requisitos.
+    \item Diagramas.
+    \item Metodología de desarrollo.
+    \item Descripción estructural.
+    \item \underline{\textit{Estimación: 30 horas}}
+   \end{itemize}
+\end{itemize}
 
+\begin{itemize}
+ \item \textbf{Implementación:}
+ \begin{itemize}
+  \item Herramientas seleccionadas.
+  \item Solucionar problema de generación de páginas.
+  \item Implementar tests unitarios.
+  \item Implementar test de cobertura.
+  \item Introducir integración continua.
+  \item Agregar despliegue automático.
+  \item Actualizar aprovisionamiento.
+  \item \underline{\textit{Estimación: 200 horas}}
+ \end{itemize}
+\end{itemize}
+
+\newpage
+\begin{itemize}
+ \item \textbf{Pruebas:}
+ \begin{itemize}
+  \item Pruebas de software.
+  \item Pruebas de carga.
+  \item \underline{\textit{Estimación: 20 horas}}
+ \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+ \item \textbf{Documentación:}
+ \begin{itemize}
+  \item Documentación de la aplicación.
+  \item Manual de usuario.
+  \item Documentación del proyecto.
+  \item \underline{\textit{Estimación: 30 horas}}
+ \end{itemize}
+\end{itemize}
 
 \section{Recursos humanos}
 
+Como este es un proyecto que comenzó su desarrollo en la Oficina de Software Libre de la Universidad de Granada, cuento con el
+apoyo de todos sus colaboradores, además del resto de becarios que se encuentran realizando prácticas en empresa en ella
+como es mi situación actual, además, siendo el tutor de este proyecto el director de la propia oficina.
+
 \section{Presupuesto}
 
-\section{Metodología de desarrollo}
+Una de las ventajas de usar software libre es que no es necesario adquirir licencias por las que haya que pagar para realizar 
+su uso, como todas las herramientas que usen (al igual que las que se generen) serán software libre, el coste en software para 
+el desarrollo será cero.
 
-\section{Herramientas seleccionadas}
+\bigskip
+
+El único recurso necesario es el servidor en que estará instalada la plataforma, servidor ya que adquirido anteriormente, por
+lo que tampoco es necesario considerarlo un gasto a afrontar de cara al desarrollo.
 
 \section{Temporización}
