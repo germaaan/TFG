@@ -34,7 +34,7 @@ Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo con
 unitarios, test de cobertura, integración continua, despliegue automático y aprovisionamiento con tal fin.
 
 \begin{itemize}
-  \item \textbf{RF-1.} Administración de la plataforma:
+  \item \textbf{RF-1.} Administración portal:
     \begin{itemize}
     \item \textbf{RF-1.1.} Arrancar el portal mediante un script.
     \item \textbf{RF-1.2.} Detener el portal mediante un script.
@@ -42,14 +42,14 @@ unitarios, test de cobertura, integración continua, despliegue automático y ap
 \end{itemize}
 
 \begin{itemize}
-  \item \textbf{RF-2.} Acceso a la información:
+  \item \textbf{RF-2.} Acceso información:
     \begin{itemize}
     \item \textbf{RF-2.1.} Consultar tablas con elementos de información.
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-  \item \textbf{RF-3.} Integración del desarrollo continuo:
+  \item \textbf{RF-3.} Desarrollo continuo:
   \begin{itemize}
     \item \textbf{RF-3.1.} Realizar tests unitarios.
     \item \textbf{RF-3.2.} Realizar test de cobertura.
@@ -135,8 +135,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Postcondición: El portal será accesible públicamente.
     \item Propósito: Arrancar el servidor del portal UGR Transparente.
     \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde
-  internet.
- \end{itemize}
+    internet.
+  \end{itemize}
  
   \item \textbf{CU-2.} Detener plataforma
   \begin{itemize}
@@ -147,10 +147,10 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Detener el servidor del portal UGR Transparente.
     \item Resumen: Cuando se ejecuta el script de detención de la aplicación, se detiene el servidor y el portal deja de estar
     accesible desde internet.
- \end{itemize}
+  \end{itemize}
  
- \newpage
- \item \textbf{CU-3.} Consultar datos
+  \newpage
+  \item \textbf{CU-3.} Consultar datos
   \begin{itemize}
     \item Actores: Usuario
     \item Tipo: Primario, Esencial
@@ -159,9 +159,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: El usuario consulta los datos mostrador en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia, navega a través de las distintas categorías y selecciona
     aquella información que está interesado en conocer.
- \end{itemize}
+  \end{itemize}
  
- \item \textbf{CU-4.} Realizar tests unitarios
+  \item \textbf{CU-4.} Realizar tests unitarios
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -169,9 +169,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Postcondición: 
     \item Propósito: Realizar tests unitarios para comprobar las funcionalidades de la aplicación.
     \item Resumen: Cada vez que se añadan nuevas páginas o funcionalidades al portal, se comprueba que funcionan correctamente.
- \end{itemize}
+  \end{itemize}
  
- \item \textbf{CU-5.} Realizar tests de cobertura
+  \item \textbf{CU-5.} Realizar tests de cobertura
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -180,10 +180,10 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Realizar test de cobertura para comprobar calidad de los tests unitarios.
     \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del
     código que está cubierto por los mismos.
- \end{itemize}
+  \end{itemize}
  
- \newpage
- \item \textbf{CU-6.} Usar integración continua
+  \newpage
+  \item \textbf{CU-6.} Usar integración continua
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -192,9 +192,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Comprobar si los cambios en la aplicación provocan errores.
     \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si
     los cambios introcudidos provocan conflictos en la plataforma.
- \end{itemize}
+  \end{itemize}
  
- \item \textbf{CU-.7 } Usar despliegue continuo
+  \item \textbf{CU-.7 } Usar despliegue continuo
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -203,9 +203,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Aplicar automáticamente los cambios realizados a la aplicación. 
     \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios 
     introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
- \end{itemize}
+  \end{itemize}
  
- \item \textbf{CU-.8 } Usar aprovisionamiento
+  \item \textbf{CU-.8 } Usar aprovisionamiento
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -214,19 +214,54 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Instalar automáticamente el portal en una infraestructura dada.
     \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en 
     cualquier infraestructura que se indique.
+  \end{itemize}
  \end{itemize}
 
-
-\subsection{Diagramas de casos de uso}
-
-Para tener una visión más facil de como se comportan las funcionalidades que vamos a añadir al portal en el diagrama de casos 
-de uso podemos ver como se relacionan los diferentes casos de uso entre si y con los distintos actores que intervienen.
+\newpage
+\section{Diagrama de paquetes}
 
 \begin{figure}[!h]
   \begin{center}
-  \includegraphics[width=1\textwidth]{imagenes/diagrama_casos_uso.png}
-  \caption[Casos de uso]{Diagrama de casos de uso}
-  \label{fig:casosUso}
+  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_paquetes.png}
+  \caption[diagrama_paquetes]{Diagrama de paquetes}
+  \label{fig:diagrama_paquetes}
+  \end{center}
+\end{figure}
+ 
+\section{Diagramas de casos de uso}
+
+% Para tener una visión más facil de como se comportan las funcionalidades que vamos a añadir al portal en el diagrama de casos 
+% de uso podemos ver como se relacionan los diferentes casos de uso entre si y con los distintos actores que intervienen.
+
+\begin{figure}[!h]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_administracion_portal.png}
+  \caption[casos_uso_ap]{Diagrama de casos de uso: paquete Administración portal}
+  \label{fig:casos_uso_ap}
   \end{center}
 \end{figure}
 
+\begin{figure}[!h]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_acceso_informacion.png}
+  \caption[casos_uso_ai]{Diagrama de casos de uso: paquete Acceso información}
+  \label{fig:casos_uso_ai}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!h]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_desarrollo_continuo.png}
+  \caption[Casos de uso]{Diagrama de casos de uso: paquete Desarrollo continuo}
+  \label{fig:casos_uso_dc}
+  \end{center}
+\end{figure}
+
+\newpage
+\section{Diagramas de actividad}
+
+\section{Diagramas de secuencia}
+
+\section{Diseño de los procedimientos}
+
+[No hay clases ni objetos propios. Todo en base a llamadas a procedimientos.]
