@@ -34,21 +34,28 @@ Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo con
 unitarios, test de cobertura, integración continua, despliegue automático y aprovisionamiento con tal fin.
 
 \begin{itemize}
-  \item \textbf{RF-1.} Acceso a la información:
+  \item \textbf{RF-1.} Administración de la plataforma:
     \begin{itemize}
-    \item \textbf{RF-1.1.} Generar tablas con elementos de información.
-    \item \textbf{RF-2.2.} Consultar tablas con elementos de información.
+    \item \textbf{RF-1.1.} Arrancar el portal mediante un script.
+    \item \textbf{RF-1.2.} Detener el portal mediante un script.
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-  \item \textbf{RF-2.} Introducción del desarrollo continuo:
+  \item \textbf{RF-2.} Acceso a la información:
+    \begin{itemize}
+    \item \textbf{RF-2.1.} Consultar tablas con elementos de información.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+  \item \textbf{RF-3.} Integración del desarrollo continuo:
   \begin{itemize}
-    \item \textbf{RF-2.1.} Realizar tests unitarios.
-    \item \textbf{RF-2.2.} Realizar test de cobertura.
-    \item \textbf{RF-2.2.} Realizar integración continua.
-    \item \textbf{RF-2.3.} Realizar despliegue automático.
-    \item \textbf{RF-2.4.} Realizar aprovisionamiento.
+    \item \textbf{RF-3.1.} Realizar tests unitarios.
+    \item \textbf{RF-3.2.} Realizar test de cobertura.
+    \item \textbf{RF-3.2.} Usar integración continua.
+    \item \textbf{RF-3.3.} Usar despliegue automático.
+    \item \textbf{RF-3.4.} Usar aprovisionamiento.
     \end{itemize}
 \end{itemize}
 
@@ -97,7 +104,16 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 \subsection{Descripción básica de actores}
 
 \begin{itemize}
-  \item \textbf{Ac-1.} Usuario
+  \item \textbf{Ac-1.} Desarrollador
+  \begin{itemize}
+   \item Descripción: Encargado del desarrollo y administración de la plataforma.
+   \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
+   \item Relaciones: Ninguna.
+   \item Atributos: Ninguno.
+   \item Comentarios: Es el encargado de que la información se muestre en el portal y de añadir funcionalidades a la plataforma.
+  \end{itemize}
+  
+  \item \textbf{Ac-2.} Usuario
   \begin{itemize}
    \item Descripción: Persona que usa la plataforma que consulta datos.
    \item Características: Es el usuario común que accederá a la página.
@@ -106,91 +122,105 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
    \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso de la plataforma, simplemente
    accederá y consultará los datos que sean de su interes.
   \end{itemize}
-  
-  \item \textbf{Ac-1.} Desarrollador
-  \begin{itemize}
-   \item Descripción: Encargado de añadir los elementos de información a la plataforma.
-   \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
-   \item Relaciones: Ninguna.
-   \item Atributos: Ninguno.
-   \item Comentarios: Es el encargado de desarrollar las funcionalidades del portal, entre ellas añadir nuevos elementos de
-   información.
-  \end{itemize}
 \end{itemize}
 
 \subsection{Descripción casos de uso}
 
 \begin{itemize}
- \item \textbf{CU-1.} Añadir elemento
- \begin{itemize}
-  \item Actores: Desarrollador
-  \item Tipo: Primario, Esencial
-  \item Precondición: Ninguna
-  \item Postcondición: Nuevos elementos de información serán visualizados en el portal de transparencia
-  \item Propósito: Son añadidos nuevos elementos de información al portal de transparencia.
-  \item Resumen: Aparecerán nuevos elementos de informaciónen la categória que corresponda, acompañado además de su enlace
-  correspondiente al OpenData UGR, un botón para previsualizar la información y otro botón para descargar el elemento.
+  \item \textbf{CU-1.} Iniciar plataforma
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: Ninguna
+    \item Postcondición: El portal será accesible públicamente.
+    \item Propósito: Arrancar el servidor del portal UGR Transparente.
+    \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde
+  internet.
  \end{itemize}
-\end{itemize}
+ 
+  \item \textbf{CU-2.} Detener plataforma
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: La plataforma esté en ejecución.
+    \item Postcondición: El portal deja de estar operativo.
+    \item Propósito: Detener el servidor del portal UGR Transparente.
+    \item Resumen: Cuando se ejecuta el script de detención de la aplicación, se detiene el servidor y el portal deja de estar
+    accesible desde internet.
+ \end{itemize}
+ 
+ \newpage
+ \item \textbf{CU-3.} Consultar datos
+  \begin{itemize}
+    \item Actores: Usuario
+    \item Tipo: Primario, Esencial
+    \item Precondición: Existan archivos con los datos abiertos.
+    \item Postcondición:
+    \item Propósito: El usuario consulta los datos mostrador en el portal UGR Transparente.
+    \item Resumen: El usuario que accede al portal de transparencia, navega a través de las distintas categorías y selecciona
+    aquella información que está interesado en conocer.
+ \end{itemize}
+ 
+ \item \textbf{CU-4.} Realizar tests unitarios
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: Existan las páginas del portal de transparencia.
+    \item Postcondición: 
+    \item Propósito: Realizar tests unitarios para comprobar las funcionalidades de la aplicación.
+    \item Resumen: Cada vez que se añadan nuevas páginas o funcionalidades al portal, se comprueba que funcionan correctamente.
+ \end{itemize}
+ 
+ \item \textbf{CU-5.} Realizar tests de cobertura
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: Existan tests unitarios
+    \item Postcondición: 
+    \item Propósito: Realizar test de cobertura para comprobar calidad de los tests unitarios.
+    \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del
+    código que está cubierto por los mismos.
+ \end{itemize}
+ 
+ \newpage
+ \item \textbf{CU-6.} Usar integración continua
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: Existan test unitarios.
+    \item Postcondición: Se genera un informe con el resultado de los tests unitarios.
+    \item Propósito: Comprobar si los cambios en la aplicación provocan errores.
+    \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si
+    los cambios introcudidos provocan conflictos en la plataforma.
+ \end{itemize}
+ 
+ \item \textbf{CU-.7 } Usar despliegue continuo
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: 
+    \item Postcondición: Los cambios introducidos son aplicados en la plataforma.
+    \item Propósito: Aplicar automáticamente los cambios realizados a la aplicación. 
+    \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios 
+    introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
+ \end{itemize}
+ 
+ \item \textbf{CU-.8 } Usar aprovisionamiento
+  \begin{itemize}
+    \item Actores: Desarrollador
+    \item Tipo: Primario, Esencial
+    \item Precondición: 
+    \item Postcondición: El portal queda instalado en la infraestructura seleccionada.
+    \item Propósito: Instalar automáticamente el portal en una infraestructura dada.
+    \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en 
+    cualquier infraestructura que se indique.
+ \end{itemize}
 
-\begin{itemize}
- \item \textbf{CU-2.} Consultar elementos
- \begin{itemize}
-  \item Actores: Usuario
-  \item Tipo: Primario, esencial
-  \item Precondición: Existan elementos de información.
-  \item Postcondición: Se muestran los elementos de información de un determinado conjunto de datos.
-  \item Propósito: Obtiene los elementos de información de un determinado conjunto de datos.
-  \item Resumen: Accediendo a través del panel principal o el buscador se obtiene una tabla con los elementos de información
-  de un determinado conjunto de datos.
- \end{itemize}
-\end{itemize}
-
-\begin{itemize}
- \item \textbf{CU-3.} Acceder enlace de elemento
- \begin{itemize}
-  \item Actores: Usuario
-  \item Tipo: Primario, esencial
-  \item Precondición: Se hayan generado las tablas con los elementos de información.
-  \item Postcondición: 
-  \item Propósito: Accede a la información del elemento contenida en OpenData UGR.
-  \item Resumen: Cuando se pulsa el enlace, se accede al conjunto de datos que contiene la información del elemento en OpenData
-  UGR, presentándolo de distinta forma en función del formato del elemento y dando la opción de descagar ese mismo elemento en 
-  un archivo con su formato original.
- \end{itemize}
-\end{itemize}
-
-\begin{itemize}
- \item \textbf{CU-4.} Previsualizar elemento de información
- \begin{itemize}
-  \item Actores: Usuario
-  \item Tipo: Secundario
-  \item Precondición: Se hayan generado las tablas con los elementos de información.
-  \item Postcondición: 
-  \item Propósito: Previsualiza los datos del elemento.
-  \item Resumen: Cuando se selecciona el botón de ver un elemento de la tabla se abre una ventana emergente en la que se 
-  muestra la información del elemento que se contiene en OpenData UGR.
- \end{itemize}
-\end{itemize}
-
-\begin{itemize}
- \item \textbf{CU-5.} Descargar elemento de información
- \begin{itemize}
-  \item Actores: Usuario
-  \item Tipo: Secundario
-  \item Precondición: Se hayan generado las tablas con los elementos de información.
-  \item Postcondición: 
-  \item Propósito: Descagar el elemento en un archivo con su formato original.
-  \item Resumen: Cuando se selecciona el botón de descargar un elemento de la tabla se abre una ventana emergente en la que se
-  muestra la información del elemento que se contiene en OpenData UGR.
- \end{itemize}
-\end{itemize}
 
 \subsection{Diagramas de casos de uso}
 
-Desde un punto de vista funcional es el usuario el que realiza la mayoria de las acciones del portal, la función del 
-desarrollar aunque fundamental, solo es una acción que se realiza en un segundo plano del que no se tiene constancia desde 
-fuera.
+Para tener una visión más facil de como se comportan las funcionalidades que vamos a añadir al portal en el diagrama de casos 
+de uso podemos ver como se relacionan los diferentes casos de uso entre si y con los distintos actores que intervienen.
 
 \begin{figure}[!h]
   \begin{center}
