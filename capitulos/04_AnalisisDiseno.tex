@@ -142,10 +142,24 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \begin{table}[!hbt]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
-	\hline
-	\multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
-	{\it 1} & \begin{tabular}[c]{@{}l@{}}Administrador: da orden de que\\ se inicie la plataforma.\end{tabular} &    &                                                                                                             \\ \hline
-	  &                                                                                                   & {\it 2a} & \begin{tabular}[c]{@{}l@{}}Comprueba que el servidor\\ está detenido e inicia la\\ plataforma.\end{tabular} \\ \hline
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Administrador: da orden de\\
+	    que se inicie la plataforma.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprueba que el servidor\\
+	    está detenido e inicia la\\
+	    plataforma.
+	  \end{tabular}
+	  \\ \hline
 	\end{tabular}
 	\caption{Curso normal de CU-1. Iniciar plataforma}
 	\label{table:cn_cu_1}
@@ -154,9 +168,14 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \begin{table}[!hbt]
       \begin{center}
 	\begin{tabular}{|l|l|}
-	\hline
-	\multicolumn{2}{|c|}{{\bf Curso alterno}}                                                        \\ \hline
-	{\it 2b} & \begin{tabular}[c]{@{}l@{}}Si el servidor ya está funcionando, no se ejecuta el script de arranque \\ del servidor.\end{tabular} \\ \hline
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 2b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si el servidor está funcionando, no se ejecuta el script de\\
+	    arranque del servidor.\end{tabular}\\
+	    \hline
 	\end{tabular}
 	\caption{Curso alterno de CU-1. Iniciar plataforma}
 	\label{table:ca_cu_1}
@@ -179,23 +198,42 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \begin{table}[!hbt]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
-	\hline
-	\multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
-	{\it 1} & \begin{tabular}[c]{@{}l@{}}Administrador: da orden de que\\ se detenga la plataforma.\end{tabular} &    &                                                                                                             \\ \hline
-	  &                                                                                                   & {\it 2a} & \begin{tabular}[c]{@{}l@{}}Comprueba que el servidor\\ está iniciado y detiene la\\ plataforma.\end{tabular} \\ \hline
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Administrador: da orden de\\
+	    que se detenga la plataforma.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprueba que el servidor\\
+	    está iniciado y detiene la\\
+	    plataforma.
+	  \end{tabular}
+	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-2. Iniciar plataforma}
+	\caption{Curso normal de CU-2. Detener plataforma}
 	\label{table:cn_cu_2}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
       \begin{center}
 	\begin{tabular}{|l|l|}
-	\hline
-	\multicolumn{2}{|c|}{{\bf Curso alterno}}                                                        \\ \hline
-	{\it 2b} & \begin{tabular}[c]{@{}l@{}}Si el servidor no está funcionando, no se ejecuta el script de parada \\ del servidor.\end{tabular} \\ \hline
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 2b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si el servidor no está funcionando, no se ejecuta el script de\\
+	    parada del servidor.\end{tabular}\\
+	    \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-2. Iniciar plataforma}
+	\caption{Curso alterno de CU-2. Detener plataforma}
 	\label{table:ca_cu_2}
       \end{center}
     \end{table}
