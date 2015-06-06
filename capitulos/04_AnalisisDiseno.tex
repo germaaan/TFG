@@ -143,10 +143,13 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
 	  \hline
-	  \multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
-	    Administrador: da orden de\\
+	    Desarrollador: da orden de\\
 	    que se inicie la plataforma.
 	  \end{tabular} &
 	  &
@@ -174,8 +177,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  {\it 2b} &
 	  \begin{tabular}[c]{@{}l@{}}
 	    Si el servidor está funcionando, no se ejecuta el script de\\
-	    arranque del servidor.\end{tabular}\\
-	    \hline
+	    arranque del servidor.
+	  \end{tabular}\\
+	  \hline
 	\end{tabular}
 	\caption{Curso alterno de CU-1. Iniciar plataforma}
 	\label{table:ca_cu_1}
@@ -199,10 +203,13 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
 	  \hline
-	  \multicolumn{4}{|c|}{{\bf Curso normal}}                                                                                                                                                                                       \\ \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
-	    Administrador: da orden de\\
+	    Desarrollador: da orden de\\
 	    que se detenga la plataforma.
 	  \end{tabular} &
 	  &
@@ -230,8 +237,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  {\it 2b} &
 	  \begin{tabular}[c]{@{}l@{}}
 	    Si el servidor no está funcionando, no se ejecuta el script de\\
-	    parada del servidor.\end{tabular}\\
-	    \hline
+	    parada del servidor.
+	  \end{tabular}\\
+	  \hline
 	\end{tabular}
 	\caption{Curso alterno de CU-2. Detener plataforma}
 	\label{table:ca_cu_2}
@@ -251,6 +259,46 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: El usuario consulta los datos mostrador en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia, navega a través de las distintas categorías y selecciona
     aquella en la que está interesado en conocer.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Usuario: consulta información\\
+	    de una subcategoría del portal.\\
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se generan las tablas con\\
+	    todos los elementos de\\
+	    información de la subca-\\
+	    tegoría correspondiente.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se muestran en la página\\
+	    todos las tablas generadas\\
+	    con los elementos de\\
+	    información.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-3. Consultar datos}
+	\label{table:cn_cu_3}
+      \end{center}
+    \end{table}
   \end{itemize}
  
   \item \textbf{CU-4.} Realizar tests unitarios
@@ -264,8 +312,53 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Versión: 1.0
     \item Propósito: Realizar tests unitarios para comprobar las funcionalidades de la aplicación.
     \item Resumen: Cada vez que se añadan nuevas páginas o funcionalidades al portal, se comprueba que funcionan correctamente.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Desarrollador: da orden de\\
+	    ejecutar los tests unitarios.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprueba que hay tests\\
+	    unitarios y los ejecuta.\\
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-4. Realizar tests unitarios}
+	\label{table:cn_cu_4}
+      \end{center}
+    \end{table}
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|}
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 2b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si no hay tests unitarios creados, el sistema no hace nada.
+	  \end{tabular}\\
+	  \hline
+	\end{tabular}
+	\caption{Curso alterno de CU-4. Realizar tests unitarios}
+	\label{table:ca_cu_4}
+      \end{center}
+    \end{table}
   \end{itemize}
  
+  \newpage
   \item \textbf{CU-5.} Realizar tests de cobertura
   \begin{itemize}
     \item Actores: Desarrollador
@@ -278,6 +371,59 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Realizar test de cobertura para comprobar calidad de los tests unitarios.
     \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del
     código que está cubierto por los mismos.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Desarrollador: da orden de\\
+	    ejecutar test de cobertura.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprueba que hay tests\\
+	    unitarios y los ejecuta.\\
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se ejecuta el test de \\
+	    cobertura en base a los\\
+	    tests unitarios ejecutados.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-5. Realizar test de cobertura}
+	\label{table:cn_cu_5}
+      \end{center}
+    \end{table}
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|}
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 2b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si no hay tests unitarios creados, el sistema no hace nada.
+	  \end{tabular}\\
+	  \hline
+	\end{tabular}
+	\caption{Curso alterno de CU-5. Realizar test de cobertura}
+	\label{table:ca_cu_5}
+      \end{center}
+    \end{table}
   \end{itemize}
  
   \newpage
@@ -293,8 +439,63 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Comprobar si los cambios en la aplicación provocan errores.
     \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si
     los cambios introcudidos provocan conflictos en la plataforma.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Desarrollador: guardar\\
+	    cambios en el repositorio.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprueba que hay tests\\
+	    unitarios y comienza la\\
+	    verificación de la\\
+	    integración continua.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Ejecuta los tests unitarios\\
+	    para cada entorno definido.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-6. Usar integración continua}
+	\label{table:cn_cu_6}
+      \end{center}
+    \end{table}
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|}
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 2b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si no hay tests unitarios creados, el sistema no hace nada.
+	  \end{tabular}\\
+	  \hline
+	\end{tabular}
+	\caption{Curso alterno de CU-6. Usar integración continua}
+	\label{table:ca_cu_6}
+      \end{center}
+    \end{table}
   \end{itemize}
  
+  \newpage
   \item \textbf{CU-.7 } Usar despliegue automático
   \begin{itemize}
     \item Actores: Desarrollador
@@ -307,8 +508,77 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Aplicar automáticamente los cambios realizados a la aplicación. 
     \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios 
     introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Desarrollador: ordenar\\
+	    despliegue automático.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Conectar al servidor.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Crear copia de seguridad.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 4a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprobar si hay cambios en\\
+	    el repositorio de la\\
+	    plataforma y descargarlos\\
+	    en dicho caso.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 5} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Iniciar la plataforma con\\
+	    los cambios aplicados.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-7. Usar despliegue automático}
+	\label{table:cn_cu_7}
+      \end{center}
+    \end{table}
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|}
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 4b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si no hay cambios aplicables, se continua con el proceso.
+	  \end{tabular}\\
+	  \hline
+	\end{tabular}
+	\caption{Curso alterno de CU-7. Usar despliegue automático}
+	\label{table:ca_cu_7}
+      \end{center}
+    \end{table}
   \end{itemize}
  
+  \newpage
   \item \textbf{CU-.8 } Usar aprovisionamiento
   \begin{itemize}
     \item Actores: Desarrollador
@@ -321,114 +591,209 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Propósito: Instalar automáticamente el portal en una infraestructura dada.
     \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en 
     cualquier infraestructura que se indique.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Desarrollador: ordenar\\
+	    despliegue automático.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Conectar al servidor.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Comprobar aplicación necesaria.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 4a} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se comprueba si la aplicación\\
+	    necesaria está instalada,\\
+	    instalándola en caso de que\\
+	    no lo esté.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 5} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Descarga la plataforma desde\\
+	    el repositorio.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 6} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Instalar todas las dependencias\\
+	    de la plataforma.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 7} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se establecen los parámetros de\\
+	    acceso al portal desde internet.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 8} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Con todo preparado, se inicia\\
+	    la plataforma.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-8. Usar aprovisionamiento}
+	\label{table:cn_cu_8}
+      \end{center}
+    \end{table}
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|}
+	  \hline
+	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
+	  \\ \hline
+	  {\it 4b} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Si la aplicación está instalada, se continua con el proceso.
+	  \end{tabular}\\
+	  \hline
+	\end{tabular}
+	\caption{Curso alterno de CU-8. Usar aprovisionamiento}
+	\label{table:ca_cu_8}
+      \end{center}
+    \end{table}
   \end{itemize}
  \end{itemize}
 
+\newpage
 \section{Diagrama de paquetes}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_paquetes.png}
-  \caption[diagrama_paquetes]{Diagrama de paquetes}
-  \label{fig:diagrama_paquetes}
+  \caption{Diagrama de paquetes}
+  \label{fig:diag_paquetes}
   \end{center}
 \end{figure}
  
+\newpage
 \section{Diagramas de casos de uso}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_administracion_portal.png}
-  \caption[casos_uso_ap]{Diagrama de casos de uso: paquete Administración portal}
-  \label{fig:casos_uso_ap}
+  \caption{Diagrama de casos de uso: paquete Administración portal}
+  \label{fig:diag_ca_us_ap}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_acceso_informacion.png}
-  \caption[casos_uso_ai]{Diagrama de casos de uso: paquete Acceso información}
-  \label{fig:casos_uso_ai}
+  \caption{Diagrama de casos de uso: paquete Acceso información}
+  \label{fig:diag_ca_us_ai}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_desarrollo_continuo.png}
-  \caption[casos_uso_dc]{Diagrama de casos de uso: paquete Desarrollo continuo}
-  \label{fig:casos_uso_dc}
+  \caption{Diagrama de casos de uso: paquete Desarrollo continuo}
+  \label{fig:diag_ca_us_dc}
   \end{center}
 \end{figure}
 
 \newpage
 \section{Diagramas de actividad}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_1.png}
-  \caption[diag_act_cu_1]{Diagrama de actividad CU-1. Iniciar plataforma}
-  \label{fig:diag_act_cu_1}
+  \caption{Diagrama de actividad CU-1. Iniciar plataforma}
+  \label{fig:diag_ca_us_1}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_2.png}
-  \caption[diag_act_cu_2]{Diagrama de actividad CU-2. Detener plataforma}
-  \label{fig:diag_act_cu_2}
+  \caption{Diagrama de actividad CU-2. Detener plataforma}
+  \label{fig:diag_ca_us_2}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_3.png}
-  \caption[diag_act_cu_3]{Diagrama de actividad CU-3. Consultar datos}
-  \label{fig:diag_act_cu_3}
+  \caption{Diagrama de actividad CU-3. Consultar datos}
+  \label{fig:diag_ca_us_3}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_4.png}
-  \caption[diag_act_cu_4]{Diagrama de actividad CU-4. Realizar tests unitarios}
-  \label{fig:diag_act_cu_4}
+  \caption{Diagrama de actividad CU-4. Realizar tests unitarios}
+  \label{fig:diag_ca_us_4}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_5.png}
-  \caption[diag_act_cu_5]{Diagrama de actividad CU-5. Realizar tests de cobertura}
-  \label{fig:diag_act_cu_5}
+  \caption{Diagrama de actividad CU-5. Realizar tests de cobertura}
+  \label{fig:diag_ca_us_5}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_6.png}
-  \caption[diag_act_cu_6]{Diagrama de actividad CU-6. Usar integración continua}
-  \label{fig:diag_act_cu_6}
+  \caption{Diagrama de actividad CU-6. Usar integración continua}
+  \label{fig:diag_ca_us_6}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_7.png}
-  \caption[diag_act_cu_7]{Diagrama de actividad CU-7. Usar despliegue continuo}
-  \label{fig:diag_act_cu_7}
+  \caption{Diagrama de actividad CU-7. Usar despliegue continuo}
+  \label{fig:diag_ca_us_7}
   \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hbt]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_8.png}
-  \caption[diag_act_cu_8]{Diagrama de actividad CU-8. Usar aprovisionamiento}
-  \label{fig:diag_act_cu_8}
+  \caption{Diagrama de actividad CU-8. Usar aprovisionamiento}
+  \label{fig:diag_ca_us_8}
   \end{center}
 \end{figure}
 
-\section{Diagramas de secuencia}
-
-\section{Diseño de los procedimientos}
-
-[No hay clases ni objetos propios. Todo en base a llamadas a procedimientos.]
+% \newpage
+% \section{Diagramas de secuencia}
+% 
+% \section{Diseño de los procedimientos}
+% 
+% [No hay clases ni objetos propios. Todo en base a llamadas a procedimientos.]
