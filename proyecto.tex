@@ -159,31 +159,33 @@ pdfproducer = {pdflatex}
 
 \begin{document}
 \input{portada/portada}
-\input{prefacios/prefacio}
+\frontmatter
 
-%\frontmatter
-\tableofcontents
-\listoffigures
-\listoftables
-%
-%\mainmatter
-%\setlength{\parskip}{5pt}
+\begingroup
+  \pagestyle{empty}
+  \input{prefacios/prefacio}
+\endgroup
+
+\begingroup
+\let\cleardoublepage\clearpage
+  \tableofcontents
+  \listoffigures
+  \listoftables
+\endgroup
 
 \newpage
 \thispagestyle{empty}
 \
+\mainmatter
 \input{capitulos/01_Introduccion}
 \input{capitulos/02_Objetivos}
 \input{capitulos/03_Planificacion}
 \input{capitulos/04_AnalisisDiseno}
 \input{capitulos/05_Implementacion}
-%
 %\input{capitulos/06_Pruebas}
+%\input{capitulos/07_Conclusiones y Trabajos Futuros}
 %
-%\input{capitulos/07_Conclusiones}
-%
-%%\chapter{Conclusiones y Trabajos Futuros}
-%
+% \backmatter
 %%\nocite{*}
 %\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
@@ -194,6 +196,7 @@ pdfproducer = {pdflatex}
 %\addcontentsline{toc}{chapter}{Glosario}
 %\printglossary
 
+\newpage
 \thispagestyle{empty}
-
+\
 \end{document}

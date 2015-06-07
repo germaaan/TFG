@@ -2,21 +2,21 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama de Estructura de Descomposici\IeC {\'o}n de Trabajo}}{23}{figure.3.1}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama de Estructura de Descomposici\IeC {\'o}n de Trabajo}}{9}{figure.3.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de paquetes}}{38}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Diagrama de casos de uso: paquete Administraci\IeC {\'o}n portal}}{38}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama de casos de uso: paquete Acceso informaci\IeC {\'o}n}}{39}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagrama de casos de uso: paquete Pruebas de software}}{39}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Diagrama de casos de uso: paquete Configuraci\IeC {\'o}n autom\IeC {\'a}tica}}{40}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Diagrama de actividad CU-1. Inicio autom\IeC {\'a}tico del servidor del portal}}{40}{figure.4.6}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Diagrama de actividad CU-2. Consultar informaci\IeC {\'o}n de Administraci\IeC {\'o}n}}{41}{figure.4.7}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Diagrama de actividad CU-3. Consultar informaci\IeC {\'o}n de Docencia}}{42}{figure.4.8}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Diagrama de actividad CU-4. Consultar informaci\IeC {\'o}n de Gesti\IeC {\'o}n e Investigaci\IeC {\'o}n}}{43}{figure.4.9}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Diagrama de actividad CU-5. Consultar informaci\IeC {\'o}n de Normativa Legal}}{44}{figure.4.10}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Diagrama de actividad CU-6. Realizar tests unitarios}}{45}{figure.4.11}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Diagrama de actividad CU-7. Realizar test de cobertura}}{45}{figure.4.12}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Diagrama de actividad CU-8. Usar integraci\IeC {\'o}n continua}}{46}{figure.4.13}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Diagrama de actividad CU-9. Usar despliegue autom\IeC {\'a}tico}}{47}{figure.4.14}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Diagrama de actividad CU-10. Usar aprovisionamiento}}{48}{figure.4.15}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de paquetes}}{24}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Diagrama de casos de uso: paquete Administraci\IeC {\'o}n portal}}{24}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama de casos de uso: paquete Acceso informaci\IeC {\'o}n}}{25}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagrama de casos de uso: paquete Pruebas de software}}{25}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Diagrama de casos de uso: paquete Configuraci\IeC {\'o}n autom\IeC {\'a}tica}}{26}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Diagrama de actividad CU-1. Inicio autom\IeC {\'a}tico del servidor del portal}}{26}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Diagrama de actividad CU-2. Consultar informaci\IeC {\'o}n de Administraci\IeC {\'o}n}}{27}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Diagrama de actividad CU-3. Consultar informaci\IeC {\'o}n de Docencia}}{28}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Diagrama de actividad CU-4. Consultar informaci\IeC {\'o}n de Gesti\IeC {\'o}n e Investigaci\IeC {\'o}n}}{29}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Diagrama de actividad CU-5. Consultar informaci\IeC {\'o}n de Normativa Legal}}{30}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Diagrama de actividad CU-6. Realizar tests unitarios}}{31}{figure.4.11}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Diagrama de actividad CU-7. Realizar test de cobertura}}{31}{figure.4.12}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Diagrama de actividad CU-8. Usar integraci\IeC {\'o}n continua}}{32}{figure.4.13}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Diagrama de actividad CU-9. Usar despliegue autom\IeC {\'a}tico}}{33}{figure.4.14}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Diagrama de actividad CU-10. Usar aprovisionamiento}}{34}{figure.4.15}
 \addvspace {10\p@ }
