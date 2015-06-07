@@ -10,9 +10,9 @@ estiman necesarios para cubrir los objetivos propuestos.
 Los actores implicados serán dos: el \textbf{desarrollador} y el \textbf{usuario}.
 
 \bigskip
-El \textbf{desarrollador} será el encargado de solucionar los problemas de visualización de los datos en la plataforma, además de 
-portar el desarrollo actual de la plataforma a un entorno de desarrollo continuo. También asumirá la administración de la 
-plataforma ya que este tipo de rol está muy integrado con las labores de despliegue en el desarrollo continuo.
+El \textbf{desarrollador} será el encargado de solucionar los problemas de visualización de los datos en el portal, además de 
+portar el desarrollo actual del portal a un entorno de desarrollo continuo. También asumirá la administración del portal ya que
+este tipo de rol está muy integrado con las labores de despliegue en el desarrollo continuo.
 
 \bigskip
 El \textbf{usuario} de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
@@ -36,26 +36,34 @@ unitarios, test de cobertura, integración continua, despliegue automático y ap
 \begin{itemize}
   \item \textbf{RF-1.} Administración portal:
     \begin{itemize}
-    \item \textbf{RF-1.1.} Arrancar el portal mediante un script.
-    \item \textbf{RF-1.2.} Detener el portal mediante un script.
+    \item \textbf{RF-1.1.} Automatizar inicio del servidor del portal.
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
   \item \textbf{RF-2.} Acceso información:
     \begin{itemize}
-    \item \textbf{RF-2.1.} Consultar tablas con elementos de información.
+    \item \textbf{RF-2.1.} Consultar información de Administración.
+    \item \textbf{RF-2.1.} Consultar información de Docencia.
+    \item \textbf{RF-2.1.} Consultar información de Gestión e Investigación.
+    \item \textbf{RF-2.1.} Consultar información de Normativa Legal.
     \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-  \item \textbf{RF-3.} Desarrollo continuo:
+  \item \textbf{RF-3.} Pruebas de software:
   \begin{itemize}
     \item \textbf{RF-3.1.} Realizar tests unitarios.
     \item \textbf{RF-3.2.} Realizar test de cobertura.
     \item \textbf{RF-3.2.} Usar integración continua.
-    \item \textbf{RF-3.3.} Usar despliegue automático.
-    \item \textbf{RF-3.4.} Usar aprovisionamiento.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+  \item \textbf{RF-4.} Configuración automática:
+  \begin{itemize}
+    \item \textbf{RF-4.1.} Usar despliegue automático.
+    \item \textbf{RF-4.2.} Usar aprovisionamiento.
     \end{itemize}
 \end{itemize}
 
@@ -99,27 +107,28 @@ que se van a mostrar en UGR Transparente.
 \section{Modelos de casos de uso}
 
 Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir
-unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general de la plataforma UGR Transparente.
+unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general del portal UGR Transparente.
 
+\newpage
 \subsection{Descripción básica de actores}
 
 \begin{itemize}
   \item \textbf{Ac-1.} Desarrollador
   \begin{itemize}
-   \item Descripción: Encargado del desarrollo y administración de la plataforma.
+   \item Descripción: Encargado del desarrollo y administración del portal.
    \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
    \item Relaciones: Ninguna.
    \item Atributos: Ninguno.
-   \item Comentarios: Es el encargado de que la información se muestre en el portal y de añadir funcionalidades a la plataforma.
+   \item Comentarios: Es el encargado de que la información se muestre en el portal y de añadir funcionalidades al portal.
   \end{itemize}
   
   \item \textbf{Ac-2.} Usuario
   \begin{itemize}
-   \item Descripción: Persona que usa la plataforma que consulta datos.
+   \item Descripción: Persona que usa el portal para consultar datos.
    \item Características: Es el usuario común que accederá a la página.
    \item Relaciones: Ninguna.
    \item Atributos: Ninguno.
-   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso de la plataforma, simplemente
+   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso del portal, simplemente
    accederá y consultará los datos que sean de su interes.
   \end{itemize}
 \end{itemize}
@@ -127,7 +136,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 \subsection{Descripción casos de uso}
 
 \begin{itemize}
-  \item \textbf{CU-1.} Iniciar plataforma
+  \item \textbf{CU-1.} Inicio automático del servidor del portal
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -136,7 +145,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Postcondición: El portal será accesible públicamente.
     \item Autor: \autor
     \item Versión: 1.0
-    \item Propósito: Arrancar el servidor del portal UGR Transparente.
+    \item Propósito: Iniciar el servidor del portal UGR Transparente.
     \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde
     internet.
     \begin{table}[!hbt]
@@ -150,7 +159,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
 	    Desarrollador: da orden de\\
-	    que se inicie la plataforma.
+	    que se inicie el servidor\\
+	    del portal.
 	  \end{tabular} &
 	  &
 	  \\ \hline
@@ -159,12 +169,13 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  {\it 2a} &
 	  \begin{tabular}[c]{@{}l@{}}
 	    Comprueba que el servidor\\
-	    está detenido e inicia la\\
-	    plataforma.
+	    está detenido y lo inicia\\
+	    para que el portal esté\\
+	    operativo.
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-1. Iniciar plataforma}
+	\caption{Curso normal de CU-1. Inicio automático del servidor del portal}
 	\label{table:cn_cu_1}
       \end{center}
     \end{table}
@@ -177,77 +188,18 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  {\it 2b} &
 	  \begin{tabular}[c]{@{}l@{}}
 	    Si el servidor está funcionando, no se ejecuta el script de\\
-	    arranque del servidor.
+	    inicio del servidor.
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-1. Iniciar plataforma}
+	\caption{Curso alterno de CU-1. Inicio automático del servidor del portal}
 	\label{table:ca_cu_1}
       \end{center}
     \end{table}
   \end{itemize}
  
-  \item \textbf{CU-2.} Detener plataforma
-  \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, Esencial
-    \item Referencias:
-    \item Precondición: El servidor esté funcionando.
-    \item Postcondición: El portal deja de estar operativo.
-    \item Autor: \autor
-    \item Versión: 1.0
-    \item Propósito: Detener el servidor del portal UGR Transparente.
-    \item Resumen: Cuando se ejecuta el script de detención de la aplicación, se detiene el servidor y el portal deja de estar
-    accesible desde internet.
-    \begin{table}[!hbt]
-      \begin{center}
-	\begin{tabular}{|l|l|l|l|}
-	  \hline
-	  \multicolumn{4}{|c|}{{\bf Curso normal}}
-	  \\ \hline
-	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
-	  \\ \hline
-	  {\it 1} & 
-	  \begin{tabular}[c]{@{}l@{}}
-	    Desarrollador: da orden de\\
-	    que se detenga la plataforma.
-	  \end{tabular} &
-	  &
-	  \\ \hline
-	  &
-	  &
-	  {\it 2a} &
-	  \begin{tabular}[c]{@{}l@{}}
-	    Comprueba que el servidor\\
-	    está iniciado y detiene la\\
-	    plataforma.
-	  \end{tabular}
-	  \\ \hline
-	\end{tabular}
-	\caption{Curso normal de CU-2. Detener plataforma}
-	\label{table:cn_cu_2}
-      \end{center}
-    \end{table}
-    \begin{table}[!hbt]
-      \begin{center}
-	\begin{tabular}{|l|l|}
-	  \hline
-	  \multicolumn{2}{|c|}{{\bf Curso alterno}}
-	  \\ \hline
-	  {\it 2b} &
-	  \begin{tabular}[c]{@{}l@{}}
-	    Si el servidor no está funcionando, no se ejecuta el script de\\
-	    parada del servidor.
-	  \end{tabular}\\
-	  \hline
-	\end{tabular}
-	\caption{Curso alterno de CU-2. Detener plataforma}
-	\label{table:ca_cu_2}
-      \end{center}
-    \end{table}
-  \end{itemize}
- 
-  \item \textbf{CU-3.} Consultar datos
+  \newpage
+  \item \textbf{CU-2.} Consultar información de Administración
   \begin{itemize}
     \item Actores: Usuario
     \item Tipo: Primario, Esencial
@@ -256,9 +208,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Postcondición:
     \item Autor: \autor
     \item Versión: 1.0
-    \item Propósito: El usuario consulta los datos mostrador en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia, navega a través de las distintas categorías y selecciona
-    aquella en la que está interesado en conocer.
+    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Administración'' y consulta la
+    la información de sus subsecciones.
     \begin{table}[!hbt]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -269,8 +221,9 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \\ \hline
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
-	    Usuario: consulta información\\
-	    de una subcategoría del portal.\\
+	    Usuario: consulta la información\\
+	    de Administración publicada en el\\
+	    portal.
 	  \end{tabular} &
 	  &
 	  \\ \hline
@@ -280,8 +233,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \begin{tabular}[c]{@{}l@{}}
 	    Se generan las tablas con\\
 	    todos los elementos de\\
-	    información de la subca-\\
-	    tegoría correspondiente.
+	    información de la sección\\
+	    Administración.
 	  \end{tabular}
 	  \\ \hline
 	  &
@@ -295,13 +248,182 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-3. Consultar datos}
+	\caption{Curso normal de CU-2. Consultar información de Administración}
+	\label{table:cn_cu_2}
+      \end{center}
+    \end{table}
+  \end{itemize}
+  
+  \newpage
+  \item \textbf{CU-3.} Consultar información de Docencia
+  \begin{itemize}
+    \item Actores: Usuario
+    \item Tipo: Primario, Esencial
+    \item Referencias:
+    \item Precondición: Existan archivos con los datos abiertos.
+    \item Postcondición:
+    \item Autor: \autor
+    \item Versión: 1.0
+    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Docencia'' y consulta la
+    la información de sus subsecciones.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Usuario: consulta la información\\
+	    de Docencia publicada en el\\
+	    portal.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se generan las tablas con\\
+	    todos los elementos de\\
+	    información de la sección\\
+	    Docencia.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se muestran en la página\\
+	    todos las tablas generadas\\
+	    con los elementos de\\
+	    información.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-3. Consultar información de Docencia}
 	\label{table:cn_cu_3}
       \end{center}
     \end{table}
   \end{itemize}
+  
+  \newpage
+  \item \textbf{CU-4.} Consultar información de Gestión e Investigación
+  \begin{itemize}
+    \item Actores: Usuario
+    \item Tipo: Primario, Esencial
+    \item Referencias:
+    \item Precondición: Existan archivos con los datos abiertos.
+    \item Postcondición:
+    \item Autor: \autor
+    \item Versión: 1.0
+    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Gestión e Investigación'' y 
+    consulta la la información de sus subsecciones.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Usuario: consulta la información\\
+	    de Gestión e Investigación publicada\\
+	    en el portal.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se generan las tablas con\\
+	    todos los elementos de\\
+	    información de la sección\\
+	    Gestión e Investigación.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se muestran en la página\\
+	    todos las tablas generadas\\
+	    con los elementos de\\
+	    información.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-4. Consultar información de Gestión e Investigación}
+	\label{table:cn_cu_4}
+      \end{center}
+    \end{table}
+  \end{itemize}
+  
+  \newpage
+  \item \textbf{CU-5.} Consultar información de Normativa Legal
+  \begin{itemize}
+    \item Actores: Usuario
+    \item Tipo: Primario, Esencial
+    \item Referencias:
+    \item Precondición: Existan archivos con los datos abiertos.
+    \item Postcondición:
+    \item Autor: \autor
+    \item Versión: 1.0
+    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Normativa Legal'' y consulta la
+    la información de sus subsecciones.
+    \begin{table}[!hbt]
+      \begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	  \hline
+	  \multicolumn{4}{|c|}{{\bf Curso normal}}
+	  \\ \hline
+	  \multicolumn{2}{|c|}{{\bf Actor}} & \multicolumn{2}{c|}{{\bf Sistema}}
+	  \\ \hline
+	  {\it 1} & 
+	  \begin{tabular}[c]{@{}l@{}}
+	    Usuario: consulta la información\\
+	    de Normativa Legal publicada en el\\
+	    portal.
+	  \end{tabular} &
+	  &
+	  \\ \hline
+	  &
+	  &
+	  {\it 2} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se generan las tablas con\\
+	    todos los elementos de\\
+	    información de la sección\\
+	    Normativa Legal.
+	  \end{tabular}
+	  \\ \hline
+	  &
+	  &
+	  {\it 3} &
+	  \begin{tabular}[c]{@{}l@{}}
+	    Se muestran en la página\\
+	    todos las tablas generadas\\
+	    con los elementos de\\
+	    información.
+	  \end{tabular}
+	  \\ \hline
+	\end{tabular}
+	\caption{Curso normal de CU-5. Consultar información de Normativa Legal}
+	\label{table:cn_cu_5}
+      \end{center}
+    \end{table}
+  \end{itemize}
  
-  \item \textbf{CU-4.} Realizar tests unitarios
+  \newpage
+  \item \textbf{CU-6.} Realizar tests unitarios
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -336,8 +458,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-4. Realizar tests unitarios}
-	\label{table:cn_cu_4}
+	\caption{Curso normal de CU-6. Realizar tests unitarios}
+	\label{table:cn_cu_6}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
@@ -352,18 +474,18 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-4. Realizar tests unitarios}
-	\label{table:ca_cu_4}
+	\caption{Curso alterno de CU-6. Realizar tests unitarios}
+	\label{table:ca_cu_6}
       \end{center}
     \end{table}
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-5.} Realizar tests de cobertura
+  \item \textbf{CU-7.} Realizar tests de cobertura
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
-    \item Referencias: (CU-4.) Realizar tests unitarios
+    \item Referencias: (CU-6.) Realizar tests unitarios
     \item Precondición: Existan tests unitarios.
     \item Postcondición: 
     \item Autor: \autor
@@ -404,8 +526,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-5. Realizar test de cobertura}
-	\label{table:cn_cu_5}
+	\caption{Curso normal de CU-7. Realizar test de cobertura}
+	\label{table:cn_cu_7}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
@@ -420,18 +542,18 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-5. Realizar test de cobertura}
-	\label{table:ca_cu_5}
+	\caption{Curso alterno de CU-7. Realizar test de cobertura}
+	\label{table:ca_cu_7}
       \end{center}
     \end{table}
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-6.} Usar integración continua
+  \item \textbf{CU-8.} Usar integración continua
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
-    \item Referencias: (CU-4.) Realizar tests unitarios
+    \item Referencias: (CU-5.) Realizar tests unitarios
     \item Precondición: Existan test unitarios.
     \item Postcondición: Se genera un informe con el resultado de los tests unitarios.
     \item Autor: \autor
@@ -473,8 +595,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-6. Usar integración continua}
-	\label{table:cn_cu_6}
+	\caption{Curso normal de CU-8. Usar integración continua}
+	\label{table:cn_cu_8}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
@@ -489,14 +611,14 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-6. Usar integración continua}
-	\label{table:ca_cu_6}
+	\caption{Curso alterno de CU-8. Usar integración continua}
+	\label{table:ca_cu_8}
       \end{center}
     \end{table}
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-.7 } Usar despliegue automático
+  \item \textbf{CU-.9 } Usar despliegue automático
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -556,8 +678,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-7. Usar despliegue automático}
-	\label{table:cn_cu_7}
+	\caption{Curso normal de CU-9. Usar despliegue automático}
+	\label{table:cn_cu_9}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
@@ -572,14 +694,14 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-7. Usar despliegue automático}
-	\label{table:ca_cu_7}
+	\caption{Curso alterno de CU-9. Usar despliegue automático}
+	\label{table:ca_cu_9}
       \end{center}
     \end{table}
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-.8 } Usar aprovisionamiento
+  \item \textbf{CU-.10} Usar aprovisionamiento
   \begin{itemize}
     \item Actores: Desarrollador
     \item Tipo: Primario, Esencial
@@ -663,8 +785,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}
 	  \\ \hline
 	\end{tabular}
-	\caption{Curso normal de CU-8. Usar aprovisionamiento}
-	\label{table:cn_cu_8}
+	\caption{Curso normal de CU-10. Usar aprovisionamiento}
+	\label{table:cn_cu_10}
       \end{center}
     \end{table}
     \begin{table}[!hbt]
@@ -679,8 +801,8 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 	  \end{tabular}\\
 	  \hline
 	\end{tabular}
-	\caption{Curso alterno de CU-8. Usar aprovisionamiento}
-	\label{table:ca_cu_8}
+	\caption{Curso alterno de CU-10. Usar aprovisionamiento}
+	\label{table:ca_cu_10}
       \end{center}
     \end{table}
   \end{itemize}
@@ -697,100 +819,135 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
   \end{center}
 \end{figure}
  
-\newpage
 \section{Diagramas de casos de uso}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_administracion_portal.png}
+  \includegraphics[width=0.65\textwidth]{imagenes/diag_cu_ap.png}
   \caption{Diagrama de casos de uso: paquete Administración portal}
-  \label{fig:diag_ca_us_ap}
+  \label{fig:diag_cu_ap}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_acceso_informacion.png}
+  \includegraphics[width=0.65\textwidth]{imagenes/diag_cu_ai.png}
   \caption{Diagrama de casos de uso: paquete Acceso información}
-  \label{fig:diag_ca_us_ai}
+  \label{fig:diag_cu_ai}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_casos_uso_desarrollo_continuo.png}
-  \caption{Diagrama de casos de uso: paquete Desarrollo continuo}
-  \label{fig:diag_ca_us_dc}
+  \includegraphics[width=0.65\textwidth]{imagenes/diag_cu_ps.png}
+  \caption{Diagrama de casos de uso: paquete Pruebas de software}
+  \label{fig:diag_cu_ps}
   \end{center}
 \end{figure}
 
+\begin{figure}[!hbt]
+  \begin{center}
+  \includegraphics[width=0.65\textwidth]{imagenes/diag_cu_ca.png}
+  \caption{Diagrama de casos de uso: paquete Configuración automática}
+  \label{fig:diag_cu_ca}
+  \end{center}
+\end{figure}
+
+\newpage
+\
 \newpage
 \section{Diagramas de actividad}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_1.png}
-  \caption{Diagrama de actividad CU-1. Iniciar plataforma}
-  \label{fig:diag_ca_us_1}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_01.png}
+  \caption{Diagrama de actividad CU-1. Inicio automático del servidor del portal}
+  \label{fig:diag_act_cu_01}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_2.png}
-  \caption{Diagrama de actividad CU-2. Detener plataforma}
-  \label{fig:diag_ca_us_2}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_02.png}
+  \caption{Diagrama de actividad CU-2. Consultar información de Administración}
+  \label{fig:diag_act_cu_02}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_3.png}
-  \caption{Diagrama de actividad CU-3. Consultar datos}
-  \label{fig:diag_ca_us_3}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_03.png}
+  \caption{Diagrama de actividad CU-3. Consultar información de Docencia}
+  \label{fig:diag_act_cu_03}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_4.png}
-  \caption{Diagrama de actividad CU-4. Realizar tests unitarios}
-  \label{fig:diag_ca_us_4}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_04.png}
+  \caption{Diagrama de actividad CU-4. Consultar información de Gestión e Investigación}
+  \label{fig:diag_act_cu_04}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_5.png}
-  \caption{Diagrama de actividad CU-5. Realizar tests de cobertura}
-  \label{fig:diag_ca_us_5}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_05.png}
+  \caption{Diagrama de actividad CU-5. Consultar información de Normativa Legal}
+  \label{fig:diag_act_cu_05}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_6.png}
-  \caption{Diagrama de actividad CU-6. Usar integración continua}
-  \label{fig:diag_ca_us_6}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_06.png}
+  \caption{Diagrama de actividad CU-6. Realizar tests unitarios}
+  \label{fig:diag_act_cu_06}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_7.png}
-  \caption{Diagrama de actividad CU-7. Usar despliegue continuo}
-  \label{fig:diag_ca_us_7}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_07.png}
+  \caption{Diagrama de actividad CU-7. Realizar test de cobertura}
+  \label{fig:diag_act_cu_07}
   \end{center}
 \end{figure}
 
 \begin{figure}[!hbt]
   \begin{center}
-  \includegraphics[width=0.8\textwidth]{imagenes/diagrama_actividad_cu_8.png}
-  \caption{Diagrama de actividad CU-8. Usar aprovisionamiento}
-  \label{fig:diag_ca_us_8}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_08.png}
+  \caption{Diagrama de actividad CU-8. Usar integración continua}
+  \label{fig:diag_act_cu_08}
   \end{center}
 \end{figure}
 
+\begin{figure}[!hbt]
+  \begin{center}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_09.png}
+  \caption{Diagrama de actividad CU-9. Usar despliegue automático}
+  \label{fig:diag_act_cu_09}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbt]
+  \begin{center}
+  \includegraphics[width=1\textwidth]{imagenes/diag_act_cu_10.png}
+  \caption{Diagrama de actividad CU-10. Usar aprovisionamiento}
+  \label{fig:diag_act_cu_10}
+  \end{center}
+\end{figure}
+
+\newpage
+\
+\newpage
+\
+\newpage
+\
+\newpage
+\
+\newpage
+\
 \newpage
 \
 \newpage
@@ -849,7 +1006,8 @@ desde un archivo de datos JSON, organizados de la siguiente forma.
 \end{itemize}
 
 Cada vez que un usuario quiere consultar la información de una subsección, el Portal de Transparencia hace una llamada al método
-de generación de la página de la sección elegida para su subsección determinada.
+de generación de la página de la sección elegida para su subsección determinada; ese método, procesará la plantilla Jade para la
+página pasándole el archivo JSON de datos y el resultado final será la página web que será visible en el portal.
 
 \bigskip
 De igual forma, los test unitarios (\textbf{test.js} y el despliegue automático (\textbf{flightplan.js}) son módulos otros 
