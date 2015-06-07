@@ -800,12 +800,60 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
 
 [Pendiente]
  
-\section{Diseño de los procedimientos}
+\section{Diseño general de la plataforma}
 
-[Provisional]
+Para describir el diseño que se va a seguir en la programación del proyecto hay que tener en cuenta que se va a usar 
+\textbf{Node.js}, que está basado en el lenguaje de programación JavaScript (que es un lenguaje orientado a objetos). Se usará 
+un paradigma de programación orientado a objetos con diversas clases, que en este entorno de programación suelen ser referidos 
+como módulos.
+
+\bigskip
+Existirá un módulo principal de la plataforma (\textbf{app.js}) que será la plataforma en si misma, ya que es el encargado
+de generar el servidor al que se realizarán las peticiones y visualizar cada unas de las páginas. Luego, existirán un módulo
+por cada una de las secciones del portal: Administración (\textbf{administración.js}), Docencia (\textbf{docencia.js}), Gestión
+e Investigación (\textbf{gestionInvestigación.js}) y Normativa Legal (\textbf{normativaLegal.js}. Si comparamos este esquema
+con el de una aplicación más tradicional, podríamos considerar el módulo (\textbf{app.js}) como la clase principal y el resto
+de módulos como otras clases que tienen como función ser atributos compuestos de esa clase principal.
+
+\bigskip
+Cada uno de estos módulos de las diversas secciones, obtendrá la información para generar las páginas de sus subsecciones 
+desde un archivo de datos JSON, organizados de la siguiente forma.
 
 \begin{itemize}
-    \item Sin clases
-    \item Scripts requeridos y exportados
-    \item Todo lo programado fuera de la aplicación principal son procedimientos aislados.
+ \item Portal de Transparencia (\textit{app.js})
+ \begin{itemize}
+  \item Administración (\textit{administración.js})
+  \begin{itemize}
+   \item Personal (\textit{personal.json})
+   \item Información Económica (\textit{infoEcononica.json})
+   \item Servicios (\textit{servicios.json})
+  \end{itemize}
+  \item Docencia
+  \begin{itemize}
+   \item Oferta y Demanda Académica (\textit{ofertaDemanda.json})
+   \item Claustro (\textit{claustro.json})
+   \item Estudiantes (\textit{estudiantes.json})
+  \end{itemize}
+  \item Gestión e Investigación
+  \begin{itemize}
+   \item Misión (\textit{mision.json})
+   \item Plan Estratégico (\textit{.json})
+   \item Gobierno (\textit{gobierno.json})
+   \item Estadísticas (\textit{estadistica.json})
+  \end{itemize}
+  \item Normativa Legal
+  \begin{itemize}
+   \item Normativa Legal (\textit{normativaLegal.json})
+  \end{itemize}
+ \end{itemize}
 \end{itemize}
+
+Cada vez que un usuario quiere consultar la información de una subsección, el Portal de Transparencia hace una llamada al método
+de generación de la página de la sección elegida para su subsección determinada.
+
+\bigskip
+De igual forma, los test unitarios (\textbf{test.js} y el despliegue automático (\textbf{flightplan.js}) son módulos otros 
+módulos que ejecutan dichas acciones. Por otra parte, el test de cobertura se realiza automáticamente a partir de los test 
+unitarios; la integración continua se realiza en base a la configuración del archivo \textbf{.travis.yml}; y finalmente, 
+el aprovisionamiento sigue las tareas en el archivo de configuración \textbf{transparente.yml}. Todos estos módulos son 
+independientes del funcionamiento del módulo principal, y simplemente llamaremos cuando queramos hacer uso de sus funcionalidades.
