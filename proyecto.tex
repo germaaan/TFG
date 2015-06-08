@@ -162,29 +162,30 @@ pdfproducer = {pdflatex}
 \frontmatter
 
 \begingroup
+\let\cleardoublepage\clearpage
   \pagestyle{empty}
   \input{prefacios/prefacio}
-\endgroup
 
-\begingroup
-\let\cleardoublepage\clearpage
+  \newpage
+  \thispagestyle{empty}
+  \
+  
   \tableofcontents
   \listoffigures
   \listoftables
 \endgroup
 
-\newpage
-\thispagestyle{empty}
-\
-\mainmatter
-\input{capitulos/01_Introduccion}
-\input{capitulos/02_Objetivos}
-\input{capitulos/03_Planificacion}
-\input{capitulos/04_AnalisisDiseno}
-\input{capitulos/05_Implementacion}
-%\input{capitulos/06_Pruebas}
-%\input{capitulos/07_Conclusiones y Trabajos Futuros}
-%
+  \newpage
+  \thispagestyle{empty}
+  \
+  \mainmatter
+  \input{capitulos/01_Introduccion}
+  \input{capitulos/02_Objetivos}
+  \input{capitulos/03_Planificacion}
+  \input{capitulos/04_AnalisisDiseno}
+  \input{capitulos/05_Implementacion}
+  %\input{capitulos/06_Pruebas}
+  %\input{capitulos/07_Conclusiones y Trabajos Futuros}
 % \backmatter
 %%\nocite{*}
 %\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
