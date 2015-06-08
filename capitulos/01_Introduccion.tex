@@ -1,7 +1,41 @@
-\chapter{Introducción y motivación}
+\chapter{Introducción}
 
-La transparencia en los organismos públicos es importante.
+En la actualidad, nuestro país al igual que muchos otros se rige por lo que se conoce como \textbf{``democracia''}. Si buscamos
+el significado de esta palabra, encontraremos que su definición es: 
 
-Los desarrollos de software con despliegue continuo son interesantes.
+\begin{quote}Sistema político que defiende la soberanía del pueblo y el derecho del pueblo a elegir y controlar a sus 
+gobernantes.
+\newline(\url{http://www.oxforddictionaries.com/es/definicion/espanol/democracia})
+\end{quote}
 
-[Pendiente]
+Aunque \textit{``el derecho del pueblo a elegir''} es lo importante, para que esa elección pueda ser coherente, primero será el propio
+pueblo el que deberá tener la obligación a conocer lo que elige, y la única forma de conocer lo que se elige es a través de la
+transparencia. Por este motivo, el pueblo debe exigir transparencia en el funcionamiento de las instituciones públicas, y esas
+instituciones públicas siempre no tengan nada que esconder debería facilitar de buena fe (y no porque haya una ley que les 
+obligue) todo la información que el ciudadano le requiera.
+
+\bigskip
+Estas inquietudes fueron las que hicieron en un primer momento que se comenzara con el desarrollo del Portal de Transparencia
+de la Universidad de Granada a principios del año pasado, cuyo desarrollo le fue encargado a la Oficina de Software Libre de la propia universidad y 
+aproximadamente a los 7 meses de comenzar su desarrollo fue presentada una primera versión.
+
+\bigskip
+En febrero de este año entré como becario en la Oficina de Software Libre y me integré en el equipo de desarrollo del portal,
+siendo mis mayores contribuciones cambiar el origen de datos de la página para eliminar un error que se producia recurrentemente
+durante la navegación por el parte, y además, implantar una metodología de desarrollo DevOps.
+
+\newpage
+Una metodología de desarrollo DevOps consiste inicialmente en no hacer distinción entre el desarrollo del software y la
+administración del mismo, todo estará comunicado para que sea posible realizar entregas del software de forma frecuente 
+asegurándose de que esas mismas entregas continuas no sea el origen de fallos futuros. La forma de asegurarse de que esos
+fallos no se producirán es dividir todo el desarrollo en fases que tengan que realizarse secuencialmente, controlando a cada
+fase que no se produzcan errores en la misma; como una cadena de montaje en la que podemos estar seguro de que el producto
+que llega al final está en perfectas condiciones, porque en caso contrario hubiera sido retirado durante el proceso.
+
+\bigskip
+En este proyecto, hemos considerado que las fases que nos permitirían asegurarnos que el producto que sale de la cadena de 
+montaje en perfectas condiciones sean los test unitarios, la integración continua y el despliegue automático, todo esto apoyado
+en un sistema de control de versiones y una plataforma de desarrollo colaborativo abierto. Además, también se usará
+aprovisionamiento para facilitar la portabilidad del portal de una infraestructura a otra distinta. Se ahondará en el 
+funcionamiento de todos estos conceptos en el capítulo 5 (Implementación), donde se explicará detenidamente como han sido 
+integrados en el proyecto.
