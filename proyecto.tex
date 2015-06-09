@@ -160,15 +160,13 @@ pdfproducer = {pdflatex}
 \begin{document}
 \input{portada/portada}
 \frontmatter
-\pagestyle{empty}
-
 \input{prefacios/prefacio}
 
 \begingroup
 \let\cleardoublepage\clearpage
-\tableofcontents
-\listoffigures
-\listoftables
+  \tableofcontents
+  \listoffigures
+  \listoftables
 \endgroup
 
 \newpage
