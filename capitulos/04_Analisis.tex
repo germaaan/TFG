@@ -2,36 +2,28 @@
 
 \section{Análisis de requisitos}
 
-Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se 
-estiman necesarios para cubrir los objetivos propuestos.
+Todo software se desarrolla para cubrir una necesidad, por lo que en este apartado vamos a describir los requisitos que se estiman necesarios para cubrir los objetivos propuestos.
 
 \subsection{Descripción de los actores}
 
 Los actores implicados serán dos: el \textbf{desarrollador} y el \textbf{usuario}.
 
 \bigskip
-El \textbf{desarrollador} será el encargado de solucionar los problemas de visualización de los datos en el portal, además de 
-portar el desarrollo actual del portal a un entorno de desarrollo continuo. También asumirá la administración del portal ya que
-este tipo de rol está muy integrado con las labores de despliegue en el desarrollo continuo.
+El \textbf{desarrollador} será el encargado de solucionar los problemas de visualización de los datos en el portal, además de portar el desarrollo actual del portal a un entorno de desarrollo continuo. También asumirá la administración del portal ya que este tipo de rol está muy integrado con las labores de despliegue en el desarrollo continuo.
 
 \bigskip
-El \textbf{usuario} de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada 
-fácilmente. El usuario no pertenece a ningún público objetivo concreto, por lo que no se tiene que considerar que tenga una
-experiencia previa en navegador por sitios web.
+El \textbf{usuario} de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada fácilmente. El usuario no pertenece a ningún público objetivo concreto, por lo que no se tiene que considerar que tenga una experiencia previa en navegador por sitios web.
 
 \subsection{Requisitos Funcionales}
 
-Los requisitos funcionales son las características que tiene que implementar el sistema para cubrir todas las necesidades de 
-los distintos usuarios.
+Los requisitos funcionales son las características que tiene que implementar el sistema para cubrir todas las necesidades de los distintos usuarios.
 
 \bigskip
 Al usuario lo único que le interesa es ver una página web estática con la información que desea 
-consultar, para ello el desarrollador deberá hacer que sea posible que se generen siempre las tablas con los elementos de 
-información. 
+consultar, para ello el desarrollador deberá hacer que sea posible que se generen siempre las tablas con los elementos de información. 
 
 \bigskip
-Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo continuo, por lo que añadirá tests 
-unitarios, test de cobertura, integración continua, despliegue automático y aprovisionamiento con tal fin.
+Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo continuo, por lo que añadirá tests unitarios, test de cobertura, integración continua, despliegue automático y aprovisionamiento con tal fin.
 
 \begin{itemize}
   \item \textbf{RF-1.} Administración portal:
@@ -69,32 +61,25 @@ unitarios, test de cobertura, integración continua, despliegue automático y ap
 
 \subsection{Requisitos no Funcionales}
 
-Los requisitos no funcionales son las características propias del desarrollo, pero que no tienen que estar relacionadas con su 
-funcionalidad.
+Los requisitos no funcionales son las características propias del desarrollo, pero que no tienen que estar relacionadas con su funcionalidad.
 
 \begin{itemize}
-  \item \textbf{RN-1.} Toda la programación del portal se hará en Node.js y los módulos que se usen deben ser instalables a 
-  través de su gestor de paquetes NPM.
+  \item \textbf{RN-1.} Toda la programación del portal se hará en Node.js y los módulos que se usen deben ser instalables a través de su gestor de paquetes NPM.
   \item \textbf{RN-2.} El portal se iniciará y se detendrá mediante scripts lanzados con NPM.
-  \item \textbf{RN-3.} Para iniciar la ejecución del portal es necesario que reciba el puerto de escucha del servidor y la 
-  dirección de acceso.
+  \item \textbf{RN-3.} Para iniciar la ejecución del portal es necesario que reciba el puerto de escucha del servidor y la dirección de acceso.
   \item \textbf{RN-4.} Todos los módulos se ejecutarán desde scripts lanzamos con NPM.
   \item \textbf{RN-5.} Los tests unitarios se realizarán en base a comportamientos esperados y valores de estados
   recibidos como contestación a las peticiones que se realicen al portal.
   \item \textbf{RN-6.} Los tests unitarios tienen que recibir las páginas del portal para ejecutarse.
   \item \textbf{RN-7.} El test de cobertura tiene que tener una automatización integrable con los tests unitarios. 
-  \item \textbf{RN-8.} La integración continua se ejecutará automáticamente con cada cambio que se haga en la programación
-  del portal.
+  \item \textbf{RN-8.} La integración continua se ejecutará automáticamente con cada cambio que se haga en la programación del portal.
   \item \textbf{RN-9.} El despliegue automático se realizará mediante conexiones SSH.
-  \item \textbf{RN-10.} Tanto para el despliegue automático como para el aprovisionamiento es necesario indicar el usuario que
-  lo realiza y el destino en el que se realiza.
+  \item \textbf{RN-10.} Tanto para el despliegue automático como para el aprovisionamiento es necesario indicar el usuario que lo realiza y el destino en el que se realiza.
 \end{itemize}
 
 \subsection{Requisitos de Información}
 
-Los requisitos de información se refieren a la información que es necesaria almacenar en el sistema. La única información 
-relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR 
-que se van a mostrar en UGR Transparente.
+Los requisitos de información se refieren a la información que es necesaria almacenar en el sistema. La única información relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR que se van a mostrar en UGR Transparente.
 
 \begin{itemize}
   \item \textbf{RI-1.} Datos abiertos.
@@ -106,8 +91,7 @@ que se van a mostrar en UGR Transparente.
 
 \section{Modelos de casos de uso}
 
-Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir
-unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general del portal UGR Transparente.
+Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general del portal UGR Transparente.
 
 \newpage
 \subsection{Descripción básica de actores}
@@ -128,8 +112,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
    \item Características: Es el usuario común que accederá a la página.
    \item Relaciones: Ninguna.
    \item Atributos: Ninguno.
-   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso del portal, simplemente
-   accederá y consultará los datos que sean de su interes.
+   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso del portal, simplemente accederá y consultará los datos que sean de su interes.
   \end{itemize}
 \end{itemize}
 
@@ -146,8 +129,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: Iniciar el servidor del portal UGR Transparente.
-    \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde
-    internet.
+    \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde internet.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -209,8 +191,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Administración'' y consulta la
-    la información de sus subsecciones.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Administración" y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -265,8 +246,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Docencia'' y consulta la
-    la información de sus subsecciones.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Docencia" y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -321,8 +301,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Gestión e Investigación'' y 
-    consulta la la información de sus subsecciones.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Gestión e Investigación" y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -377,8 +356,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ''Normativa Legal'' y consulta la
-    la información de sus subsecciones.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Normativa Legal" y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -491,8 +469,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: Realizar test de cobertura para comprobar calidad de los tests unitarios.
-    \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del
-    código que está cubierto por los mismos.
+    \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del código que está cubierto por los mismos.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -559,8 +536,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: Comprobar si los cambios en la aplicación provocan errores.
-    \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si
-    los cambios introcudidos provocan conflictos en la plataforma.
+    \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si los cambios introducidos provocan conflictos en la plataforma.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -628,8 +604,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: Aplicar automáticamente los cambios realizados a la aplicación. 
-    \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios 
-    introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
+    \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -711,8 +686,7 @@ unos modelos de caso de uso simples para dar un visión más clara del funcionam
     \item Autor: \autor
     \item Versión: 1.0
     \item Propósito: Instalar automáticamente el portal en una infraestructura dada.
-    \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en 
-    cualquier infraestructura que se indique.
+    \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en cualquier infraestructura que se indique.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
