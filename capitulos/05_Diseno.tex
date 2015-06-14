@@ -1,0 +1,145 @@
+\chapter{Diseño}
+
+\section{Diseño general del portal}
+
+Para describir el diseño que se va a seguir en la programación del proyecto hay que tener en cuenta que se va a usar 
+{\tt Node.js}, que está basado en el lenguaje de programación {\tt JavaScript} (que es un lenguaje orientado a objetos). Se 
+usará un paradigma de programación orientado a objetos con diversas clases, que en este entorno de programación suelen ser 
+referidos como módulos.
+
+\bigskip
+Existirá un módulo principal de la plataforma ({\tt app.js}) que será la plataforma en si misma, que es el encargado
+de generar el servidor al que se realizarán las peticiones y visualizar cada unas de las páginas. Existirán también un módulo
+por cada una de las secciones del portal: Administración ({\tt administración.js}), Docencia ({\tt docencia.js}), Gestión
+e Investigación ({\tt gestionInvestigación.js}) y Normativa Legal ({\tt normativaLegal.js}. Si comparamos este esquema
+con el de una aplicación más tradicional, podríamos considerar el módulo ({\tt app.js}) como la clase principal y el resto
+de módulos como otras clases que tienen como función ser atributos compuestos de esa clase principal.
+
+\bigskip
+Cada uno de estos módulos de las diversas secciones, obtendrá la información para generar las páginas de sus subsecciones 
+desde un archivo de datos {\tt JSON}, organizados de la siguiente forma.
+
+\newpage
+\begin{itemize}
+ \item Portal de Transparencia ({\tt app.js})
+ \begin{itemize}
+  \item Administración ({\tt administración.js})
+  \begin{itemize}
+   \item Personal ({\tt personal.json})
+   \item Información Económica ({\tt infoEcononica.json})
+   \item Servicios ({\tt servicios.json})
+  \end{itemize}
+  \item Docencia
+  \begin{itemize}
+   \item Oferta y Demanda Académica ({\tt ofertaDemanda.json})
+   \item Claustro ({\tt claustro.json})
+   \item Estudiantes ({\tt estudiantes.json})
+  \end{itemize}
+  \item Gestión e Investigación
+  \begin{itemize}
+   \item Misión ({\tt mision.json})
+   \item Plan Estratégico ({\tt .json})
+   \item Gobierno ({\tt gobierno.json})
+   \item Estadísticas ({\tt estadistica.json})
+  \end{itemize}
+  \item Normativa Legal
+  \begin{itemize}
+   \item Normativa Legal ({\tt normativaLegal.json})
+  \end{itemize}
+ \end{itemize}
+\end{itemize}
+
+Cada vez que un usuario quiere consultar la información de una subsección, el Portal de Transparencia hace una llamada al método
+de generación de la página de la sección elegida para su subsección determinada; ese método, procesará la plantilla {\tt Jade}
+para la página pasándole el archivo {\tt JSON} de datos y el resultado final será la página web que será visible en el portal.
+
+\bigskip
+De igual forma a lo mencionado de la aplicación del portal de transparencia, los test unitarios ({\tt test.js}) y el 
+despliegue automático ({\tt flightplan.js}) son otros módulos que ejecutan dichas acciones, el test de cobertura se realiza
+automáticamente a partir de los test unitarios, la integración continua se realiza en base a la configuración del archivo 
+{\tt .travis.yml}, y finalmente, el aprovisionamiento sigue las tareas en el archivo de configuración {\tt transparente.yml}. 
+Todos estos módulos son independientes del funcionamiento del módulo principal, y simplemente llamaremos cuando queramos hacer 
+uso de sus funcionalidades.
+
+\newpage
+\section{Diseño de una aplicación con desarrollo colaborativo}
+
+En varias ocasiones se ha indicado que este proyecto parte de un desarrollo colaborativo, esto es debido a que hoy en día es muy
+dificil concebir un proyecto de software libre fuera de un entorno colaborativo que permita publicar el código libremente en
+Internet donde sea accesible por cualquier persona, esta filosofía es la que sigue por ejemplo el desarrollo de {\tt Linux}
+a principio de los años 90, el que se podría considerar como el más grande y relevante proyecto de software libre a nivel 
+mundial. Además de abogar por la transparencia, este sistema de desarrollo hace que se más fácil encontrar errores durante el 
+desarrollo ya que un mayor número de personas tienen acceso total al mismo. También hay que tener en cuenta como en todo 
+proyecto que es imprescindible una herramienta de control de versiones, aún más en uno colaborativo donde es fácil que se 
+produzcan conflictos en los archivos modificados por unos y otros desarrolladores.
+
+\bigskip
+La plataforma de desarrollo colaborativo y la herramienta de control de versiones a usar son {\tt GitHub} y {\tt Git} 
+respectivamente. {\tt GitHub} es una de las plataformas de desarrollo colaborativo más usadas en proyectos libres y usa 
+{\tt Git} como sistema de control de versiones para gestionar los proyectos que se almacenan en la plataforma. Estás son las 
+herramientas que nos van a permitir que nuestro proyecto se convierta en un proyecto que se desarrollo de forma ágil, 
+concretamente se va a seguir una metodología \textbf{DevOps}.
+
+\bigskip
+Una metodología de desarrollo \textbf{DevOps} consiste inicialmente en no hacer distinción entre el desarrollo del software y la
+administración del mismo, todo estará comunicado para que sea posible realizar entregas del software de forma frecuente 
+asegurándose de que esas mismas entregas continuas no sea el origen de fallos futuros. La forma de asegurarse de que esos
+fallos no se producirán es dividir todo el desarrollo en fases que tengan que realizarse secuencialmente, controlando a cada
+fase que no se produzcan errores en la misma; como una cadena de montaje en la que podemos estar seguro de que el producto
+que llega al final está en perfectas condiciones, porque en caso contrario hubiera sido retirado durante el proceso.
+
+\bigskip
+En este proyecto, hemos considerado que las fases que nos permitirían asegurarnos que el producto que sale de la cadena de 
+montaje en perfectas condiciones sean los test unitarios, la integración continua y el despliegue automático, todo esto apoyado
+en un sistema de control de versiones y una plataforma de desarrollo colaborativo abierto. Además, también se usará
+aprovisionamiento para facilitar la portabilidad del portal de una infraestructura a otra distinta. 
+
+\section{Diseño de los tests unitarios y test de cobertura}
+
+Para cumplir la parte de testeo de la implementación de la metodología DevOps, a partir del desarrollo de este proyecto se 
+pretende seguir un desarrollo guiado por pruebas (en inglés, Test-Driven Development o TDD). Esto consiste en escribir primero
+las pruebas que consideremos que la aplicación debe superar y luego desarrollar el código que realice la función que queremos
+cumplir, pero superando dichas pruebas. 
+
+\bigskip
+Estas pruebas estarán basadas en la ejecución de tests unitarios que estarán diseñados para comprobar de forma de automática
+que el código escrito cumple con el objetivo determinado; por lo que si una vez ejecutamos todos los tests unitarios, si no
+obtenemos que todos han tenido una ejecución exitosa, tenemos que revisar el código escrito para saber por qué fallan.
+
+\bigskip
+Haciendo esto nos aseguraremos que todos las funcionalidades que vayamos añadiendo a la implementación de la aplicación
+funcionarán correctamente; también nos asegura que si tenemos que hacer grandes modificaciones en el código, siempre que estas
+modificaciones sigan pasando las pruebas, no deberemos preocuparnos por estropear el funcionamiento de la aplicación.
+
+\bigskip
+El tipo de test unitario que vamos a usar es un test basado en el comportamiento, es decir, la forma de evaluar si un test
+se supera con éxito o fracaso es mediante la comprobación de la respuesta que da nuestra aplicación ante una solicitud 
+determinada. Ejemplos:
+
+\begin{itemize}
+ \item Para comprobar que un archivo con datos de configuración ha sido cargado, el archivo cargado no debe ser nulo.
+ \item Para comprobar que en la información cargado se encuentra el nombre de la categoria, la categoria debe tener una 
+ propiedad llamada ``nombre''.
+ \item Para comprobar que las páginas del portal están accesibles, las respuesta a las solicitudes se espera que tenga el valor
+ 200 (código de respuesta estándar para peticiones correctas en conexiones HTTP).
+\end{itemize}
+
+Pero el diseño de las pruebas no termina con escribir los tests unitarios que consideremos oportunos, también es necesario que
+esos tests pasen a su vez un test de cobertura. Un test de cobertura comprueba el porcentaje de código desarrollado y/o
+número de funciones de la aplicación que se están evaluando con los tests unitarios desarrollados, con esto se puede verificar
+la completitud de los tests unitarios; si todos nuestros tests unitarios se evaluan correctamente, pero solo están cubriendo
+un 30\% del total de la aplicación, este resultado satisfatorio no nos puede asegurar que la funcionalidad completa de la 
+aplicación se vaya a ejecutar sin problemas.
+
+\bigskip
+Los tests unitarios se van a desarrollar usando Should y Supertest, ambos módulos de Node.js para evaluar comportamientos en las
+peticiones. Estos tests unitarios a su vez van a ser evaluados por Mocha, un framework de JavaScript para testeo que se ejecuta
+tanto en aplicaciones Node.js como en navegadores web. Por último, todo esto pasará por las pruebas de cobertura de código de 
+Istanbul, que generará un informa detallado especificando la cantidad de código y el número de funciones que están cubiertas y
+también los que no.
+
+\section{Diseño de la integración continua}
+
+\section{Diseño del despliegue automático}
+
+\section{Diseño del aprovisionamiento}
