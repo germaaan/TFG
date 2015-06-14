@@ -1,15 +1,248 @@
-\chapter{Implementación}
-
-\section{Cambios generales hechos}
-
-Partiendo del trabajo previo...
-
+\chapter{Implementacion}
+ 
 \section{Uso de JSON como origen de datos}
+ 
+[Explicar el problema que motivó el cambio de usar una base de datos MongoDB a usar archivos JSON]
+
+\begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
+{
+  "nombre":"Personal",
+  "plantilla":"personal",
+  "contenido":[
+    {
+      "encabezado":"Informacion Salarial 2015",
+      "link":"informacion-salarial-2015",
+      "texto":"Informacion relativa a la oferta..."
+    },
+    
+  ],
+  "datos":[
+    {
+      "dataset":"Informacion Salarial 2015",
+      "id_dataset":"informacion-salarial-2015",
+      "nombre":"Analisis total plantilla: genero",
+      "vista":1,
+      "url":"51d53138-0408-4257-9909-57acea137a58",
+      "descarga":"985a8e1e-734b-432a-ac65-a7da..."
+    },
+        
+  ]
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption={Archivo {\tt cargar.js}},label={lst:cargarjs}]
+var fs = require("fs");
+ 
+var cargar = function (archivo){
+  var config = null;
+
+  try{
+    config = JSON.parse(fs.readFileSync(archivo));
+  }
+  catch(e){
+    console.log("Error: no existe el archivo " + archivo);
+  }
+
+  return config;
+};
+
+module.exports = cargar;
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption={Archivo {\tt app.js}},label={lst:appjs}]
+var express = require('express');
+var http = require('http');
+
+var administracion = require(__dirname+'/routes/administracion');
+
+var cargar = require(__dirname+'/lib/cargar');
+
+module.exports.config = cargar(__dirname+'/config/config.json');
+module.exports.personal = cargar(__dirname+'/config/personal.json');
+
+app.get('/personal.html',administracion.personal);
+app.get('/archivos/personal', function(req, res) {
+  res.send(cargar(__dirname+'/config/personal.json'));
+});
+
+http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
+  console.log('Express server listening on ' + app.get('ip') + ':' + app.get('port'));
+});
+
+module.exports = app;
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript,caption={Archivo {\tt administracion.js}},label={lst:adminjs}]
+var conf = require('../app');
+
+exports.personal = function(req, res){
+  var personal = conf.personal;
+
+  res.render(personal.plantilla, {
+    servidor: conf.config.servidor,
+    seccion: personal.nombre,
+    contenido: personal.contenido,
+    datos: personal.datos,
+  });
+};
+\end{lstlisting}
+
+\begin{lstlisting}[language=json,caption={Scripts de inicio y detención},label={lst:ini_para}]
+"scripts": {
+  "start": "PORT=3000 IP=127.0.0.1 forever start -l /var/log/forever.log -a -o /var/log/out.log -e /var/log/err.log ./app.js",
+  "kill": "ps aux | grep 'app.js' | grep -v grep | awk '{print \"sudo kill -9 \" $2}' | sh"
+}
+\end{lstlisting}
 
 \section{Tests unitarios y de cobertura}
 
+\begin{lstlisting}[language=javascript,caption={Archivo {\tt test.js}},label={lst:testjs}]
+var should = require("should"),
+request = require("supertest");
+
+describe('Test de carga y formato de JSONs', function(){
+  describe('Archivo de configuracion', function(){
+    var config = cargar(__dirname+"/../config/config.json");
+
+    describe('Carga de archivo', function(){
+      it('Cargado', function(){
+        config.should.not.be.null;
+      });
+    });
+
+    describe('Formato de archivo', function(){
+      describe('Campos obligatorios', function(){
+        it('nombre', function(){
+          config.should.have.property("nombre");
+        });
+      });
+    });
+    
+  });
+};
+
+describe('Prueba de acceso', function(){
+  _.each(acceso.elemento, function(valor) {
+    it(valor.nombre, function(done){
+      request(app)
+      .get(valor.ruta)
+      .expect(200)
+      .end(function(err, res){
+        if (err){
+          throw err;
+        }
+        done();
+      });
+    });
+  });
+});
+\end{lstlisting}
+
+\begin{lstlisting}[language=json,caption={Scripts de test},label={lst:test}]
+"scripts": {
+  "test": "istanbul cover _mocha ./test --recursive"
+}
+\end{lstlisting}
+
 \section{Integración continua}
+
+\begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
+# language setting
+language: node_js
+
+# version numbers, testing against two versions of node
+node_js:
+- "0.12"
+- "0.11"
+- "0.10"
+- "iojs"
+\end{lstlisting}
 
 \section{Despliegue automático}
 
+\begin{lstlisting}[language=javascript,caption={Archivo {\tt test.js}},label={lst:testjs}]
+var plan = require('flightplan');
+
+plan.target('transparente', {
+  host: 'transparente.ugr.es',
+  username: process.env.USER,
+  agent: process.env.SSH_AUTH_SOCK
+});
+
+plan.remote(function(remote) {
+  remote.log('Creando copia de seguridad...');
+  remote.sudo('cp -Rf ugr-transparente-servidor ugr-transparente-servidor.bak', {user: process.env.USER});
+
+  remote.with('cd ugr-transparente-servidor',function() {
+    remote.log('Deteniendo el servidor...');
+    remote.exec('sudo npm run-script kill');
+    remote.log('Restableciendo parametros de acceso...');
+    remote.exec('sed "s/IP=transparente.ugr.es/IP=127.0.0.1/" -i package.json');
+    remote.exec('sed "s/PORT=80/PORT=3000/" -i package.json');
+    remote.log('Obteniendo cambios...');
+    remote.exec('git pull');
+    remote.log('Instalando dependencias...');
+    remote.exec('sudo npm install');
+    remote.log('Cambiando parametros de acceso...');
+    remote.exec('sed "s/IP=127.0.0.1/IP=transparente.ugr.es/" -i package.json');
+    remote.exec('sed "s/PORT=3000/PORT=80/" -i package.json');
+    remote.log('Arrancando el servidor...');
+    remote.exec('sudo npm start');
+  });
+});
+\end{lstlisting}
+
+\begin{lstlisting}[language=json,caption={Scripts de despliegue automático},label={lst:deploy}]
+"scripts": {
+  "deploy": "fly transparente"
+}
+\end{lstlisting}
+
 \section{Aprovisionamiento}
+
+\begin{lstlisting}[language=json,caption={Archivo de hosts},label={lst:hosts}]
+[transparente]
+transparente.ugr.es
+\end{lstlisting}
+
+\begin{lstlisting}[language=json,caption={{\tt Playbook} de {\tt Ansible}},label={lst:ansible}]
+---
+- hosts: transparente
+  sudo: yes
+  remote_user: "{{user}}"
+  tasks:
+    - name: Añadiendo repositorio para instalar Node.js...
+      apt_repository: repo='ppa:chris-lea/node.js'
+
+    - name: Actualizando lista de paquetes...
+      apt: update_cache=yes
+
+    - name: Instalando git...
+      apt: name=git state=present
+
+    - name: Instalando Node.js...
+      apt: name=nodejs state=present
+
+    - name: Clonando repositorio con la aplicacion...
+      git: repo=https://github.com/oslugr/ugr-transparente-servidor.git
+           dest=/home/"{{user}}"/ugr-transparente-servidor
+           version=master
+
+    - name: Cambiando propietario del directorio de la aplicacion...
+      file: path=/home/"{{user}}"/ugr-transparente-servidor
+            owner="{{user}}" group="{{user}}" state=directory recurse=yes
+
+    - name: Instalando las dependencias de la aplicacion...
+      npm: path=/home/"{{user}}"/ugr-transparente-servidor
+
+    - name: Cambiando parametros de acceso (1/2)...
+      command: sed "s/IP=127.0.0.1/IP=transparente.ugr.es/" -i
+               /home/"{{user}}"/ugr-transparente-servidor/package.json
+
+    - name: Cambiando parametros de acceso (2/2)...
+      command: sed "s/PORT=3000/PORT=80/" -i
+               /home/"{{user}}"/ugr-transparente-servidor/package.json
+
+    - name: Arrancando el servidor...
+      command: chdir=ugr-transparente-servidor npm start
+\end{lstlisting}
