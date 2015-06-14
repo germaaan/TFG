@@ -78,10 +78,10 @@ La plataforma de desarrollo colaborativo y la herramienta de control de versione
 respectivamente. {\tt GitHub} es una de las plataformas de desarrollo colaborativo más usadas en proyectos libres y usa 
 {\tt Git} como sistema de control de versiones para gestionar los proyectos que se almacenan en la plataforma. Estás son las 
 herramientas que nos van a permitir que nuestro proyecto se convierta en un proyecto que se desarrollo de forma ágil, 
-concretamente se va a seguir una metodología \textbf{DevOps}.
+concretamente se va a seguir una metodología {\tt DevOps}.
 
 \bigskip
-Una metodología de desarrollo \textbf{DevOps} consiste inicialmente en no hacer distinción entre el desarrollo del software y la
+Una metodología de desarrollo {\tt DevOps} consiste inicialmente en no hacer distinción entre el desarrollo del software y la
 administración del mismo, todo estará comunicado para que sea posible realizar entregas del software de forma frecuente 
 asegurándose de que esas mismas entregas continuas no sea el origen de fallos futuros. La forma de asegurarse de que esos
 fallos no se producirán es dividir todo el desarrollo en fases que tengan que realizarse secuencialmente, controlando a cada
@@ -96,10 +96,10 @@ aprovisionamiento para facilitar la portabilidad del portal de una infraestructu
 
 \section{Diseño de los tests unitarios y test de cobertura}
 
-Para cumplir la parte de testeo de la implementación de la metodología DevOps, a partir del desarrollo de este proyecto se 
-pretende seguir un desarrollo guiado por pruebas (en inglés, Test-Driven Development o TDD). Esto consiste en escribir primero
-las pruebas que consideremos que la aplicación debe superar y luego desarrollar el código que realice la función que queremos
-cumplir, pero superando dichas pruebas. 
+Para cumplir la parte de testeo de la implementación de la metodología {\tt DevOps}, a partir del desarrollo de este proyecto se 
+pretende seguir un desarrollo guiado por pruebas (en inglés, {\tt Test-Driven Development} o {\tt TDD}). Esto consiste en
+escribir primero las pruebas que consideremos que la aplicación debe superar y luego desarrollar el código que realice la 
+función que queremos cumplir, pero superando dichas pruebas. 
 
 \bigskip
 Estas pruebas estarán basadas en la ejecución de tests unitarios que estarán diseñados para comprobar de forma de automática
@@ -121,7 +121,7 @@ determinada. Ejemplos:
  \item Para comprobar que en la información cargado se encuentra el nombre de la categoria, la categoria debe tener una 
  propiedad llamada ``nombre''.
  \item Para comprobar que las páginas del portal están accesibles, las respuesta a las solicitudes se espera que tenga el valor
- 200 (código de respuesta estándar para peticiones correctas en conexiones HTTP).
+ 200 (código de respuesta estándar para peticiones correctas en conexiones {\tt HTTP}).
 \end{itemize}
 
 Pero el diseño de las pruebas no termina con escribir los tests unitarios que consideremos oportunos, también es necesario que
@@ -134,12 +134,79 @@ aplicación se vaya a ejecutar sin problemas.
 \bigskip
 Los tests unitarios se van a desarrollar usando Should y Supertest, ambos módulos de Node.js para evaluar comportamientos en las
 peticiones. Estos tests unitarios a su vez van a ser evaluados por Mocha, un framework de JavaScript para testeo que se ejecuta
-tanto en aplicaciones Node.js como en navegadores web. Por último, todo esto pasará por las pruebas de cobertura de código de 
+tanto en aplicaciones {\tt Node.js} como en navegadores web. Por último, todo esto pasará por las pruebas de cobertura de código de 
 Istanbul, que generará un informa detallado especificando la cantidad de código y el número de funciones que están cubiertas y
 también los que no.
 
 \section{Diseño de la integración continua}
 
+La integración continua (en inglés, \textit{continuous integration} o {\tt CI}) consiste en comprobar cada vez que hacemos
+cambios en el código de la aplicación esto no genere problemas en su ejecución, ya que el cambio del comportamiento en una 
+simple función puede cambiar en gran parte el comportamiento de la aplicación entera, y si otra función requiere del resultado
+de esta última, las consecuencias pueden ser desastrosas. Teniendo en cuenta que vamos a trabajar en un entorno de desarrollo
+colaborativo, es todavía más necesario que se asegure la integridad de la aplicación frente a los cambios.
+
+\bigskip
+Para que esto se pueda realizar, con cada cambios se activará automáticamente un proceso que verificará mediante la ejecución de
+los tests unitarios escritos que los cambios realizados no producen errores en la aplicación. Al igual que pasaba con los tests
+unitarios, la integración continua es una medida que nos permite incrementar la calidad del software producido porque cuanto 
+más a menudo se hagan estas comprobaciones, mayor será la facilidad para detectar fallos en el propio software.
+
+\bigskip
+Realizaremos la integración continua a través de {\tt Travis CI}, que es un sistema distribuido de integración continua libre que está
+integrado con {\tt GitHub}. Este sistema además tiene como ventajas el soporte para numerosos lenguajes y la posibilidad de ejecutar
+las pruebas en distintas versiones del propio lenguaje, por lo que facilmente podriamos probar nuestro desarrollo con diferentes
+configuraciones sin tener que realizar cambios en nuestro sistema local.
+
+\bigskip
+El procedimiento para realizar la integración continua consistirá en configurar el repositorio del proyecto en {\tt GitHub} para que 
+cada vez se realice un cambio en los archivos del repositorio, este iniciará un proceso por el cual se creará un build automático
+en un servidor virtual de {\tt Travis CI} que se ha creado con tal finalidad y se desplegará en él la última versión con los cambios
+que acabamos de realizar, para acto seguido ejecutar las pruebas que hayamos desarrollado y generar un informe sobre los resultados
+de las pruebas para cada una de las configuraciones que hayamos definido para la integración continua. Estos informes son 
+almacenados en el propio sitio de {\tt Travis}, recibiendo un aviso por correo en el caso de que las pruebas no hayan finalizado
+exitosamente en alguna de las configuraciones.
+
 \section{Diseño del despliegue automático}
 
+Una vez que tenemos la seguridad de que toda la aplicación funciona correctamente, solo nos queda desplegarla en nuestro servidor
+de producción; además, vamos a automatizar las tareas que deberiamos realizar manualmente para evitar posibles errores. En esto
+consiste el despliegue automático, hacer efectivos los cambios en nuestro software de nuestro software en una o varias 
+plataformas objetivo sin que tengamos que realizar personalmente y paso a paso el proceso necesario para ello, todo es 
+automatizado.
+
+\bigskip
+Antes de pasar a implementar el despliegue automático, hay que pensar que tareas es necesario o queremos que se realicen. 
+Independientemente del tipo de aplicación, como medida preventiva se debe hacer una copia de seguridad del estado actual de
+la aplicación desplegada en el servidor. La ejecución del portal depende de que el servidor creado por Express esté en 
+ejecución, por lo que antes de desplegar la nueva versión, se debería detener la ejecución de la versión anterior. Con todo esto
+hecho solo nos quedaría obtener los propios cambios realizamos, comprobar que todas las dependencias se siguen cumpliendo y 
+establecer los parámetros para que el servidor sea accesible desde {\tt Internet}; para finalizar la tarea, se iniciaría la ejecución
+de la aplicación.
+
+\bigskip
+Todas las tareas descritas, queremos que sean ejecutadas de forma secuencial una tras otra, de forma automática y necesitar
+la interacción con el usuario. Para cumplir esto usaremos {\tt Flightplan}, un módulo de {\tt Node.js} que nos permite coordinar de forma
+automática el despliegue de aplicaciones con tareas de administración del sistema.
+
+\newpage
 \section{Diseño del aprovisionamiento}
+
+Con toda la aplicación ya realizada, para su instalación inicial en un plataforma determinada primero tenemos que aprovisionarla
+con todos los recursos software necesarios. Encontraremos una mayor cantidad de referencias a este procedimiento por su término
+en ingles, software provisioning, ya que el termino en español es una traducción literal que salvo por el acompañamiento del 
+termino {\tt ``software''}, puede referirse a abastecimientos de recursos necesarios en general no necesariamente relacionado con el
+campo de la informática.
+
+\bigskip
+Entre el software básico necesario hay que considerar para instalar la propia plataforma del desarrollo de la aplicación 
+({\tt Node.js}) y la herramienta de control de versiones ({\tt Git}). Con esto instalado, se clona el repositorio en {\tt GitHub} del proyecto
+en un directorio local, y una vez instalada las dependencias de la aplicación y establecidos los parámetros de acceso, se
+arrancará el servidor para que el portal esté funcionando.
+
+\bigskip
+Todas estas tareas se harán de forma automática, para ello usaremos {\tt Ansible}, una aplicación de software libre que nos permitirá
+configurar y administrar los ordenadores que indiquemos en la lista de hosts objetivo. Su funcionamiento básicamente se basa
+en conectarse al ordenador a configurar mediante una conexión {\tt SSH} (por lo que deberemos indicarle con el usuario que tiene que
+realizarse la conexión) e irá ejecutando secuencialmente cada unas de las tareas del archivo {\tt YAML} de su archivo de configuración
+(al que se hace referencia como {\tt playbook}).
