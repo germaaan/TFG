@@ -2,7 +2,38 @@
  
 \section{Uso de JSON como origen de datos}
  
-[Explicar el problema que motivó el cambio de usar una base de datos MongoDB a usar archivos JSON]
+Inicialmente el origen de datos para las tablas de las páginas del portal de transparencia era una base de datos NoSQL montada sobre un sistema MongoDB. Aunque inicialmente funcionaba, había problemas relacionados con el funcionamiento asíncrono de Node.js; por dicho funcionamiento asíncrono el proceso de generar la página del portal y el proceso de acceder a la información de la base de datos eran independientes en su ejecución aunque dependientes en su funcionamiento, por lo que a no ser que ambos procesos estuvieran perfectamente sincronizados esto derivaría en la aparición de problemas.
+
+\bigskip
+Como no se consiguió que se sincronizaran los callbacks de ambos procesos eventualmente se producía uno de las situaciones cuando se intentaba cargar una página:
+
+\begin{itemize}
+	\item Si la página se intentaba cargar antes de que se hubiera podido acceder a la base de datos, las tablas con datos a visualizar no existían, por lo que se producía un error interno con el código 500.
+	\item Si la página se intentaba cargar antes de que se hubieran podido recuperar todos los datos de la base de datos las tablas de datos se generaban vacías, por lo que las páginas que se cargaban se cargaban en blanco.
+	\item Solo si la llamada a la base de datos se resolvía antes de que se intentara mostrar la información, la página se mostraba correctamente. 
+\end{itemize}
+
+Después de replantear la situación, se consideró que como todos los datos iban a estar finalmente almacenados en la plataforma OpenData UGR, la solución más recomendable era eliminar la base de datos y usar en su lugar archivos JSON que hicieran de índices de enlaces hacía los conjuntos de datos OpenData UGR desde el portal de transparencia. La ventaja de usar archivos JSON es la gran flexibilidad que proporcionan a la hora de realizar estructuras de datos; aprovechando esto se diseñaron estos archivos con los siguientes campos (ejemplo en el fragmento de código 6.1):
+
+\begin{itemize}
+	\item nombre: es la subcategoría en el portal de transparencia.
+	\item plantilla: el archivo de plantilla a partir del que se generan las páginas del portal de transparencia.
+	\item cotenido: conjunto con la información de cada una de las tablas que muestran en las páginas del portal de transparencia.
+	\begin{itemize}
+		\item encabezado: nombre de la tabla.
+		\item link: salto a la posición de la página donde empieza la tabla.
+		\item texto: descripción de los datos que contiene la tabla.
+	\end{itemize}
+	\item datos: conjunto con los elementos que componen cada una de las tablas.
+	\begin{itemize}
+		\item dataset: tabla a la que pertenece el elemento.
+		\item id\_dataset: conjunto de datos en OpenData UGR al que pertenece el elemento.
+		\item nombre: descripción del elemento que visualizará en la tabla.
+		\item vista: valor que indica si el elemento se puede previsualizar desde el propio portal de transparencia (en caso de ser 1) o si solo se puede visualizar accediendo a su enlace a OpenData UGR (en caso de ser 0).
+		\item url: dirección al elemento como recurso dentro de OpenData UGR para poder ser visualizado.
+		\item descarga: dirección de descarga directa del elemento almacenado como recurso en OpenData UGR.
+	\end{itemize}
+\end{itemize}
 
 \begin{lstlisting}[language=json,caption={Archivo {\tt JSON} con informacion de personal},label={lst:json_personal}]
 {
@@ -30,6 +61,13 @@
 }
 \end{lstlisting}
 
+Para que estos archivos puedan ser utilizados desde la aplicación, tenemos que convertir los archivos JSON en objetos JSON, esto lo podemos hacer fácilmente usando dos sencillos métodos como vemos en el fragmento de código 6.2:
+
+\begin{itemize}
+	\item readFileSync: es un método del módulo fs (módulo encargado de realizar las operaciones de entrada/salida en Node.js) que nos permite leer de forma síncrona los archivos que reciba como argumento.
+	\item JSON.parse: es un método del objeto JSON que nos permite convertir el texto que reciba como argumento en un objeto JSON (siempre que este tenga una formato compatible con JSON).
+\end{itemize}
+
 \begin{lstlisting}[language=javascript,caption={Archivo {\tt cargar.js}},label={lst:cargarjs}]
 var fs = require("fs");
  
@@ -49,6 +87,10 @@ var cargar = function (archivo){
 module.exports = cargar;
 \end{lstlisting}
 
+\newpage
+
+Como ya tenemos toda la información como objetos JSON, ya podemos hacer uso de ella desde nuestra aplicación.
+
 \begin{lstlisting}[language=javascript,caption={Archivo {\tt app.js}},label={lst:appjs}]
 var express = require('express');
 var http = require('http');
@@ -57,7 +99,9 @@ var administracion = require(__dirname+'/routes/administracion');
 
 var cargar = require(__dirname+'/lib/cargar');
 
-module.exports.config = cargar(__dirname+'/config/config.json');
+config = cargar(__dirname+'/config/config.json');
+module.exports.config = config;
+
 module.exports.personal = cargar(__dirname+'/config/personal.json');
 
 app.get('/personal.html',administracion.personal);
