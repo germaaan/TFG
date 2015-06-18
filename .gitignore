@@ -12,3 +12,6 @@
 # Archivos de copia de seguridad
 *.backup
 *~
+
+# Archivo PDF
+*.pdf
