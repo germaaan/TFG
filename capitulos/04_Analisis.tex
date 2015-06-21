@@ -68,7 +68,7 @@ Los requisitos no funcionales son las características propias del desarrollo, p
   \item \textbf{RN-2.} El portal se iniciará y se detendrá mediante scripts lanzados con NPM.
   \item \textbf{RN-3.} Para iniciar la ejecución del portal es necesario que reciba el puerto de escucha del servidor y la dirección de acceso.
   \item \textbf{RN-4.} Todos los módulos se ejecutarán desde scripts lanzamos con NPM.
-  \item \textbf{RN-5.} Los tests unitarios se realizarán en base a comportamientos esperados y valores de estados
+  \item \textbf{RN-5.} Los tests unitarios se realizarán en base a comportamientos esperados y valores de estados.
   recibidos como contestación a las peticiones que se realicen al portal.
   \item \textbf{RN-6.} Los tests unitarios tienen que recibir las páginas del portal para ejecutarse.
   \item \textbf{RN-7.} El test de cobertura tiene que tener una automatización integrable con los tests unitarios. 
@@ -97,7 +97,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 \subsection{Descripción básica de actores}
 
 \begin{itemize}
-  \item \textbf{Ac-1.} Desarrollador
+  \item \textbf{Ac-1.} Desarrollador.
   \begin{itemize}
    \item Descripción: Encargado del desarrollo y administración del portal.
    \item Características: Su trabajo está en el lado del servidor que genera la página, nunca trabaja desde el lado del cliente.
@@ -106,28 +106,28 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
    \item Comentarios: Es el encargado de que la información se muestre en el portal y de añadir funcionalidades al portal.
   \end{itemize}
   
-  \item \textbf{Ac-2.} Usuario
+  \item \textbf{Ac-2.} Usuario.
   \begin{itemize}
    \item Descripción: Persona que usa el portal para consultar datos.
    \item Características: Es el usuario común que accederá a la página.
    \item Relaciones: Ninguna.
    \item Atributos: Ninguno.
-   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso del portal, simplemente accederá y consultará los datos que sean de su interes.
+   \item Comentarios: El usuario no es necesario que tenga ningún conocimiento previo al uso del portal, simplemente accederá y consultará los datos que sean de su interés.
   \end{itemize}
 \end{itemize}
 
 \subsection{Descripción casos de uso}
 
 \begin{itemize}
-  \item \textbf{CU-1.} Inicio automático del servidor del portal
+  \item \textbf{CU-1.} Inicio automático del servidor del portal.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: El servidor esté detenido.
     \item Postcondición: El portal será accesible públicamente.
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Iniciar el servidor del portal UGR Transparente.
     \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde Internet.
     \begin{table}[!ht]
@@ -181,15 +181,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-2.} Consultar información de Administración
+  \item \textbf{CU-2.} Consultar información de Administración.
   \begin{itemize}
-    \item Actores: Usuario
-    \item Tipo: Primario, esencial
+    \item Actores: Usuario.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: Existan archivos con los datos abiertos.
     \item Postcondición:
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Administración'' y consulta la información de sus subsecciones.
     \begin{table}[!ht]
@@ -236,15 +236,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-3.} Consultar información de Docencia
+  \item \textbf{CU-3.} Consultar información de Docencia.
   \begin{itemize}
-    \item Actores: Usuario
-    \item Tipo: Primario, esencial
+    \item Actores: Usuario.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: Existan archivos con los datos abiertos.
     \item Postcondición:
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Docencia'' y consulta la información de sus subsecciones.
     \begin{table}[!ht]
@@ -291,15 +291,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-4.} Consultar información de Gestión e Investigación
+  \item \textbf{CU-4.} Consultar información de Gestión e Investigación.
   \begin{itemize}
-    \item Actores: Usuario
-    \item Tipo: Primario, esencial
+    \item Actores: Usuario.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: Existan archivos con los datos abiertos.
     \item Postcondición:
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Gestión e Investigación'' y consulta la información de sus subsecciones.
     \begin{table}[!ht]
@@ -346,15 +346,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-5.} Consultar información de Normativa Legal
+  \item \textbf{CU-5.} Consultar información de Normativa Legal.
   \begin{itemize}
-    \item Actores: Usuario
-    \item Tipo: Primario, esencial
+    \item Actores: Usuario.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: Existan archivos con los datos abiertos.
     \item Postcondición:
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
     \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Normativa Legal'' y consulta la información de sus subsecciones.
     \begin{table}[!ht]
@@ -401,15 +401,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-6.} Realizar tests unitarios
+  \item \textbf{CU-6.} Realizar tests unitarios.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
     \item Referencias:
     \item Precondición: Existan tests unitarios.
     \item Postcondición: 
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Realizar tests unitarios para comprobar las funcionalidades de la aplicación.
     \item Resumen: Cada vez que se añadan nuevas páginas o funcionalidades al portal, se comprueba que funcionan correctamente.
     \begin{table}[!ht]
@@ -459,15 +459,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-7.} Realizar tests de cobertura
+  \item \textbf{CU-7.} Realizar tests de cobertura.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
-    \item Referencias: (CU-6.) Realizar tests unitarios
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
+    \item Referencias: (CU-6.) Realizar tests unitarios.
     \item Precondición: Existan tests unitarios.
     \item Postcondición: 
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Realizar test de cobertura para comprobar calidad de los tests unitarios.
     \item Resumen: Para comprobar si los tests unitarios cumplen correctamente con su función se analiza el porcentaje del código que está cubierto por los mismos.
     \begin{table}[!ht]
@@ -526,15 +526,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-8.} Usar integración continua
+  \item \textbf{CU-8.} Usar integración continua.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
-    \item Referencias: (CU-5.) Realizar tests unitarios
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
+    \item Referencias: (CU-5.) Realizar tests unitarios.
     \item Precondición: Existan test unitarios.
     \item Postcondición: Se genera un informe con el resultado de los tests unitarios.
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Comprobar si los cambios en la aplicación provocan errores.
     \item Resumen: Cuando se efectúan cambios en la aplicación automáticamente se ejecutan los tests unitarios para comprobar si los cambios introducidos provocan conflictos en la plataforma.
     \begin{table}[!ht]
@@ -594,15 +594,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-.9 } Usar despliegue automático
+  \item \textbf{CU-.9 } Usar despliegue automático.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
-    \item Referencias: (CU-1.) Iniciar plataforma
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
+    \item Referencias: (CU-1.) Iniciar plataforma.
     \item Precondición: 
     \item Postcondición: Los cambios introducidos son aplicados en la plataforma.
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Aplicar automáticamente los cambios realizados a la aplicación. 
     \item Resumen: Para no tener que acceder manualmente al servidor de la plataforma y tener que desplegar los cambios introducidos, desde el entorno de desarrollo desplegamos automáticamente los cambios en el servidor.
     \begin{table}[!ht]
@@ -676,15 +676,15 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-.10} Usar aprovisionamiento
+  \item \textbf{CU-.10} Usar aprovisionamiento.
   \begin{itemize}
-    \item Actores: Desarrollador
-    \item Tipo: Primario, esencial
-    \item Referencias: (CU-1.) Iniciar plataforma
+    \item Actores: Desarrollador.
+    \item Tipo: Primario, esencial.
+    \item Referencias: (CU-1.) Iniciar plataforma.
     \item Precondición: 
     \item Postcondición: El portal queda instalado en la infraestructura seleccionada.
-    \item Autor: \autor
-    \item Versión: 1.0
+    \item Autor: \autor.
+    \item Versión: 1.0.
     \item Propósito: Instalar automáticamente el portal en una infraestructura dada.
     \item Resumen: Se instalarán automáticamente todos los elementos necesarios para poner en funcionamiento el portal en cualquier infraestructura que se indique.
     \begin{table}[!ht]

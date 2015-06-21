@@ -12,30 +12,30 @@ Cada uno de estos módulos de las diversas secciones, obtendrá la información 
 
 \newpage
 \begin{itemize}
- \item UGR Transparente ({\tt app.js})
+ \item UGR Transparente ({\tt app.js}).
  \begin{itemize}
-  \item Administración ({\tt administración.js})
+  \item Administración ({\tt administración.js}).
   \begin{itemize}
-   \item Personal ({\tt personal.json})
-   \item Información Económica ({\tt infoEcononica.json})
-   \item Servicios ({\tt servicios.json})
+   \item Personal ({\tt personal.json}).
+   \item Información Económica ({\tt infoEcononica.json}).
+   \item Servicios ({\tt servicios.json}).
   \end{itemize}
-  \item Docencia
+  \item Docencia.
   \begin{itemize}
-   \item Oferta y Demanda Académica ({\tt ofertaDemanda.json})
-   \item Claustro ({\tt claustro.json})
-   \item Estudiantes ({\tt estudiantes.json})
+   \item Oferta y Demanda Académica ({\tt ofertaDemanda.json}).
+   \item Claustro ({\tt claustro.json}).
+   \item Estudiantes ({\tt estudiantes.json}).
   \end{itemize}
-  \item Gestión e Investigación
+  \item Gestión e Investigación.
   \begin{itemize}
-   \item Misión ({\tt mision.json})
-   \item Plan Estratégico ({\tt .json})
-   \item Gobierno ({\tt gobierno.json})
-   \item Estadísticas ({\tt estadistica.json})
+   \item Misión ({\tt mision.json}).
+   \item Plan Estratégico ({\tt .json}).
+   \item Gobierno ({\tt gobierno.json}).
+   \item Estadísticas ({\tt estadistica.json}).
   \end{itemize}
-  \item Normativa Legal
+  \item Normativa Legal.
   \begin{itemize}
-   \item Normativa Legal ({\tt normativaLegal.json})
+   \item Normativa Legal ({\tt normativaLegal.json}).
   \end{itemize}
  \end{itemize}
 \end{itemize}
@@ -75,10 +75,8 @@ determinada. Ejemplos:
 
 \begin{itemize}
  \item Para comprobar que un archivo con datos de configuración ha sido cargado, el archivo cargado no debe ser nulo.
- \item Para comprobar que en la información cargado se encuentra el nombre de la categoría, la categoría debe tener una 
- propiedad llamada ``nombre''.
- \item Para comprobar que las páginas del portal están accesibles, las respuesta a las solicitudes se espera que tenga el valor
- 200 (código de respuesta estándar para peticiones correctas en conexiones {\tt HTTP}).
+ \item Para comprobar que en la información cargado se encuentra el nombre de la categoría, la categoría debe tener una propiedad llamada ``nombre''.
+ \item Para comprobar que las páginas del portal están accesibles, las respuesta a las solicitudes se espera que tenga el valor 200 (código de respuesta estándar para peticiones correctas en conexiones {\tt HTTP}).
 \end{itemize}
 
 Pero el diseño de las pruebas no termina con escribir los tests unitarios que consideremos oportunos, también es necesario que esos tests pasen a su vez un test de cobertura. Un test de cobertura comprueba el porcentaje de código desarrollado y/o número de funciones de la aplicación que se están evaluando con los tests unitarios desarrollados, con esto se puede verificar la completitud de los tests unitarios; si todos nuestros tests unitarios se evalúan correctamente, pero solo están cubriendo un 30\% del total de la aplicación, este resultado satisfactorio no nos puede asegurar que la funcionalidad completa de la aplicación se vaya a ejecutar sin problemas.
