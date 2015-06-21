@@ -12,7 +12,7 @@ Los actores implicados serán dos: el \textbf{desarrollador} y el \textbf{usuari
 El \textbf{desarrollador} será el encargado de solucionar los problemas de visualización de los datos en el portal, además de portar el desarrollo actual del portal a un entorno de desarrollo continuo. También asumirá la administración del portal ya que este tipo de rol está muy integrado con las labores de despliegue en el desarrollo continuo.
 
 \bigskip
-El \textbf{usuario} de la aplicación será cualquier persona que tenga interés por conocer datos internos de la Universidad de Granada fácilmente. El usuario no pertenece a ningún público objetivo concreto, por lo que no se tiene que considerar que tenga una experiencia previa en navegador por sitios web.
+El \textbf{usuario} de la aplicación será cualquier persona que tenga interés por conocer datos internos de la \textbf{Universidad de Granada} fácilmente. El usuario no pertenece a ningún público objetivo concreto, por lo que no se tiene que considerar que tenga una experiencia previa en navegador por sitios web.
 
 \subsection{Requisitos funcionales}
 
@@ -35,10 +35,10 @@ Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo con
 \begin{itemize}
   \item \textbf{RF-2.} Acceso información:
     \begin{itemize}
-    \item \textbf{RF-2.1.} Consultar información de Administración.
-    \item \textbf{RF-2.1.} Consultar información de Docencia.
-    \item \textbf{RF-2.1.} Consultar información de Gestión e Investigación.
-    \item \textbf{RF-2.1.} Consultar información de Normativa Legal.
+    \item \textbf{RF-2.1.} Consultar información de \textit{Administración}.
+    \item \textbf{RF-2.1.} Consultar información de \textit{Docencia}.
+    \item \textbf{RF-2.1.} Consultar información de \textit{Gestión e Investigación}.
+    \item \textbf{RF-2.1.} Consultar información de \textit{Normativa Legal}.
     \end{itemize}
 \end{itemize}
 
@@ -64,34 +64,34 @@ Por otra parte, el desarrollador quiere integrar el sistema en un desarrollo con
 Los requisitos no funcionales son las características propias del desarrollo, pero que no tienen que estar relacionadas con su funcionalidad.
 
 \begin{itemize}
-  \item \textbf{RN-1.} Toda la programación del portal se hará en Node.js y los módulos que se usen deben ser instalables a través de su gestor de paquetes NPM.
-  \item \textbf{RN-2.} El portal se iniciará y se detendrá mediante scripts lanzados con NPM.
+  \item \textbf{RN-1.} Toda la programación del portal se hará en {\tt Node.js} y los módulos que se usen deben ser instalables a través de su gestor de paquetes {\tt NPM}.
+  \item \textbf{RN-2.} El portal se iniciará y se detendrá mediante scripts lanzados con {\tt NPM}.
   \item \textbf{RN-3.} Para iniciar la ejecución del portal es necesario que reciba el puerto de escucha del servidor y la dirección de acceso.
-  \item \textbf{RN-4.} Todos los módulos se ejecutarán desde scripts lanzamos con NPM.
+  \item \textbf{RN-4.} Todos los módulos se ejecutarán desde scripts lanzamos con {\tt NPM}.
   \item \textbf{RN-5.} Los tests unitarios se realizarán en base a comportamientos esperados y valores de estados.
   recibidos como contestación a las peticiones que se realicen al portal.
   \item \textbf{RN-6.} Los tests unitarios tienen que recibir las páginas del portal para ejecutarse.
   \item \textbf{RN-7.} El test de cobertura tiene que tener una automatización integrable con los tests unitarios. 
   \item \textbf{RN-8.} La integración continua se ejecutará automáticamente con cada cambio que se haga en la programación del portal.
-  \item \textbf{RN-9.} El despliegue automático se realizará mediante conexiones SSH.
+  \item \textbf{RN-9.} El despliegue automático se realizará mediante conexiones {\tt SSH}.
   \item \textbf{RN-10.} Tanto para el despliegue automático como para el aprovisionamiento es necesario indicar el usuario que lo realiza y el destino en el que se realiza.
 \end{itemize}
 
 \subsection{Requisitos de información}
 
-Los requisitos de información se refieren a la información que es necesaria almacenar en el sistema. La única información relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal OpenData UGR que se van a mostrar en UGR Transparente.
+Los requisitos de información se refieren a la información que es necesaria almacenar en el sistema. La única información relevante que se va a almacenar son los datos descriptivos y de enlace de cada uno de los elementos del portal {\tt OpenData UGR} que se van a mostrar en {\tt UGR Transparente}.
 
 \begin{itemize}
   \item \textbf{RI-1.} Datos abiertos.
   \begin{itemize}
     \item Información sobre cada uno de los elementos que se van a mostrar en el portal de transparencia como datos abiertos.
-    \item Contenido: nombre, categoría, conjunto de datos, enlace a OpenData UGR, enlace al recurso.
+    \item Contenido: nombre, categoría, conjunto de datos, enlace a {\tt OpenData UGR}, enlace al recurso.
   \end{itemize}
 \end{itemize}
 
 \section{Modelos de casos de uso}
 
-Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general del portal UGR Transparente.
+Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de forma previa a este proyecto, se van a incluir unos modelos de caso de uso simples para dar un visión más clara del funcionamiento general del portal {\tt UGR Transparente}.
 
 \newpage
 \subsection{Descripción básica de actores}
@@ -128,7 +128,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
     \item Postcondición: El portal será accesible públicamente.
     \item Autor: \autor.
     \item Versión: 1.0.
-    \item Propósito: Iniciar el servidor del portal UGR Transparente.
+    \item Propósito: Iniciar el servidor del portal {\tt UGR Transparente}.
     \item Resumen: Cuando se ejecuta el script de inicio de la aplicación, arranca el servidor y el portal será accesible desde Internet.
     \begin{table}[!ht]
       \begin{center}
@@ -181,7 +181,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
  
   \newpage
-  \item \textbf{CU-2.} Consultar información de Administración.
+  \item \textbf{CU-2.} Consultar información de \textit{Administración}.
   \begin{itemize}
     \item Actores: Usuario.
     \item Tipo: Primario, esencial.
@@ -190,8 +190,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
     \item Postcondición:
     \item Autor: \autor.
     \item Versión: 1.0.
-    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Administración'' y consulta la información de sus subsecciones.
+    \item Propósito: El usuario consulta datos de administración en el portal {\tt UGR Transparente}.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de \textit{Administración} y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -203,7 +203,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
 	    Usuario: consulta la información\\
-	    de Administración publicada en el\\
+	    de \textit{Administración} publicada en el\\
 	    portal.
 	  \end{tabular} &
 	  &
@@ -215,7 +215,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	    Se generan las tablas con\\
 	    todos los elementos de\\
 	    información de la sección\\
-	    Administración.
+	    \textit{Administración}.
 	  \end{tabular}
 	  \\ \hline
 	  &
@@ -236,7 +236,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-3.} Consultar información de Docencia.
+  \item \textbf{CU-3.} Consultar información de \textit{Docencia}.
   \begin{itemize}
     \item Actores: Usuario.
     \item Tipo: Primario, esencial.
@@ -245,8 +245,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
     \item Postcondición:
     \item Autor: \autor.
     \item Versión: 1.0.
-    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Docencia'' y consulta la información de sus subsecciones.
+    \item Propósito: El usuario consulta datos de administración en el portal {\tt UGR Transparente}.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de \textit{Docencia} y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -258,7 +258,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
 	    Usuario: consulta la información\\
-	    de Docencia publicada en el\\
+	    de \textit{Docencia} publicada en el\\
 	    portal.
 	  \end{tabular} &
 	  &
@@ -270,7 +270,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	    Se generan las tablas con\\
 	    todos los elementos de\\
 	    información de la sección\\
-	    Docencia.
+	    \textit{Docencia}.
 	  \end{tabular}
 	  \\ \hline
 	  &
@@ -291,7 +291,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-4.} Consultar información de Gestión e Investigación.
+  \item \textbf{CU-4.} Consultar información de \textit{Gestión e Investigación}.
   \begin{itemize}
     \item Actores: Usuario.
     \item Tipo: Primario, esencial.
@@ -300,8 +300,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
     \item Postcondición:
     \item Autor: \autor.
     \item Versión: 1.0.
-    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Gestión e Investigación'' y consulta la información de sus subsecciones.
+    \item Propósito: El usuario consulta datos de administración en el portal {\tt UGR Transparente}.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de \textit{Gestión e Investigación} y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -313,7 +313,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
 	    Usuario: consulta la información\\
-	    de Gestión e Investigación publicada\\
+	    de \textit{Gestión e Investigación} publicada\\
 	    en el portal.
 	  \end{tabular} &
 	  &
@@ -325,7 +325,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	    Se generan las tablas con\\
 	    todos los elementos de\\
 	    información de la sección\\
-	    Gestión e Investigación.
+	    \textit{Gestión e Investigación}.
 	  \end{tabular}
 	  \\ \hline
 	  &
@@ -346,7 +346,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \end{itemize}
   
   \newpage
-  \item \textbf{CU-5.} Consultar información de Normativa Legal.
+  \item \textbf{CU-5.} Consultar información de \textit{Normativa Legal}.
   \begin{itemize}
     \item Actores: Usuario.
     \item Tipo: Primario, esencial.
@@ -355,8 +355,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
     \item Postcondición:
     \item Autor: \autor.
     \item Versión: 1.0.
-    \item Propósito: El usuario consulta datos de administración en el portal UGR Transparente.
-    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de ``Normativa Legal'' y consulta la información de sus subsecciones.
+    \item Propósito: El usuario consulta datos de administración en el portal {\tt UGR Transparente}.
+    \item Resumen: El usuario que accede al portal de transparencia selecciona la sección de \textit{Normativa Legal} y consulta la información de sus subsecciones.
     \begin{table}[!ht]
       \begin{center}
 	\begin{tabular}{|l|l|l|l|}
@@ -368,7 +368,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	  {\it 1} & 
 	  \begin{tabular}[c]{@{}l@{}}
 	    Usuario: consulta la información\\
-	    de Normativa Legal publicada en el\\
+	    de \textit{Normativa Legal} publicada en el\\
 	    portal.
 	  \end{tabular} &
 	  &
@@ -380,7 +380,7 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 	    Se generan las tablas con\\
 	    todos los elementos de\\
 	    información de la sección\\
-	    Normativa Legal.
+	    \textit{Normativa Legal}.
 	  \end{tabular}
 	  \\ \hline
 	  &

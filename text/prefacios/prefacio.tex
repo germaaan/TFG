@@ -8,29 +8,21 @@
 \section*{Resumen}
 
 \bigskip
-\noindent{\textbf{Palabras clave}: software libre, transparencia, datos abiertos, sistema de control de versiones, 
-aprovisionamiento, tests, integración continua, despliegue automático\\
+\noindent{\textbf{Palabras clave}: \textit{software libre}, \textit{transparencia}, \textit{datos abiertos}, \textit{sistema de control de versiones}, \textit{aprovisionamiento}, \textit{tests}, \textit{integración continua}, \textit{despliegue automático}\\
 
-Se pretende desarrollar una plataforma para la transparencia que sea desplegable en un infraestructura física o virtual 
-basándose en el trabajo realizado en el portal UGR Transparente, respaldada por los datos abiertos publicados en la plataforma
-OpenData UGR.
+Se pretende desarrollar una plataforma para la \textit{transparencia} que sea desplegable en un infraestructura física o virtual basándose en el trabajo realizado en el portal {\tt UGR Transparente}, respaldada por los \textit{datos abiertos} publicados en la plataforma {\tt OpenData UGR}.
 
 \bigskip
-Este desarrollo tendrá como objetivo que el resultado sea una plataforma totalmente basada en el software libre que se 
-pudiera adaptar con facilidad a otro organismo, teniendo en cuenta funcionalidades y requisitos obligatorios, además de 
-aspectos de accesibilidad y escalabilidad. 
+Este desarrollo tendrá como objetivo que el resultado sea una plataforma totalmente basada en el \textit{software libre} que se pudiera adaptar con facilidad a otro organismo, teniendo en cuenta funcionalidades y requisitos obligatorios, además de aspectos de accesibilidad y escalabilidad. 
 
 \bigskip
-La herramientas básicas a usar serán un sistema de control de versiones y un sistema de desarrollo colaborativo que 
-albergue el proyecto, aque además use dicho sistema de control de versiones. También se quiere que la plataforma se pueda 
-desarrollarr y administrar simultáneamente, por lo que para convertir todo esto es un proceso más ágil e ininterrumpido se 
-usarán otras herramientas que permitan lo siguiente:
+La herramientas básicas a usar serán un \textit{sistema de control de versiones} y un sistema de desarrollo colaborativo que albergue el proyecto, a que además use dicho \textit{sistema de control de versiones}. También se quiere que la plataforma se pueda desarrollar y administrar simultáneamente, por lo que para convertir todo esto es un proceso más ágil e ininterrumpido se usarán otras herramientas que permitan lo siguiente:
 
 \begin{itemize}
-  \item Realizar aprovisionamiento de las infraestructuras.
-  \item Validación mediante tests unitarios.
-  \item Comprobación de conflictos mediante integración continua.
-  \item Actualizaciones mediante despliegue automático.
+  \item Realizar \textit{aprovisionamiento} de las infraestructuras.
+  \item Validación mediante \textit{tests} unitarios.
+  \item Comprobación de conflictos mediante \textit{integración continua}.
+  \item Actualizaciones mediante \textit{despliegue automático}.
 \end{itemize}
 
 \newpage
@@ -44,60 +36,31 @@ usarán otras herramientas que permitan lo siguiente:
 \section*{Extended abstract}
 
 \bigskip
-\noindent{\textbf{Keywords}: free software, transparency, opendata, version control system, provisioning, tests, continuous 
-integration, automated deployment}\\
+\noindent{\textbf{Keywords}: \textit{free software}, \textit{transparency}, \textit{open data}, \textit{version control system}, \textit{provisioning}, \textit{tests}, \textit{continuous integration}, \textit{automated deployment}\\
 
-It is intended to develop a platform for transparency that is deployable on a physical or virtual infrastructure based on work
-done on the site UGR Transparente, backed by open data published in the Open Data UGR.
+It is intended to develop a platform for \textit{transparency} that is deployable on a physical or virtual infrastructure based on work done on the site {\tt UGR Transparente}, backed by \textit{open data} published in the {\tt Open Data UGR}.
 
 \bigskip
-This development aims that the result is a platform completely based on free software that could be easily adapted to another
-organization, taking into consideration features and mandatory requirements, as well as issues of accessibility and scalability.
-The platform which presents the data will develop in Node.js, which is a programming environment that operates at runtime based
-on the Google's V8 JavaScript engine; also will use Express for web application development and Jade to generate HTML files
-based on templates. Moreover, the platform that contains the data is based on CKAN, a open-source data portal platform
-developed by The Open Knowledge Foundation, a not-for-profit organisation that promotes creating and sharing knowledge freely.
+This development aims that the result is a platform completely based on \textit{free software} that could be easily adapted to another organization, taking into consideration features and mandatory requirements, as well as issues of accessibility and scalability. The platform which presents the data will develop in Node.js, which is a programming environment that operates at runtime based on the {\tt Google's V8 JavaScript engine}; also will use {\tt Express} for web application development and Jade to generate \textit{HTML} files based on templates. Moreover, the platform that contains the data is based on {\tt CKAN}, a open-source data portal platform
+developed by \textbf {The Open Knowledge Foundation}, a not-for-profit organisation that promotes creating and sharing knowledge freely.
 
 \bigskip
-Being free software, this development is not limited to the working group that started the work, but rather is focused on that
-anyone can make their contribution to the project; therefore, for all this can be handled is necessary a version control system,
-in this case Git will be used, which is practically a standard in this area. In addition, it will also be used a recognized and
-open collaborative based development platform as is GitHub, which is also integrated with Git, providing ease in the 
-development and distribution of work, because any who access the project repository can freely copy it for its open license.
+Being \textit{free software}, this development is not limited to the working group that started the work, but rather is focused on that anyone can make their contribution to the project; therefore, for all this can be handled is necessary a \textit{version control system}, in this case {\tt Git} will be used, which is practically a standard in this area. In addition, it will also be used a recognized and open collaborative based development platform as is {\tt GitHub}, which is also integrated with Git, providing ease in the development and distribution of work, because any who access the project repository can freely copy it for its open license.
 
 \bigskip
-An important point to facilitate system administration is the provisioning. Provisioning a machine, as the name suggests, is to
-provide to the machine all the resources needed for its performance, in our case we refer to all the software necessary for
-that the platform developed works properly in such infrastructure. In the case of transparency portal, as the entire project
-is hosted on GitHub, we can set up a utility like Ansible to download the project and then install on the machine all the
-necessary software so that the platform can function properly. In contrast, such as the open data portal is not a own
-development, their provisioning will consist of installing and customizing CKAN for the University of Granada.
+An important point to facilitate system administration is the \textit{provisioning}. \textit{Provisioning} a machine, as the name suggests, is to provide to the machine all the resources needed for its performance, in our case we refer to all the software necessary for that the platform developed works properly in such infrastructure. In the case of \textit{transparency} portal, as the entire project is hosted on {\tt GitHub}, we can set up a utility like Ansible to download the project and then install on the machine all the necessary software so that the platform can function properly. In contrast, such as the \textit{open data} portal is not a own development, their \textit{provisioning} will consist of installing and customizing {\tt CKAN} for the \textbf {University of Granada}.
 
 \bigskip
-During the development of any software application, new features are introduced to the software gradually, so must be ensured
-that the new features do not compromise the overall stability of the project. For this purpose the unit tests are written, 
-which could be considered as small programs within the system that handles check by assertions and behavior patterns that all
-elements operate as they should. To verify that our unit tests are sufficient also need to pass a coverage test that tells us
-that all the functionality of our platform are properly validated by the corresponding unit test. There are many libraries that
-allow both actions, but for the facility of work between them, unit test will be passed with Mocha and coverage test will be
-with Istanbul.
+During the development of any software application, new features are introduced to the software gradually, so must be ensured that the new features do not compromise the overall stability of the project. For this purpose the unit \textit{tests} are written, which could be considered as small programs within the system that handles check by assertions and behavior patterns that all elements operate as they should. To verify that our unit \textit{tests} are sufficient also need to pass a coverage test that tells us that all the functionality of our platform are properly validated by the corresponding unit test. There are many libraries that allow both actions, but for the facility of work between them, unit test will be passed with {\tt Mocha} and coverage test will be with {\tt Istanbul}.
 
 \bigskip
-Once we have the tests written, we don't need concern ourselves with run them manually, we have the option of running in a
-external platform every time we make changes and directly get the results, this is continuous integration. Continuous
-integration will be made with Travis CI and the operation is very simple: every time we make a change in GitHub, Travis CI
-download the latest version of the code, builds it and passes the tests we have written, to finish by returning the results
-of the tests that will make us know whether changes have produced a conflict in the system. 
+Once we have the \textit{tests} written, we don't need concern ourselves with run them manually, we have the option of running in a external platform every time we make changes and directly get the results, this is \textit{continuous integration}. \textit{Continuous integration} will be made with {\tt Travis CI} and the operation is very simple: every time we make a change in {\tt GitHub}, {\tt Travis CI} download the latest version of the code, builds it and passes the \textit{tests} we have written, to finish by returning the results of the \textit{tests} that will make us know whether changes have produced a conflict in the system. 
 
 \bigskip
-The last thing to keep in mind is about deploying the changes automatically on our server, can be a tedious procedure having to
-manually access to the infrastructure of our platform every time that we want to apply the new changes we have made in the
-application, so we'll use the tool Flightplan for automatic deployment; only with specify our server as the target we can set
-a series of tasks that will make that automatically for the updates we're making become effective on the main machine.
+The last thing to keep in mind is about deploying the changes automatically on our server, can be a tedious procedure having to manually access to the infrastructure of our platform every time that we want to apply the new changes we have made in the application, so we'll use the tool {\tt Flightplan} for \textit{automated deployment}; only with specify our server as the target we can set a series of tasks that will make that automatically for the updates we're making become effective on the main machine.
 
 \bigskip
-By using these tools we are getting an application in which development and management are closely related and automated, which
-makes the application much more reliable and easy recovery in case of problems.
+By using these tools we are getting an application in which development and management are closely related and automated, which makes the application much more reliable and easy recovery in case of problems.
 
 \newpage
 \thispagestyle{empty}
@@ -106,9 +69,7 @@ makes the application much more reliable and easy recovery in case of problems.
 
 \noindent\rule[-1ex]{\textwidth}{2pt}\\[4.5ex]
 
-Yo, \textbf{\autor}, alumno de la titulación \titulacion\ de la \textbf{\escuela\ de la \universidad}, autorizo la ubicación de
-la siguiente copia de mi Trabajo Fin de Grado (\textit{\titulo}) en la biblioteca del centro para que pueda ser consultada por las personas que 
-lo deseen.
+Yo, \textbf{\autor}, alumno de la titulación \textbf{\titulacion} de la \textbf{\escuela\ de la \universidad}, autorizo la ubicación de la siguiente copia de mi Trabajo Fin de Grado (\textit{\titulo}) en la biblioteca del centro para que pueda ser consultada por las personas que lo deseen.
 
 \vspace{6cm}
 
@@ -127,7 +88,7 @@ lo deseen.
 
 \noindent\rule[-1ex]{\textwidth}{2pt}\\[4.5ex]
 
-D. \textbf{\tutor}, Profesor del Departamento de Arquitectura y Tecnología de Computadores de la \universidad.
+D. \textbf{\tutor}, profesor del \textbf{Departamento de Arquitectura y Tecnología de Computadores} de la \textbf{\universidad}.
 
 \vspace{0.5cm}
 
