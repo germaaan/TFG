@@ -12,7 +12,7 @@ Cada uno de estos módulos de las diversas secciones, obtendrá la información 
 
 \newpage
 \begin{itemize}
- \item Portal de Transparencia ({\tt app.js})
+ \item UGR Transparente ({\tt app.js})
  \begin{itemize}
   \item Administración ({\tt administración.js})
   \begin{itemize}
@@ -40,7 +40,7 @@ Cada uno de estos módulos de las diversas secciones, obtendrá la información 
  \end{itemize}
 \end{itemize}
 
-Cada vez que un usuario quiere consultar la información de una subsección, el Portal de Transparencia hace una llamada al método de generación de la página de la sección elegida para su subsección determinada; ese método, procesará la plantilla {\tt Jade} para la página pasándole el archivo {\tt JSON} de datos y el resultado final será la página web que será visible en el portal.
+Cada vez que un usuario quiere consultar la información de una subsección, el portal de transparencia (UGR Transparente) hace una llamada al método de generación de la página de la sección elegida para su subsección determinada; ese método, procesará la plantilla {\tt Jade} para la página pasándole el archivo {\tt JSON} de datos y el resultado final será la página web que será visible en el portal.
 
 \bigskip
 De igual forma a lo mencionado de la aplicación del portal de transparencia, los test unitarios ({\tt test.js}) y el despliegue automático ({\tt flightplan.js}) son otros módulos que ejecutan dichas acciones, el test de cobertura se realiza automáticamente a partir de los test unitarios, la integración continua se realiza en base a la configuración del archivo {\tt .travis.yml}, y finalmente, el aprovisionamiento sigue las tareas en el archivo de configuración {\tt transparente.yml}. Todos estos módulos son independientes del funcionamiento del módulo principal, y simplemente llamaremos cuando queramos hacer uso de sus funcionalidades.
