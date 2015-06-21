@@ -1,5 +1,7 @@
 \chapter{Implementacion}
  
+ Para explicar la implementación realizada se van a incluir pequeños fragmento del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento.
+ 
 \section{Uso de JSON como origen de datos}
  
 Inicialmente el origen de datos para las tablas de las páginas del portal de transparencia era una base de datos \textit{NoSQL} montada sobre un sistema {\tt MongoDB}. Aunque inicialmente funcionaba, había problemas relacionados con el funcionamiento asíncrono de {\tt Node.js}; por dicho funcionamiento \textit{asíncrono} el proceso de generar la página del portal y el proceso de acceder a la información de la base de datos eran independientes en su ejecución aunque dependientes en su funcionamiento, por lo que a no ser que ambos procesos estuvieran perfectamente sincronizados esto derivaría en la aparición de problemas.
@@ -35,6 +37,7 @@ Después de replantear la situación, se consideró que como todos los datos iba
 	\end{itemize}
 \end{itemize}
 
+\newpage
 \begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
 {
   "nombre":"Personal",
@@ -61,14 +64,17 @@ Después de replantear la situación, se consideró que como todos los datos iba
 }
 \end{lstlisting}
 
-Para que estos archivos puedan ser utilizados desde la aplicación, tenemos que convertir los archivos \textit{JSON} en objetos \textit{JSON}, esto lo podemos hacer fácilmente usando dos sencillos métodos como vemos en el \textit{fragmento de código 6.2}:
+Para que estos archivos puedan ser utilizados desde la aplicación, tenemos que convertir los archivos \textit{JSON} en objetos \textit{JSON}, esto lo podemos hacer fácilmente usando dos sencillos métodos como vemos en el \textit{fragmento de código 6.2}. Ambos métodos pertenecen al módulo {\tt cargar.js} de la carpeta \textbf{lib}:
 
 \begin{itemize}
-	\item {\tt readFileSync}: es un método del módulo {\tt fs} (módulo encargado de realizar las operaciones de entrada/salida en {\tt Node.js}) que nos permite leer de forma síncrona los archivos que reciba como argumento.
+	\item {\tt readFileSync}: es un método del módulo {\tt Fs} (módulo encargado de realizar las operaciones de entrada/salida en {\tt Node.js}) que nos permite leer de forma síncrona los archivos que reciba como argumento.
 	\item {\tt JSON.parse}: es un método del objeto \textit{JSON} que nos permite convertir el texto que reciba como argumento en un objeto \textit{JSON} (siempre que este tenga una formato compatible con \textit{JSON}).
 \end{itemize}
 
-\begin{lstlisting}[language=javascript,caption={Archivo {\tt cargar.js}},label={lst:cargarjs}]
+Es importante aclarar que en {\tt Node.js} los módulos, independientemente de si son creados por nosotros o no, se importan para se usados dentro de módulo con la palabra clave ``\textit{require}'' y se exportan para ser utilizables por otros módulos con la palabra clave ``\textit{export}''.
+
+\newpage
+\begin{lstlisting}[language=javascript,caption={Archivo cargar.js},label={lst:cargarjs}]
 var fs = require("fs");
  
 var cargar = function (archivo){
@@ -87,11 +93,22 @@ var cargar = function (archivo){
 module.exports = cargar;
 \end{lstlisting}
 
+Tenemos toda la información como objetos \textit{JSON}, así que ya podemos hacer uso de ella desde nuestra aplicación. Desde la misma aplicación principal lo primero será importar los módulos que nos van a permitir crear la infraestructura web lógica para nuestro portal, estos son los módulos {\tt Express} y {\tt Http}.
+
+\bigskip
+El siguiente paso será importar los módulos de cada una de las secciones del portal; en la línea 4 del \textit{fragmento de código 6.3} podemos ver como ejemplo como importamos el módulo de la sección \textit{Administración} que se correspondería con el archivo {\tt administracion.js} de la carpeta \textbf{routes}, la carpeta en la que se encuentran todos los módulos de cada una de las secciones.
+
+\bigskip
+A continuación, como vemos en la línea 6, importamos el módulo que hemos descrito antes para la lectura de archivos \textit{JSON} y procedemos a cargar todos los archivos \textit{JSON} de origen de datos que se encuentran en la carpeta \textbf{config}, que se corresponden con la configuración del servidor del portal y los elementos de información de cada una de las secciones.
+
+\bigskip
+Otro de los aspectos esenciales en el código de la aplicación principal es crear las rutas para que las páginas del portal de transparencia sean accesibles desde Internet. En la línea 15 vemos como indicar que la ruta de una página de subsección se vincule con la función del módulo que va a generar esa página, en este caso la página de información de \textit{Personal} ({\tt personal.html}) se corresponde al método {\tt personal} del módulo {\tt administracion.js}.
+
 \newpage
 
-Como ya tenemos toda la información como objetos \textit{JSON}, ya podemos hacer uso de ella desde nuestra aplicación.
+Ya solo nos quedaría crear el servidor. Con la línea 8 creamos una instancia del módulo {\tt Express}, ahora mediante el módulo {\tt Http} creamos el servidor sobre esa instancia e indicamos las opciones de accesibilidad necesarias, en este caso el puerto de escucha del servidor ({\tt port}) y la dirección de acceso al portal ({\tt ip}). Finalmente exportamos el módulo de la aplicación principal para más adelante poder realizarle los test los tests unitarios.
 
-\begin{lstlisting}[language=javascript,caption={Archivo {\tt app.js}},label={lst:appjs}]
+\begin{lstlisting}[language=javascript,caption={Archivo app.js},label={lst:appjs}]
 var express = require('express');
 var http = require('http');
 
@@ -99,15 +116,14 @@ var administracion = require(__dirname+'/routes/administracion');
 
 var cargar = require(__dirname+'/lib/cargar');
 
+var app = express();
+
 config = cargar(__dirname+'/config/config.json');
 module.exports.config = config;
 
 module.exports.personal = cargar(__dirname+'/config/personal.json');
 
 app.get('/personal.html',administracion.personal);
-app.get('/archivos/personal', function(req, res) {
-  res.send(cargar(__dirname+'/config/personal.json'));
-});
 
 http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
   console.log('Express server listening on ' + app.get('ip') + ':' + app.get('port'));
@@ -116,7 +132,11 @@ http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
 module.exports = app;
 \end{lstlisting}
 
-\begin{lstlisting}[language=javascript,caption={Archivo {\tt administracion.js}},label={lst:adminjs}]
+La aplicación principal ya está descrita, así que ahora vamos a pasar a los módulos que van a generar las páginas del portal. La estructura de estos módulos es igual en todos los casos, primero se importa el módulo de la aplicación principal para acceder a los archivos JSON de los datos cargados y seguidamente se exporta la función que va a generar cada una de las páginas de las subsecciones del portal (esta es la misma función a la que se llamaba en la línea 15 de la aplicación principal). Cada una de estas funciones contendrá la llamada a una función {\tt render} que será la encargada de pasarle toda la información a la plantilla {\tt Jade} a partir de la que, finalmente, se generará la página web que será accesible en el portal.
+
+\newpage 
+
+\begin{lstlisting}[language=javascript,caption={Archivo administracion.js},label={lst:adminjs}]
 var conf = require('../app');
 
 exports.personal = function(req, res){
@@ -131,6 +151,18 @@ exports.personal = function(req, res){
 };
 \end{lstlisting}
 
+Para arrancar y detener la aplicación se usarán dos scripts del archivo {\\package.json} que nos permitirán ejecutar estás tareas con {\tt NPM}. En el caso del script de arranque es necesario que indiquemos los siguientes parámetros:
+
+\begin{itemize}
+	\item  El puerto de escucha del servidor (variable {\tt PORT}). Es el puerto del que el servidor estará escuchando las peticiones, en el \textit{fragmento de código 6.5} se ha especificado el puerto 3000 por ser una configuración local (podría ser cualquier otro puerto libre), pero para que el portal sea accesible públicamente se deberá configurar para el puerto 80.
+	\item La dirección a través de la que se accederá al portal (variable {\tt IP}). Al igual que en el caso del puerto, la dirección IP indicada (127.0.0.1) es para acceso local únicamente; para un acceso público sería necesario indicar una dirección IP o una URL que sea accesible desde Internet.
+\end{itemize}
+
+Con los parámetros especificados, el servidor comenzará a correr ejecutado mediante el módulo {\tt Forever} que hará que la aplicación se ejecute de forma ininterrumpida al ejecutar {\tt ``npm start''}.
+
+\bigskip
+Para detener el servidor no tenemos que indicar nada, simplemente ejecutar el script de parada; este se encargará de buscar todos los procesos abiertos por la aplicación principal y mandarles la señal de terminación. Se ejecuta con {\tt ``npm run-script kill''} por no estar reconocido como uno de los scripts por defecto de {\tt NPM}.
+
 \begin{lstlisting}[language=json,caption={Scripts de inicio y detención},label={lst:ini_para}]
 "scripts": {
   "start": "PORT=3000 IP=127.0.0.1 forever start -l /var/log/forever.log -a -o /var/log/out.log -e /var/log/err.log ./app.js",
@@ -140,7 +172,24 @@ exports.personal = function(req, res){
 
 \section{Tests unitarios y de cobertura}
 
-\begin{lstlisting}[language=javascript,caption={Archivo {\tt test.js}},label={lst:testjs}]
+Los tests unitarios que se han implementados cumplen con la función de probar la aplicación siendo evaluada en función de comportamientos deseados. Para ello se usarán los módulos {\tt Should} y {\tt Supertest}, el primero evaluará que los archivos \textit{JSON} tengan todos los elementos necesarios para generar las páginas del portal, mientras que el segundo evaluará que las páginas del portal que se generan sean accesibles sin problemas. Todos los tests se encuentran en el archivo {\tt test.js} del directorio \textbf{test}.
+
+\bigskip
+En el caso de los archivos \textit{JSON} los comportamientos que tenemos que comprobar son muy simples:
+
+\begin{itemize}
+	\item En el caso de cargar un archivo \textit{JSON} con la función {\tt cargar} del módulo {\tt cargar}. Para comprobar que el archivo se ha cargado correctamente, se verifica que el archivo no sea nulo como se comprueba en la línea 10 del \textit{fragmento de código 6.7}.
+	\item Con el archivo ya cargado, ahora comprobamos que tiene cada uno de los campos que necesitamos para generar las páginas web; por ejemplo, en la línea 17 comprobamos que el archivo de configuración tengo el campo \textbf{nombre}.
+\end{itemize}
+
+Para comprobar que las páginas son accesibles, realizamos una solicitud de la misma a la que el servidor responderá con un código numérico, si ese código tiene el valor \textbf{200} significará que la petición se ha resuelto correctamente, por lo que significará que la página está accesible. Podemos ver como se hace esto observando las líneas 28 a 36.
+
+\bigskip
+
+Acabamos de describir las comprobaciones que realizan los tests, pero nos falta por explicar como se evalúan dichas comprobaciones, los tests unitarios van a ser ejecutados por {\tt Mocha}. Para {\tt Mocha} la ejecución de las pruebas se divide en dos procesos, una descripción que indica qué está evaluando un test unitario o un conjunto de los mismos y la propia evaluación de un test unitario que nos informa si la aplicación supera el test o no; la descripción se realiza con la orden {\tt describe} mientras que la evaluación se realiza con {\tt it}. Un ejemplo de todo esto se puede ver en el \textit{fragmento de código 6.7}.
+
+\newpage
+\begin{lstlisting}[language=javascript,caption={Archivo test.js},label={lst:testjs}]
 var should = require("should"),
 request = require("supertest");
 
@@ -182,6 +231,9 @@ describe('Prueba de acceso', function(){
 });
 \end{lstlisting}
 
+Al igual que los scripts de inicio y parada de la aplicación principal, los test se ejecutarán mediante un script de {\tt NPM}. Se ha comentado el uso de {\tt Mocha} para pasar los tests unitarios, pero no se ha comentado nada de los tests de cobertura; esto se debe a que el módulo elegido para realizar los tests de cobertura, {\tt Istanbul}, está integrado con {\tt Mocha} para poder realizar automáticamente los tests de cobertura a los tests unitarios que se ejecuten con este último. Ambos se ejecutarán con {\tt ``npm test''}.
+
+\newpage
 \begin{lstlisting}[language=json,caption={Scripts de test},label={lst:test}]
 "scripts": {
   "test": "istanbul cover _mocha ./test --recursive"
@@ -190,7 +242,7 @@ describe('Prueba de acceso', function(){
 
 \section{Integración continua}
 
-\begin{lstlisting}[language=json,caption={Archivo {\tt JSON} con informacion de personal},label={lst:json_personal}]
+\begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
 # language setting
 language: node_js
 
@@ -204,7 +256,7 @@ node_js:
 
 \section{Despliegue automático}
 
-\begin{lstlisting}[language=javascript,caption={Archivo {\tt test.js}},label={lst:testjs}]
+\begin{lstlisting}[language=javascript,caption={Archivo test.js},label={lst:testjs}]
 var plan = require('flightplan');
 
 plan.target('transparente', {
@@ -249,7 +301,7 @@ plan.remote(function(remote) {
 transparente.ugr.es
 \end{lstlisting}
 
-\begin{lstlisting}[language=json,caption={{\tt Playbook} de {\tt Ansible}},label={lst:ansible}]
+\begin{lstlisting}[language=json,caption={Playbook de Ansible},label={lst:ansible}]
 ---
 - hosts: transparente
   sudo: yes
