@@ -242,6 +242,28 @@ Al igual que los scripts de inicio y parada de la aplicación principal, los tes
 
 \section{Integración continua}
 
+Haber elegido realizar la integración continua con {\tt Travis CI} hace que incorporarla a nuestra aplicación sea un procedimiento realmente sencillo. Lo primero que tenemos que hacer es darnos de alta en la página de la plataforma (\url{http://travis-ci.org/}), para ello podemos usar nuestra propia cuenta de {\tt GitHub}. Una vez dentro, solo tendremos que activar la integración continua para nuestro repositorio.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{../images/activar_travis.png}
+		\caption{Activación de la integración continua}
+		\label{fig:activar_travis}
+	\end{center}
+\end{figure}
+
+La configuración por defecto de {\tt Travis} es que se compruebe la integración continua con cada \textit{``push''} o \textit{``pull request''} que se haga a nuestro repositorio, aunque esto se puede cambiar en función de nuestras preferencias.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{../images/config_travis.png}
+		\caption{Configuración de lanzamiento}
+		\label{fig:config_travis}
+	\end{center}
+\end{figure}
+
+Para terminar, solo nos queda crear el archivo de configuración {\tt .travis.yml} que será el que {\tt Travis} siga para comprobar la integración continua. Aspectos básicos de este archivo son indicar en {\tt language} el lenguaje en el que está escrita la aplicación y con el propio nombre del lenguaje, indicar también las versiones del mismo para las que se va a comprobar la aplicación. Para el portal hemos decidido que se comprueba la integración en las versiones estables más recientes {\tt Node.js} que son las \textit{0.10}, \textit{0.11} y \textit{0.12}, además de \textit{iojs}, que es un derivado del propio {\tt Node.js}.
+
 \begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
 # language setting
 language: node_js
@@ -256,7 +278,43 @@ node_js:
 
 \section{Despliegue automático}
 
-\begin{lstlisting}[language=javascript,caption={Archivo test.js},label={lst:testjs}]
+Antes de poder realizar el despliegue automático tenemos que tener conexión mediante {\tt SSH} al servidor, además es necesario que nuestro archivo de clave pública esté copiado también el servidor. Si no tenemos un archivo de clave pública podemos generarlo con el comando ``{\tt ssh-keygen -t rsa}'', que por defecto usa un cifrado RSA de 128 bits. Ahora copiamos este archivo al servidor con el comando ``{\tt ssh-copy-id USUARIO@transparente.ugr.es}'', donde usuario es un usuario que pueda acceder mediante SSH al servidor.
+
+\bigskip
+
+Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre {\tt flightplan.js}. Este módulo contendrá todo el procedimiento que seguirá {\tt Flightplan} para realizar el despliegue de la aplicación en el servidor. Lo más importante a tener en cuenta en el contenido de este archivo es lo siguiente:
+
+\begin{itemize}
+	\item \textbf{plan.target}: podemos configurar el despliegue para uno o varios objetivos, por lo que tenemos que indicar un nombre para diferenciar el destino de nuestro despliegue.
+	\begin{itemize}
+		\item \textbf{host}: la dirección del servidor en el que vamos a desplegar la aplicación es necesario para que {\tt Flightplan} sepa dónde hacerlo.
+		\newpage
+		\item \textbf{username}: el usuario que ejecutará las tareas en el despliegue, hay que tener en cuenta que este usuario debe tener los permisos necesarios para ejecutar esas tareas. Por razones de seguridad/comodidad no definimos ningún usuario concreto, sino que lo introduciremos como argumento en la ejecución.
+		\item \textbf{agent}: será el método que usaremos para conectarnos al servidor, en nuestro caso será una conexión {\tt SSH}.
+	\end{itemize}
+	\item \textbf{plan.remote}: cada una de las tareas que se ejecutarán de forma remota para realizar el despliegue se introducen en esta función.
+	\begin{itemize}
+		\item \textbf{remote.sudo}: estos serán los comandos que tienen que ser ejecutamos con permisos de administración.
+		\item \textbf{remote.exec}: serán los comandos que se ejecutarán con el usuario que hemos lanzado el despliegue.
+		\item \textbf{remote.with}: los comandos que se ejecutan en bloque después de ejecutar un comando previo.
+		\item \textbf{remote.log}: estas serán las salidas que se mostrarán por pantalla y que usaremos para informar sobre el curso del proceso.
+	\end{itemize}	
+\end{itemize}
+
+En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples:
+
+\begin{itemize}
+	\item \textbf{Línea 11}: realiza una copia del estado actual del portal de transparencia.
+	\item \textbf{Línea 13}: sitúa el directorio actual en el directorio de la aplicación del portal.
+	\item \textbf{Línea 15}: detiene la ejecución del servidor del portal.
+	\item \textbf{Líneas 17 y 18}: cambia los parámetros de acceso al servidor, a los parámetros por defecto para que no se produzca un conflicto al actualizar los archivos del servidor.
+	\item \textbf{Línea 20}: obtiene los nuevos cambios en la aplicación.
+	\item \textbf{Línea 22}: instala las nuevas dependencias (si las hubiera).
+	\item \textbf{Línea 24 y 25}: vuelve a establecer los parámetros para el acceso al servidor de forma pública.
+	\item \textbf{Línea 27}: arranca el servidor para la que el portal vuelva a estar operativo.
+\end{itemize}
+
+\begin{lstlisting}[language=javascript,caption={Archivo flightplan.js},label={lst:testjs}]
 var plan = require('flightplan');
 
 plan.target('transparente', {
@@ -287,6 +345,8 @@ plan.remote(function(remote) {
   });
 });
 \end{lstlisting}
+
+Al finalizar el despliegue el portal estará operativo como lo estaría normalmente, hemos podido actualizarlo sin tener que acceder y aplicar la actualización manualmente. Para ejecutar el despliegue automático también se usa un script de {\tt NPM} que se ejecuta mediante ``{\tt USER=USUARIO npm run-script deploy}'', donde \textbf{USUARIO} es el usuario con acceso SSH al servidor y permisos para ejecutar todos los comandos.
 
 \begin{lstlisting}[language=json,caption={Scripts de despliegue automático},label={lst:deploy}]
 "scripts": {
