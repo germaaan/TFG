@@ -411,8 +411,9 @@ En el siguiente fragmento de código se pueden ver los pasos a seguir para reali
 
 Este es la única funcionalidad que no se ejecuta como un script de {\tt NPM} debido a que no es un módulo de {\tt Node.js}, sino una aplicación externa. Para ejecutarla, desde introducimos el comando:
 
-\bigskip
-{\tt ANSIBLE\_HOSTS=provisioning/ansible\_hosts ansible-playbook \newline provisioning/transparente.yml --extra-vars `user=USUARIO'}
+\begin{lstlisting}[language=consola,caption={Línea de comando de Ansible},label={lst:ejec_ansible}]
+ANSIBLE_HOSTS=provisioning/ansible_hosts ansible-playbook provisioning/transparente.yml --extra-vars ``user=USUARIO''
+\end{lstlisting}
 
 \bigskip
 Estando dividido en tres partes:

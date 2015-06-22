@@ -181,11 +181,17 @@ pdfproducer = {pdflatex}
      ,
 }
  
- \lstdefinestyle{Consola}{
-  basicstyle=\scriptsize\bf\ttfamily,
-  backgroundcolor=\color{gray30},
-  frame=single,
-  numbers=none
+\lstdefinelanguage{consola}{
+  basicstyle=\footnotesize,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  captionpos=b,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=lines,
+  backgroundcolor=\color{background},
 }
 
 \newcommand{\bigrule}{\titlerule[0.5mm]}
