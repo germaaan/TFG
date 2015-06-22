@@ -278,7 +278,7 @@ node_js:
 
 \section{Despliegue automático}
 
-Antes de poder realizar el despliegue automático tenemos que tener conexión mediante {\tt SSH} al servidor, además es necesario que nuestro archivo de clave pública esté copiado también el servidor. Si no tenemos un archivo de clave pública podemos generarlo con el comando ``{\tt ssh-keygen -t rsa}'', que por defecto usa un cifrado RSA de 128 bits. Ahora copiamos este archivo al servidor con el comando ``{\tt ssh-copy-id USUARIO@transparente.ugr.es}'', donde usuario es un usuario que pueda acceder mediante SSH al servidor.
+Antes de poder realizar el despliegue automático tenemos que tener conexión mediante {\tt SSH} al servidor, además es necesario que nuestro archivo de clave pública esté copiado también el servidor. Si no tenemos un archivo de clave pública podemos generarlo con el comando ``{\tt ssh-keygen -t rsa}'', que por defecto usa un cifrado \textit{RSA} de 128 bits. Ahora copiamos este archivo al servidor con el comando ``{\tt ssh-copy-id USUARIO@transparente.ugr.es}'', donde usuario es un usuario que pueda acceder mediante SSH al servidor.
 
 \bigskip
 
@@ -301,18 +301,7 @@ Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre 
 	\end{itemize}	
 \end{itemize}
 
-En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples:
-
-\begin{itemize}
-	\item \textbf{Línea 11}: realiza una copia del estado actual del portal de transparencia.
-	\item \textbf{Línea 13}: sitúa el directorio actual en el directorio de la aplicación del portal.
-	\item \textbf{Línea 15}: detiene la ejecución del servidor del portal.
-	\item \textbf{Líneas 17 y 18}: cambia los parámetros de acceso al servidor, a los parámetros por defecto para que no se produzca un conflicto al actualizar los archivos del servidor.
-	\item \textbf{Línea 20}: obtiene los nuevos cambios en la aplicación.
-	\item \textbf{Línea 22}: instala las nuevas dependencias (si las hubiera).
-	\item \textbf{Línea 24 y 25}: vuelve a establecer los parámetros para el acceso al servidor de forma pública.
-	\item \textbf{Línea 27}: arranca el servidor para la que el portal vuelva a estar operativo.
-\end{itemize}
+En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples, además de que cada una está acompañada de una salida por pantalla que describe brevemente lo que realiza.
 
 \begin{lstlisting}[language=javascript,caption={Archivo flightplan.js},label={lst:testjs}]
 var plan = require('flightplan');
@@ -356,10 +345,27 @@ Al finalizar el despliegue el portal estará operativo como lo estaría normalme
 
 \section{Aprovisionamiento}
 
+Al igual que para el despliegue automático, para el aprovisionamiento necesitamos poder conectarnos al servidor mediante {\t SSH}. {\tt Ansible} necesita que le indiquemos la dirección de nuestro servidor en un formato específico y mediante un archivo que se conoce como {\tt ansible\_hosts}. Un ejemplo de esta configuración se puede ver en el siguiente fragmento de código.
+
 \begin{lstlisting}[language=json,caption={Archivo de hosts},label={lst:hosts}]
 [transparente]
 transparente.ugr.es
 \end{lstlisting}
+
+El archivo de configuración de {\tt Ansible} (al que se suele referir como \textit{``playbook''}) es un archivo con formato \textit{YAML} que contiene todos las ordenes que se ejecutarán en proceso de aprovisionar nuestro servidor. El esquema general del archivo es el siguiente:
+
+\begin{itemize}
+	\item \textbf{hosts}: el nombre con el que nos referimos a la máquina de la que hemos indicado la dirección de acceso en el archivo {\tt ansible\_host} al que se le realizará el aprovisionamiento.
+	\item \textbf{sudo}: indica que los comandos que se ejecuten lo harán con permiso de administrador.
+	\item \textbf{remote\_user}: es el usuario con el que nos conectaremos al equipo, el que tiene que tener acceso mediante {\tt SSH} al servidor.
+	\item \textbf{tasks}: la lista de tareas que {\tt Ansible} ejecutará de forma secuencial en el ordenador remoto.
+	\begin{itemize}
+		\item \textbf{name}: Descripción que se mostrará por pantalla de la tarea que se está llevando a cabo en ese momento.
+		\item \textbf{\textit{``comando''}}: es la orden que se ejecutará, podemos encontrar ordenes \textit{especiales} reconocidas por {\tt Ansible} y las órdenes comunes. Podremos diferenciar ambos tipos de órdenes porque las comunes son las que empiezan por la palabra \textbf{\tt command}, mientras que las especiales suelen comenzar con alguna palabra relacionada con con el comando en cuestión, además de que suelen tener una mayor cantidad de opciones de ejecución.
+	\end{itemize}
+\end{itemize}
+
+En el siguiente fragmento de código se pueden ver los pasos a seguir para realizar el aprovisionamiento de un equipo, la descripción de las acciones que realizan vuelven ser bastante simples como se la descripción {\tt name} de cada tarea.
 
 \begin{lstlisting}[language=json,caption={Playbook de Ansible},label={lst:ansible}]
 ---
@@ -402,3 +408,17 @@ transparente.ugr.es
     - name: Arrancando el servidor...
       command: chdir=ugr-transparente-servidor npm start
 \end{lstlisting}
+
+Este es la única funcionalidad que no se ejecuta como un script de {\tt NPM} debido a que no es un módulo de {\tt Node.js}, sino una aplicación externa. Para ejecutarla, desde introducimos el comando:
+
+\bigskip
+{\tt ANSIBLE\_HOSTS=provisioning/ansible\_hosts ansible-playbook \newline provisioning/transparente.yml --extra-vars `user=USUARIO'}
+
+\bigskip
+Estando dividido en tres partes:
+
+\begin{itemize}
+	\item \textbf{ANSIBLE\_HOSTS=provisioning/ansible\_hosts}: le pasamos a {\tt Ansible} como parámetro la localización del {\tt ansible\_hosts}.
+	\item \textbf{ansible-playbook provisioning/transparente.yml}: ejecutamos el \textit{playbook} {\tt transparente.yml} con {\tt Ansible}.
+	\item \textbf{--extra-vars `user=USUARIO'}: le pasamos a {\tt Ansible} como variable el nombre del usuario con el que se va a conectar al ordenador.
+\end{itemize}
