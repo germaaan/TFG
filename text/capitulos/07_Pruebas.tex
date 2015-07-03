@@ -275,3 +275,36 @@ Enumeración de las pruebas a realizar en el experimento:
 		\label{fig:gra_te}
 	\end{center}
 \end{figure}
+
+\newpage
+\subsection{Análisis e interpretación de los resultados}
+
+\subsubsection{Tiempo de ejecución}
+\begin{itemize}
+	\item Para un número de 30 conexiones (poco más de la media de conexiones diarias al portal) la concurrencia no afecta al tiempo de respuesta de la aplicación.
+	\item Cuando el número de conexiones aumenta hasta 50, vemos como en este el nivel de concurrencia sí empieza a afectar al tiempo de respuesta de la aplicación de forma negativa.
+	\item En la última prueba con un número de conexiones bastante más elevado, vemos en los tiempos de ejecución que el comportamiento es más aleatorio. Si nos fijamos en las desviaciones estás han crecido bastante en comparación con las pruebas anteriores, por lo que aparentemente la aplicación empieza a soportar cierta sobrecarga.
+\end{itemize}
+
+\subsubsection{Solicitudes por segundo}
+\begin{itemize}
+	\item En relación directa con los resultados descritos en el apartado anterior vemos que para 30 conexiones, al igual que el tiempo de respuesta bajaba según el nivel de concurrencia, ahora el número de solicitudes respondidas por segundo aumentan; el comportamiento que cabría esperar.
+	\item En el caso de 50 conexiones, de igual forma, cuando el nivel de concurrencia sube, el número de solicitudes respondidas baja.
+	\item Para la prueba de 100 conexiones volvemos a tener una situación similar a la anterior, donde aunque en esta caso las desviaciones no son tan altas, no se puede concretar una tendencia en el rendimiento de la aplicación.
+\end{itemize}
+
+\subsubsection{Tiempo por solicitud concurrente}
+\begin{itemize}
+	\item Se produce la misma situación, para 30 conexiones el tiempo necesario para resolver una solicitud recurrente va disminuyendo según aumenta la concurrencia en las conexiones. A destacar que en esta prueba el valor de la desviación crece en gran cantidad, por lo que aunque se puede encontrar una tendencia general de mejor en el rendimiento los tiempos para resolver las solicitudes no son tan homogéneos.
+	\item En el caso de las 50 conexiones también se produce la misma situación a las pruebas anteriores: según aumenta la concurrencia aumenta el tiempo necesario para responder una solicitud concurrente, lo que indica que el rendimiento ha bajado.
+	\item De igual forma, para 100 conexiones volvemos a encontrar sin un patrón claro de comportamiento, pero si podemos destacar que las desviaciones son enormes.
+\end{itemize}
+
+\subsubsection{Velocidad de transferencia}
+\begin{itemize}
+	\item Mismo patrón para la prueba con 30 conexiones. Habíamos visto que según aumenta la concurrencia, disminuye el tiempo de ejecución y aumentan el número de solicitudes por segundo respondidas o lo que es lo mismo, aumenta el rendimiento; así que como podríamos intuir y con estos datos comprobar, también aumenta la cantidad de información transferida. Nos encontramos en algunos casos con desviaciones enormes, pero eso podemos atribuirlo a la propia naturaleza inestable de las conexiones de red.
+	\item Como se ha venido produciendo, en el caso de la prueba con 50 conexiones el rendimiento ha ido bajando según ha ido aumentando el porcentaje de concurrencia; esto también se produce en este caso: según aumentaba la concurrencia, disminuía la velocidad de transferencia.
+	\item Por último, en la prueba con 100 conexiones esta es la prueba que ha tenido resultados más igualados (y además muy bajos en comparación) entre los diferentes niveles de concurrencia, lo que nos vuelve a hacer suponer que el servidor está sobrecargado.
+\end{itemize}
+
+\subsection{Conclusiones sobre los resultados}
