@@ -121,7 +121,7 @@ Según la información de registros de acceso del servidor en los últimos \text
 De entre las peticiones al portal, la página que ha recibido un mayor número de peticiones es la página de \textbf{Personal}, por lo que se van a realizar dos experimentos: el primero consistirá en realizar únicamente peticiones de la página de \textbf{Personal} a la aplicación; el segundo consistirá en realizar peticiones a distintas páginas de la aplicación de forma aleatorio. Estos experimentos nos permitirán comprobar como se comportará la aplicación en diferentes situaciones cono diferentes nivele de carga y la repercusión en su rendimiento ante estás diferentes pruebas, viendo por ejemplo si fuera necesario buscar una forma de balancear la carga del servidor. 
 
 \bigskip
-En total cada experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos.
+En total cada experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos. Los resultados mostrados serán la media de esas 10 ejecuciones y su desviación estándar, que nos permitirá saber como de válidos podemos considerar los valores medios obtenidos. 
 
 \bigskip
 Las variables respuestas a tener en cuenta para el estudio serán:
@@ -152,11 +152,93 @@ Enumeración de las pruebas a realizar por cada experimento:
 	\item \textbf{P9}: 100 solicitudes, concurrencia del 75\% (75).
 \end{itemize}
 
+\newpage
 \subsubsection{Experimento 1: peticiones a Personal}
 
 \begin{itemize}
 	\item \textbf{Tiempo de ejecución}
+		\begin{table}[!ht]
+			\begin{center}
+				\begin{tabular}{|c|c|c|}
+					\hline
+					\multicolumn{3}{|c|}{{\bf Tiempo de ejecución}}               \\ \hline
+					{\bf Prueba} & {\bf Promedio (s)} & {\bf Desviación estándar} \\ \hline
+					{\it P1}     & 8,823              & 0,199                     \\ \hline
+					{\it P2}     & 7,552              & 0,214                     \\ \hline
+					{\it P3}     & 6,827              & 0,970                     \\ \hline
+					{\it P4}     & 10,215             & 0,248                     \\ \hline
+					{\it P5}     & 12,506             & 0,299                     \\ \hline
+					{\it P6}     & 13,959             & 0,217                     \\ \hline
+					{\it P7}     & 26,966             & 1,781                     \\ \hline
+					{\it P8}     & 22,850             & 3,845                     \\ \hline
+					{\it P9}     & 24,473             & 3,845                     \\ \hline
+				\end{tabular}
+				\caption{Resultados de tiempo de ejecución}
+				\label{table:rte}
+			\end{center}
+		\end{table}
 	\item \textbf{Solicitudes por segundo}
+		\begin{table}[!ht]
+			\begin{center}
+				\begin{tabular}{|c|c|c|}
+					\hline
+					\multicolumn{3}{|c|}{{\bf Solicitudes por segundo}}                       \\ \hline
+					{\bf Prueba} & {\bf Promedia (solicitudes/s)} & {\bf Desviación estándar} \\ \hline
+					{\it P1}     & 3,402                          & 0,078                     \\ \hline
+					{\it P2}     & 3,976                          & 0,113                     \\ \hline
+					{\it P3}     & 4,470                          & 0,531                     \\ \hline
+					{\it P4}     & 4,898                          & 0,118                     \\ \hline
+					{\it P5}     & 4,000                          & 0,095                     \\ \hline
+					{\it P6}     & 3,583                          & 0,056                     \\ \hline
+					{\it P7}     & 3,728                          & 0,292                     \\ \hline
+					{\it P8}     & 4,496                          & 0,708                     \\ \hline
+					{\it P9}     & 4,197                          & 0,703                     \\ \hline
+				\end{tabular}
+				\caption{Resultados de solicitudes por segundo}
+				\label{table:rss}
+			\end{center}
+		\end{table}
+\newpage
 	\item \textbf{Tiempo por solicitud concurrente}
+		\begin{table}[!ht]
+			\begin{center}
+				\begin{tabular}{|c|c|c|}
+					\hline
+					\multicolumn{3}{|c|}{{\bf Tiempo por solicitud concurrente}}   \\ \hline
+					{\bf Prueba} & {\bf Promedio (ms)} & {\bf Desviación estándar} \\ \hline
+					{\it P1}     & 294,087             & 6,645                     \\ \hline
+					{\it P2}     & 251,733             & 7,129                     \\ \hline
+					{\it P3}     & 227,563             & 32,347                    \\ \hline
+					{\it P4}     & 204,296             & 4,959                     \\ \hline
+					{\it P5}     & 250,128             & 5,990                     \\ \hline
+					{\it P6}     & 279,178             & 4,346                     \\ \hline
+					{\it P7}     & 269,658             & 17,811                    \\ \hline
+					{\it P8}     & 228,497             & 38,451                    \\ \hline
+					{\it P9}     & 244,729             & 38,449                    \\ \hline
+				\end{tabular}
+				\caption{Resultados de tiempo por solicitud concurrente}
+				\label{table:rtsc}
+			\end{center}
+		\end{table}
 	\item \textbf{Velocidad de transparencia}
+		\begin{table}[!ht]
+			\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\multicolumn{3}{|c|}{{\bf Velocidad de transferencia}}           \\ \hline
+				{\bf Prueba} & {\bf Promedia (KB/s)} & {\bf Desviación estándar} \\ \hline
+				{\it P1}     & 747,735               & 17,116                    \\ \hline
+				{\it P2}     & 873,789               & 24,798                    \\ \hline
+				{\it P3}     & 982,389               & 116,778                   \\ \hline
+				{\it P4}     & 645,866               & 15,498                    \\ \hline
+				{\it P5}     & 527,515               & 12,561                    \\ \hline
+				{\it P6}     & 472,469               & 7,339                     \\ \hline
+				{\it P7}     & 245,783               & 19,227                    \\ \hline
+				{\it P8}     & 296,416               & 46,684                    \\ \hline
+				{\it P9}     & 276,707               & 46,384                    \\ \hline
+			\end{tabular}
+				\caption{Resultados de velocidad de transparencia}
+				\label{table:rvt}
+			\end{center}
+		\end{table}
 \end{itemize}
