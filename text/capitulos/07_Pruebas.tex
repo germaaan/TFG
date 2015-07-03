@@ -77,6 +77,8 @@
 \newpage \
 \section{Prueba de carga}
 
+Una vez que ya hemos realizado las pruebas de software que hemos considerado oportunas, también tenemos que pasar pruebas a la infraestructura como tal para analizar su rendimiento. En este tipo de pruebas entra en juego tanto el aspecto software como hardware con el objetivo de obtener una medición del rendimiento de nuestra aplicación.
+
 \subsection{Métricas y parámetros que afectan al rendimiento}
 
 Para comparar las prestaciones de la aplicación debemos tener en cuenta los siguientes criterios:
@@ -111,8 +113,7 @@ El hardware y el software del sistema serán los siguientes:
 
 \subsection{Técnicas de evaluación, carga de trabajo y diseño de experimentos}
 
-Para evaluar el rendimiento de la aplicación vamos a realizar benchmark hacia la aplicación en ejecución para poder realizar una evaluación sobre su comportamiento bajo diferentes cargas de trabajo. El programa con el que vamos hacer las pruebas es el ya mencionado {\tt ApacheBench}.
-{\tt ApacheBench} es un aplicación en modo terminal que permite realizar de forma sencilla pruebas de rendimiento a cualquier servidor, sea cual sea el lenguaje en el que esté realizado. 
+Para evaluar el rendimiento de la aplicación vamos a realizar benchmark hacia la aplicación en ejecución para poder realizar una evaluación sobre su comportamiento bajo diferentes cargas de trabajo. El programa con el que vamos hacer las pruebas es el ya mencionado {\tt ApacheBench}, que nos permitirá realizar de forma sencilla pruebas de rendimiento a cualquier servidor, sea cual sea el lenguaje en el que esté realizado. 
 
 \bigskip
 Según la información de registros de acceso del servidor en los últimos \textbf{6 meses} el número de peticiones de páginas del portal ha sido de \textbf{2.388 peticiones}, lo que sería aproximadamente \textbf{13 peticiones/día}. Para realizar los diferentes tests se realizará un \textbf{número de conexiones} variables al servidor (\textbf{30, 50 y 100}) con diferentes \textbf{niveles de concurrencia} en función del total de conexiones (\textbf{25\%, 50\% y 75\%}). Los números de conexiones para las prueba han sido elegidos para evaluar como se comportaría el servidor ante un gran aumento de actividad en el mismo en línea con el nivel de conexiones que se producen en la actualidad.
@@ -121,10 +122,7 @@ Según la información de registros de acceso del servidor en los últimos \text
 De entre las peticiones al portal, la página que ha recibido un mayor número de peticiones es la página de \textbf{Personal}, por lo que el experimento a realizar consistirá en realizar peticiones de la página de \textbf{Personal} a la aplicación. Este experimente nos permitirá comprobar como se comportará la aplicación en diferentes situaciones cono diferentes niveles de carga y la repercusión en su rendimiento ante estás diferentes pruebas, viendo por ejemplo si fuera necesario buscar una forma de balancear la carga del servidor. 
 
 \bigskip
-En total el experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos. Los resultados mostrados serán la media de esas 10 ejecuciones y su desviación estándar, que nos permitirá saber como de válidos podemos considerar los valores medios obtenidos. Estos valores promedios se introducirán en un gráfico para comparar los cambios que se producen con diferentes números de conexiones y mismos porcentaje de concurrencia.
-
-\bigskip
-Las variables respuestas a tener en cuenta para el estudio serán:
+En total el experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos. Los resultados mostrados serán la media de esas 10 ejecuciones y su desviación estándar, que nos permitirá saber como de válidos podemos considerar los valores medios obtenidos. Estos valores promedios se introducirán en un gráfico para comparar los cambios que se producen con diferentes números de conexiones y mismos porcentaje de concurrencia. Las variables respuestas a tener en cuenta para el estudio serán:
 
 \begin{itemize}
 	\item Tiempo de ejecución.
@@ -308,3 +306,9 @@ Enumeración de las pruebas a realizar en el experimento:
 \end{itemize}
 
 \subsection{Conclusiones sobre los resultados}
+
+Una vez analizados los resultados de las pruebas realizadas la conclusión a la que podríamos llegar
+es que la aplicación puede aguantar perfectamente la carga de trabajo que tiene en la actualidad (alrededor de 13 peticiones al día), y que tampoco no habría ningún problema en que esta se duplicara como hemos visto en los resultados de las pruebas de 30 conexiones. El problema aparecería si este volumen de visitas siguiera creciendo, ya que como hemos visto en las pruebas de 50 conexiones, en cuanto empieza a aumentar la concurrencia de las solicitudes el rendimiento de la aplicación cae, llegando a un punto de las pruebas de 100 conexiones en el la aplicación comienza a estar sobrecargada.
+
+\bigskip
+Viendo el volumen de visitas actual, es dificil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy} o cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo.
