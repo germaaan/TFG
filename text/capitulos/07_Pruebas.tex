@@ -118,10 +118,10 @@ Para evaluar el rendimiento de la aplicación vamos a realizar benchmark hacia l
 Según la información de registros de acceso del servidor en los últimos \textbf{6 meses} el número de peticiones de páginas del portal ha sido de \textbf{2.388 peticiones}, lo que sería aproximadamente \textbf{13 peticiones/día}. Para realizar los diferentes tests se realizará un \textbf{número de conexiones} variables al servidor (\textbf{30, 50 y 100}) con diferentes \textbf{niveles de concurrencia} en función del total de conexiones (\textbf{25\%, 50\% y 75\%}). Los números de conexiones para las prueba han sido elegidos para evaluar como se comportaría el servidor ante un gran aumento de actividad en el mismo en línea con el nivel de conexiones que se producen en la actualidad.
 
 \bigskip
-De entre las peticiones al portal, la página que ha recibido un mayor número de peticiones es la página de \textbf{Personal}, por lo que se van a realizar dos experimentos: el primero consistirá en realizar únicamente peticiones de la página de \textbf{Personal} a la aplicación; el segundo consistirá en realizar peticiones a distintas páginas de la aplicación de forma aleatorio. Estos experimentos nos permitirán comprobar como se comportará la aplicación en diferentes situaciones cono diferentes nivele de carga y la repercusión en su rendimiento ante estás diferentes pruebas, viendo por ejemplo si fuera necesario buscar una forma de balancear la carga del servidor. 
+De entre las peticiones al portal, la página que ha recibido un mayor número de peticiones es la página de \textbf{Personal}, por lo que el experimento a realizar consistirá en realizar peticiones de la página de \textbf{Personal} a la aplicación. Este experimente nos permitirá comprobar como se comportará la aplicación en diferentes situaciones cono diferentes niveles de carga y la repercusión en su rendimiento ante estás diferentes pruebas, viendo por ejemplo si fuera necesario buscar una forma de balancear la carga del servidor. 
 
 \bigskip
-En total cada experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos. Los resultados mostrados serán la media de esas 10 ejecuciones y su desviación estándar, que nos permitirá saber como de válidos podemos considerar los valores medios obtenidos. 
+En total el experimento constará de 9 pruebas, y a su vez cada una de estas pruebas se repetirá 10 veces consecutivas para así asegurarnos que los resultados son legítimos y no producto de sucesos fortuitos. Los resultados mostrados serán la media de esas 10 ejecuciones y su desviación estándar, que nos permitirá saber como de válidos podemos considerar los valores medios obtenidos. Estos valores promedios se introducirán en un gráfico para comparar los cambios que se producen con diferentes números de conexiones y mismos porcentaje de concurrencia.
 
 \bigskip
 Las variables respuestas a tener en cuenta para el estudio serán:
@@ -134,111 +134,144 @@ Las variables respuestas a tener en cuenta para el estudio serán:
 \end{itemize}
 
 \bigskip
-El único factor para los experimentos serán, como hemos dicho, el servidor de la aplicación desarrollada del portal de transparencia {\tt UGR Transparente}. Cuando se disponga de los resultados de todas las pruebas, se procederá a analizar e interpretar los resultados.
+El único factor a considerar para el experimento será, como hemos dicho, las respuestas del servidor de la aplicación desarrollada del portal de transparencia {\tt UGR Transparente}. Cuando se disponga de los resultados de todas las pruebas, se procederá a analizar e interpretar los resultados.
 
 \subsection{Presentación de los resultados}
 
-Enumeración de las pruebas a realizar por cada experimento:
+Enumeración de las pruebas a realizar en el experimento:
 
 \begin{itemize}
-	\item \textbf{P1}: 30 solicitudes, concurrencia del 25\% (8).
-	\item \textbf{P2}: 30 solicitudes, concurrencia del 50\% (15).
-	\item \textbf{P3}: 30 solicitudes, concurrencia del 75\% (23).
-	\item \textbf{P4}: 50 solicitudes, concurrencia del 25\% (13).
-	\item \textbf{P5}: 50 solicitudes, concurrencia del 50\% (25).
-	\item \textbf{P6}: 50 solicitudes, concurrencia del 75\% (38).
-	\item \textbf{P7}: 100 solicitudes, concurrencia del 25\% (25).
-	\item \textbf{P8}: 100 solicitudes, concurrencia del 50\% (50).
-	\item \textbf{P9}: 100 solicitudes, concurrencia del 75\% (75).
+	\item \textbf{Prueba 1}: 30 solicitudes, concurrencia del 25\% (8).
+	\item \textbf{Prueba 2}: 30 solicitudes, concurrencia del 50\% (15).
+	\item \textbf{Prueba 3}: 30 solicitudes, concurrencia del 75\% (23).
+	\item \textbf{Prueba 4}: 50 solicitudes, concurrencia del 25\% (13).
+	\item \textbf{Prueba 5}: 50 solicitudes, concurrencia del 50\% (25).
+	\item \textbf{Prueba 6}: 50 solicitudes, concurrencia del 75\% (38).
+	\item \textbf{Prueba 7}: 100 solicitudes, concurrencia del 25\% (25).
+	\item \textbf{Prueba 8}: 100 solicitudes, concurrencia del 50\% (50).
+	\item \textbf{Prueba 9}: 100 solicitudes, concurrencia del 75\% (75).
 \end{itemize}
 
 \newpage
-\subsubsection{Experimento 1: peticiones a Personal}
+\subsubsection{Tiempo de ejecución}
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{4}{|c|}{{\bf Tiempo de ejecución}}                                                           \\ \hline
+			{\bf N.º conexiones} & {\bf Concurrencia (\%)} & {\bf Segundos} & {\bf Desviación} \\ \hline
+			{\it 30}                   & {\it 25}                  & 8,823              & 0,199                     \\ \hline
+			{\it 30}                   & {\it 50}                  & 7,552              & 0,214                     \\ \hline
+			{\it 30}                   & {\it 75}                  & 6,827              & 0,970                     \\ \hline
+			{\it 50}                   & {\it 25}                  & 10,215             & 0,248                     \\ \hline
+			{\it 50}                   & {\it 50}                  & 12,506             & 0,299                     \\ \hline
+			{\it 50}                   & {\it 75}                  & 13,959             & 0,217                     \\ \hline
+			{\it 100}                  & {\it 25}                  & 26,966             & 1,781                     \\ \hline
+			{\it 100}                  & {\it 50}                  & 22,850             & 3,845                     \\ \hline
+			{\it 100}                  & {\it 75}                  & 24,473             & 3,845                     \\ \hline
+		\end{tabular}
+		\caption{Resultados de tiempo de ejecución}
+		\label{table:rte}
+	\end{center}
+\end{table}
 
-\begin{itemize}
-	\item \textbf{Tiempo de ejecución}
-		\begin{table}[!ht]
-			\begin{center}
-				\begin{tabular}{|c|c|c|}
-					\hline
-					\multicolumn{3}{|c|}{{\bf Tiempo de ejecución}}               \\ \hline
-					{\bf Prueba} & {\bf Promedio (s)} & {\bf Desviación estándar} \\ \hline
-					{\it P1}     & 8,823              & 0,199                     \\ \hline
-					{\it P2}     & 7,552              & 0,214                     \\ \hline
-					{\it P3}     & 6,827              & 0,970                     \\ \hline
-					{\it P4}     & 10,215             & 0,248                     \\ \hline
-					{\it P5}     & 12,506             & 0,299                     \\ \hline
-					{\it P6}     & 13,959             & 0,217                     \\ \hline
-					{\it P7}     & 26,966             & 1,781                     \\ \hline
-					{\it P8}     & 22,850             & 3,845                     \\ \hline
-					{\it P9}     & 24,473             & 3,845                     \\ \hline
-				\end{tabular}
-				\caption{Resultados de tiempo de ejecución}
-				\label{table:rte}
-			\end{center}
-		\end{table}
-	\item \textbf{Solicitudes por segundo}
-		\begin{table}[!ht]
-			\begin{center}
-				\begin{tabular}{|c|c|c|}
-					\hline
-					\multicolumn{3}{|c|}{{\bf Solicitudes por segundo}}                       \\ \hline
-					{\bf Prueba} & {\bf Promedia (solicitudes/s)} & {\bf Desviación estándar} \\ \hline
-					{\it P1}     & 3,402                          & 0,078                     \\ \hline
-					{\it P2}     & 3,976                          & 0,113                     \\ \hline
-					{\it P3}     & 4,470                          & 0,531                     \\ \hline
-					{\it P4}     & 4,898                          & 0,118                     \\ \hline
-					{\it P5}     & 4,000                          & 0,095                     \\ \hline
-					{\it P6}     & 3,583                          & 0,056                     \\ \hline
-					{\it P7}     & 3,728                          & 0,292                     \\ \hline
-					{\it P8}     & 4,496                          & 0,708                     \\ \hline
-					{\it P9}     & 4,197                          & 0,703                     \\ \hline
-				\end{tabular}
-				\caption{Resultados de solicitudes por segundo}
-				\label{table:rss}
-			\end{center}
-		\end{table}
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/gra_te.png}
+		\caption{Gráfico de tiempo de ejecución}
+		\label{fig:gra_te}
+	\end{center}
+\end{figure}
+
 \newpage
-	\item \textbf{Tiempo por solicitud concurrente}
-		\begin{table}[!ht]
-			\begin{center}
-				\begin{tabular}{|c|c|c|}
-					\hline
-					\multicolumn{3}{|c|}{{\bf Tiempo por solicitud concurrente}}   \\ \hline
-					{\bf Prueba} & {\bf Promedio (ms)} & {\bf Desviación estándar} \\ \hline
-					{\it P1}     & 294,087             & 6,645                     \\ \hline
-					{\it P2}     & 251,733             & 7,129                     \\ \hline
-					{\it P3}     & 227,563             & 32,347                    \\ \hline
-					{\it P4}     & 204,296             & 4,959                     \\ \hline
-					{\it P5}     & 250,128             & 5,990                     \\ \hline
-					{\it P6}     & 279,178             & 4,346                     \\ \hline
-					{\it P7}     & 269,658             & 17,811                    \\ \hline
-					{\it P8}     & 228,497             & 38,451                    \\ \hline
-					{\it P9}     & 244,729             & 38,449                    \\ \hline
-				\end{tabular}
-				\caption{Resultados de tiempo por solicitud concurrente}
-				\label{table:rtsc}
-			\end{center}
-		\end{table}
-	\item \textbf{Velocidad de transparencia}
-		\begin{table}[!ht]
-			\begin{center}
-			\begin{tabular}{|c|c|c|}
-				\hline
-				\multicolumn{3}{|c|}{{\bf Velocidad de transferencia}}           \\ \hline
-				{\bf Prueba} & {\bf Promedia (KB/s)} & {\bf Desviación estándar} \\ \hline
-				{\it P1}     & 747,735               & 17,116                    \\ \hline
-				{\it P2}     & 873,789               & 24,798                    \\ \hline
-				{\it P3}     & 982,389               & 116,778                   \\ \hline
-				{\it P4}     & 645,866               & 15,498                    \\ \hline
-				{\it P5}     & 527,515               & 12,561                    \\ \hline
-				{\it P6}     & 472,469               & 7,339                     \\ \hline
-				{\it P7}     & 245,783               & 19,227                    \\ \hline
-				{\it P8}     & 296,416               & 46,684                    \\ \hline
-				{\it P9}     & 276,707               & 46,384                    \\ \hline
-			\end{tabular}
-				\caption{Resultados de velocidad de transparencia}
-				\label{table:rvt}
-			\end{center}
-		\end{table}
-\end{itemize}
+\subsubsection{Solicitudes por segundo}
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{4}{|c|}{{\bf Solicitudes por segundo}}                                                   \\ \hline
+			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf Solicitudes/s} & {\bf Desviación} \\ \hline
+			{\it 30}                & {\it 25}                & 3,402                          & 0,078            \\ \hline
+			{\it 30}                & {\it 50}                & 3,976                          & 0,113            \\ \hline
+			{\it 30}                & {\it 75}                & 4,470                          & 0,531            \\ \hline
+			{\it 50}                & {\it 25}                & 4,898                          & 0,118            \\ \hline
+			{\it 50}                & {\it 50}                & 4,000                          & 0,095            \\ \hline
+			{\it 50}                & {\it 75}                & 3,583                          & 0,056            \\ \hline
+			{\it 100}               & {\it 25}                & 3,728                          & 0,292            \\ \hline
+			{\it 100}               & {\it 50}                & 4,496                          & 0,708            \\ \hline
+			{\it 100}               & {\it 75}                & 4,197                          & 0,703            \\ \hline
+		\end{tabular}
+		\caption{Resultados de solicitudes por segundo}
+		\label{table:rss}
+	\end{center}
+\end{table}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/gra_sps.png}
+		\caption{Gráfico de solicitudes por segundo}
+		\label{fig:gra_sps}
+	\end{center}
+\end{figure}
+
+\newpage
+\subsubsection{Tiempo por solicitud concurrente}
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{4}{|c|}{{\bf Tiempo por solicitud concurrente}}                               \\ \hline
+			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf Promedio (ms)} & {\bf Desviación} \\ \hline
+			{\it 30}                & {\it 25}                & 294,087             & 6,645            \\ \hline
+			{\it 30}                & {\it 50}                & 251,733             & 7,129            \\ \hline
+			{\it 30}                & {\it 75}                & 227,563             & 32,347           \\ \hline
+			{\it 50}                & {\it 25}                & 204,296             & 4,959            \\ \hline
+			{\it 50}                & {\it 50}                & 250,128             & 5,990            \\ \hline
+			{\it 50}                & {\it 75}                & 279,178             & 4,346            \\ \hline
+			{\it 100}               & {\it 25}                & 269,658             & 17,811           \\ \hline
+			{\it 100}               & {\it 50}                & 228,497             & 38,451           \\ \hline
+			{\it 100}               & {\it 75}                & 244,729             & 38,449           \\ \hline
+		\end{tabular}
+		\caption{Resultados de tiempo por solicitud concurrente}
+		\label{table:rtsc}
+	\end{center}
+\end{table}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/gra_tsc.png}
+		\caption{Gráfico de tiempo por solicitud concurrente}
+		\label{fig:gra_tsc}
+	\end{center}
+\end{figure}
+
+\newpage
+\subsubsection{Velocidad de transparencia}
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{4}{|c|}{{\bf Velocidad de transferencia}}                            \\ \hline
+			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf KB/s} & {\bf Desviación} \\ \hline
+			{\it 30}                & {\it 25}                & 747,735    & 17,116           \\ \hline
+			{\it 30}                & {\it 50}                & 873,789    & 24,798           \\ \hline
+			{\it 30}                & {\it 75}                & 982,389    & 116,778          \\ \hline
+			{\it 50}                & {\it 25}                & 645,866    & 15,498           \\ \hline
+			{\it 50}                & {\it 50}                & 527,515    & 12,561           \\ \hline
+			{\it 50}                & {\it 75}                & 472,469    & 7,339            \\ \hline
+			{\it 100}               & {\it 25}                & 245,783    & 19,227           \\ \hline
+			{\it 100}               & {\it 50}                & 296,416    & 46,684           \\ \hline
+			{\it 100}               & {\it 75}                & 276,707    & 46,384           \\ \hline
+		\end{tabular}
+		\caption{Resultados de velocidad de transferencia}
+		\label{table:rvt}
+	\end{center}
+\end{table}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/gra_vt.png}
+		\caption{Gráfico de velocidad de transferencia}
+		\label{fig:gra_te}
+	\end{center}
+\end{figure}
