@@ -1,0 +1,22 @@
+\chapter{Conclusiones y trabajos futuros}
+
+Después de realizar este proyecto la principal conclusión a la que se puede llegar es que si bien un desarrollado menos \textit{instrumentado} puede ser muy rápido, el dividir el desarrollo en diferentes etapas (con herramientas que a su vez tienen sus propios sistemas de control) harán del desarrollo una tarea más fácil y robusta.
+
+\bigskip
+Este era uno de los principales problemas del estado inicial del portal, al no encontrarse por ejemplo implementados ningún tipo de tests unitarios se producían varios errores por causas desconocidas que eran difíciles de situar en el código de la aplicación.
+
+\bigskip
+Uno de los principales problemas, es que para esta metodología de desarrollo las fases de planificación y análisis pueden ser más difíciles de plantear, ya que se basa en un desarrollo continuo en el que todo elemento a desarrollar se decide según la necesidad y generalmente con un tiempo de antelación bastante corto.
+
+\bigskip
+Como ventaja tenemos que hay un gran cantidad de herramientas para gestionar las diferentes etapas, pudiendo elegir las que consideremos precisas en un determinado momento ya sea por restricciones del desarrollo o por simple comodidad. Por ejemplo: los test unitarios se podrían haber pasado con {\tt Unit JS}, la integración continua con {\tt Jenkins} y el provisionamiento con {\tt Chef}; así aunque los procedimientos fueran distintos, el resultado hubiera sido el mismo.
+
+\newpage
+En cuanto a trabajos futuros relacionados con el proyecto algunas posibilidades serían:
+
+\begin{itemize}
+	\item Realizar un instalación personalizada de {\tt CKAN} en un versión actual de {\tt Ubuntu} (actualmente solo existe una instalación oficial para la versión 12.04) para poder desarrollar
+	plugins propios con el fin de realizar tareas que se puedan considerar interesantes; principalmente interesa que los datos se pudieran obtener directamente desde el propio {\tt CKAN} y no se tuvieran que introducir manualmente mediante archivos \textit{JSON}.
+	\item Sería conveniente hacer que en general el portal sea más dinámico porque actualmente todas las páginas son estáticas, si eso se mantiene así en unos cuantos años cuando la cantidad de datos disponibles aumente considerablemente, la navegabilidad por el portal empeorará considerablemente. Sería necesario implementar un forma de que se puedan seleccionar para visualizar solo los datos que se deseen.
+	\item Analizando los resultados de las pruebas de carga observamos que cuando el número de peticiones aumentaba en gran cantidad con respecto a la carga de trabajo actual, o aunque las peticiones no aumentaran tanto, pero si aumentase el nivel de concurrencia la aplicación se saturaba. Estoy debería ser solucionado mediante cambios en las estructura de la aplicación o uso de balanceo de carga.
+\end{itemize}
