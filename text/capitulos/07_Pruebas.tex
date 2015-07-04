@@ -1,50 +1,80 @@
 \chapter{Pruebas}
 
+En el capítulo anterior se describía como se había realizado toda la implementación del proyecto, por lo que ya solo queda probar que todo funciona correctamente.
+
 \section{Pruebas unitarias}
+
+Para ejecutar las pruebas unitarias vamos a ejecutar con {\tt Mocha} a través de {\tt Istanbul}, realizando las pruebas unitarias y generando el resultado de la prueba de cobertura en un misma ejecución. Cuando ejecutemos {\tt npm test} comenzarán a comprobarse una por una todas las comprobaciones en el archivo {\tt tests.js}; las llamadas al método {\tt describe} son las líneas que aparecen como título en blanco mientras que las comprobaciones que se hacían con el método {\tt it} son las líneas en gris, que aparecen con un \textit{check} verde si el valor esperado es el correcto ó, en caso de error, con un número rojo que indique el error de forma enumerada.
+
+\bigskip
+Una vez que todas las comprobaciones hayan sido realizadas nos aparecerá un resumen con los resultados de los test pasados, indicando cuantos se han ejecutado correctamente (\textbf{passing}) y cuantos han producido un error (\textbf{failing}); si alguna de las tareas asíncronas no devolviera el mensaje {\tt done} estas quedarían como comprobaciones pendientes (\textbf{pending}), pero esto es algo que no se produce en nuestro caso.
 
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/tests_unitarios_01.png}
-		\caption{}
+		\caption{Ejecución de los test unitarios con Mocha (1/2)}
 		\label{fig:tests_unitarios_01}
 	\end{center}
 \end{figure}
 
+\newpage
+En la siguiente imagen vemos que todas los tests se han pasado correctamente (\textbf{148 passing}) en un tiempo de \textbf{3 segundos}. Además, como hemos dicho que {\tt Mocha} es ejecutado a través de {\tt Istanbul}, también obtenemos el mensaje de que el test de cobertura se ha generado dentro de la carpeta {\tt coverage} y un resumen de la cobertura del código que realizan nuestros test.
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/tests_unitarios_02.png}
-		\caption{}
+		\caption{Ejecución de los test unitarios con Mocha (2/2)}
 		\label{fig:tests_unitarios_02}
+	\end{center}
+\end{figure}
+
+\newpage
+Si alguno de los test fallara (por ejemplo, uno de los archivos de origen de datos no existe) en el resumen además del número de test fallados, se mostrará una descripción de los mismos. Es el caso de la siguiente imagen, el archivo {\tt personal.json} no existe por lo que entre los 11 errores que se han producido vemos que en la comprobación de la existencia del archivo se produce un aserción debido a que el resultado esperado por {\tt Mocha} es \textbf{true} y sin embargo recibe \textbf{false} en su lugar}, relacionado con esto nos encontramos el siguiente error y es que como no se ha podido cargar el archivo no se han podido comprobar las propiedades que deberían tener ese archivo (la propiedad que espera \textbf{should} es nula).
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/tests_unitarios_03.png}
+		\caption{Error en tests unitarios}
+		\label{fig:tests_unitarios_03}
 	\end{center}
 \end{figure}
 
 \section{Prueba de cobertura}
 
+Como veíamos al finalizar los test unitarios, el resultado del test de cobertura se almacena en la carpeta {\tt coverage}, dentro de dicha carpeta encontraremos un archivo \textit{HTML} con el mismo resumen que aparecía al finalizar la ejecución de los tests unitarios, pero en este caso permitiéndonos acceder a una información más completa. 
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/test_cobertura_01.png}
-		\caption{}
+		\caption{Resumen de resultados de test de cobertura}
 		\label{fig:test_cobertura_01}
 	\end{center}
 \end{figure}
 
+Por ejemplo, vamos a comprobar más detalladamente la cobertura en el código de la aplicación principal de la plataforma, por lo que seleccionamos \textbf{ugr-transparente-servidor} y después el archivo de nuestra aplicación {\tt app.js}. En el resumen todo el código de esta parte de la aplicación aparecía con una cobertura del \textbf{100\%} por eso todas las líneas del código aparecen en verde.
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/test_cobertura_02.png}
-		\caption{}
+		\caption{Resultado de cobertura de la aplicación principal}
 		\label{fig:test_cobertura_02}
 	\end{center}
 \end{figure}
 
+En el caso de que alguna sentencia no estuviera cubierta por los test unitarios, esta aparecería en rojo; esto es lo que sucede por ejemplo en uno de los módulos desarrollado: cuando se captura una excepción espera que sea lanzadaa a un nivel superior sin embargo solo se muestra un mensaje por pantalla, {\tt Istanbul} aprecia esto como un fallo de cobertura y por eso destaca esa línea en rojo.
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/test_cobertura_03.png}
-		\caption{}
+		\caption{Resultado de cobertura de un módulo desarrollado}
 		\label{fig:test_cobertura_03}
 	\end{center}
 \end{figure}
 
+\newpage
 \section{Integración continua}
+
+Tenemos los test unitarios hecho y hemos comprobado que funcionan, por lo que teniendo la configuración de {\tt Travis CI} realizada, cada vez que se haga un \textit{push} al repositorio se generará un \textit{build} en sus servidores para comprobar que los nuevos cambios introducidos no producen errores en la aplicación. Esta comprobación se hará en cada una de las versiones de nuestro lenguaje que hayamos definido, obteniendo un resumen al final de su ejecución que nos indicará si todo se ha ejecutado correctamente; dicho resultado es accesible a través de su página web (\url{https://travis-ci.org/oslugr/ugr-transparente-servidor}). En la imagen siguiente tenemos el resultado de un \textit{build} en el que no se ha producido ningún error, por lo que todos pruebas de las diferentes versiones están marcadas con un \textit{check} verde.
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -54,31 +84,95 @@
 	\end{center}
 \end{figure}
 
+Si seleccionamos en concreto alguna de las entradas, obtendremos la salida del despliegue de la aplicación y la posterior ejecución de los test.
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/integracion_continua_02.png}
-		\caption{}
+		\caption{Salida del build en Travis CI (despliegue)}
 		\label{fig:integracion_continua_02}
 	\end{center}
 \end{figure}
 
+La salida de la ejecución de los tests es exactamente igual a la salida que hemos visto que se produce se ejecutamos los tests de forma local llamando a {\tt npm test} (que es lo hace {\tt Travis} igualmente).
+
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/integracion_continua_03.png}
-		\caption{}
+		\caption{Salida del build en Travis CI (resultados tests)}
 		\label{fig:integracion_continua_03}
 	\end{center}
 \end{figure}
 
-\newpage \
-\newpage \
-\newpage \
-\newpage \
-\newpage \
+\section{Despliegue automático}
+
+También vamos a comprobar que el despliegue automático funciona correctamente. Simplemente ejecutamos el script {\tt deploy} pasándole como parámetro el usuario con el que nos conectaremos al servidor. En la imagen siguiente vemos el resultado de la ejecución, aunque no en este momento no había nuevos cambios que aplicar al servidor, si podemos ver como hace la copia de seguridad inicial y ejecuta el resto de órdenes necesarias para que la aplicación del portal quede en funcionamiento.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/deploy.png}
+		\caption{Ejecución de despliegue automático}
+		\label{fig:deploy}
+	\end{center}
+\end{figure}
+
+\newpage
+\section{Aprovisionamiento}
+
+Como el sitio de {\tt UGR Transparente} está funcionando sin problemas en este momento, para probar el aprovisionamiento crearemos una máquina virtual con {\tt Vagrant} con el mismo sistema operativo que se encuentra en el servidor de la plataforma ({\tt Ubuntu 14.04}) para realizarle el aprovisionamiento con el {\tt playbook} escrito para {\tt Ansible}.
+
+\bigskip
+Las órdenes a introducir para crear la máquina virtual son las que aparecen en el siguiente fragmento de código.
+
+\begin{lstlisting}[language=bash,captionpos=b,caption={Órdenes para crear máquina virtual Vagrant},label={lst:crear_vagrant}]
+vagrant box add ubuntu/trusty64
+vagrant init ubuntu/trusty64
+vagrant up
+vagrant ssh
+\end{lstlisting}
+
+\newpage
+También tenemos que crear un archivo {\tt Vagrantfile} en el que es importante establecer la dirección de acceso a la máquina y como provisionador {\tt Ansible}, indicando también el \textit{playbook} que se va a utilizar.
+
+\begin{lstlisting}[language=Ruby,captionpos=b,caption={Archivo Vagrantfile},label={lst:edit_vgfile}]
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+	config.vm.box = "ubuntu/trusty64"
+	config.vm.network :private_network, ip:"192.168.2.50"
+
+	config.vm.provision "ansible" do |ansible|
+		ansible.playbook = "transparente.yml"
+	end
+end
+\end{lstlisting}
+
+Lo siguiente será cambiar en el archivo {\tt ansible\_hosts} la dirección del portal por la dirección de nuestra máquina virtual (comando {\tt sed}), declarar como variable de entorno archivo {\tt ansible\_hosts} (comando {\tt export}), y finalmente con {\tt Vagrant}, recargar la configuración del {\tt Vagrantfile} ({\tt vagrant reload}) y ordenar el aprovisionamiento de la máquina virtual ({\tt vagrant provision}). En el siguiente fragmento de código se listan todos estos comandos y en la imagen que le sigue se puede comprobar la ejecución, obteniendo como resultado un aprovisionamiento completamente exitoso.
+
+\begin{lstlisting}[language=bash,captionpos=b,caption={Órdenes para aprovisionar máquina Vagrant},label={lst:aprov_vagrant}]
+sed "s/transparente.ugr.es/192.168.2.50/" -i ansible_hosts
+export ANSIBLE_HOSTS=ansible_hosts
+vagrant reload
+vagrant provision
+\end{lstlisting}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/provision.png}
+		\caption{Prueba de aprovisionamiento con Ansible}
+		\label{fig:deploy}
+	\end{center}
+\end{figure}
+
+\newpage
 \section{Prueba de carga}
 
 Una vez que ya hemos realizado las pruebas de software que hemos considerado oportunas, también tenemos que pasar pruebas a la infraestructura como tal para analizar su rendimiento. En este tipo de pruebas entra en juego tanto el aspecto software como hardware con el objetivo de obtener una medición del rendimiento de nuestra aplicación.
 
+\newpage
 \subsection{Métricas y parámetros que afectan al rendimiento}
 
 Para comparar las prestaciones de la aplicación debemos tener en cuenta los siguientes criterios:
@@ -111,6 +205,7 @@ El hardware y el software del sistema serán los siguientes:
 	\end{itemize}
 \end{itemize}
 
+\newpage
 \subsection{Técnicas de evaluación, carga de trabajo y diseño de experimentos}
 
 Para evaluar el rendimiento de la aplicación vamos a realizar benchmark hacia la aplicación en ejecución para poder realizar una evaluación sobre su comportamiento bajo diferentes cargas de trabajo. El programa con el que vamos hacer las pruebas es el ya mencionado {\tt ApacheBench}, que nos permitirá realizar de forma sencilla pruebas de rendimiento a cualquier servidor, sea cual sea el lenguaje en el que esté realizado. 
@@ -150,7 +245,6 @@ Enumeración de las pruebas a realizar en el experimento:
 	\item \textbf{Prueba 9}: 100 solicitudes, concurrencia del 75\% (75).
 \end{itemize}
 
-\newpage
 \subsubsection{Tiempo de ejecución}
 \begin{table}[!ht]
 	\begin{center}
@@ -311,4 +405,16 @@ Una vez analizados los resultados de las pruebas realizadas la conclusión a la 
 es que la aplicación puede aguantar perfectamente la carga de trabajo que tiene en la actualidad (alrededor de 13 peticiones al día), y que tampoco no habría ningún problema en que esta se duplicara como hemos visto en los resultados de las pruebas de 30 conexiones. El problema aparecería si este volumen de visitas siguiera creciendo, ya que como hemos visto en las pruebas de 50 conexiones, en cuanto empieza a aumentar la concurrencia de las solicitudes el rendimiento de la aplicación cae, llegando a un punto de las pruebas de 100 conexiones en el la aplicación comienza a estar sobrecargada.
 
 \bigskip
-Viendo el volumen de visitas actual, es dificil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy} o cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo.
+Viendo el volumen de visitas actual, es dificil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy}, cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo, o incluso cambiar el sistema operativo por otro que pudiera dar un mayor rendimiento en entornos de servidores.
+
+\section{Acceso web}
+
+El resultado final es que el portal de transparencia sigue siendo accesible, y aunque visualmente no se aprecia ningún cambio, por debajo su funcionamiento y su desarrollo han cambiado completamente a como se ha descrito a lo largo de todo el documento.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../images/transparente.png}
+		\caption{Visualización del portal de transparencia}
+		\label{fig:transparente}
+	\end{center}
+\end{figure}

@@ -1,6 +1,6 @@
 \chapter{Implementacion}
  
- Para explicar la implementación realizada se van a incluir pequeños fragmento del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento.
+Para explicar la implementación realizada se van a incluir pequeños fragmento del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento.
  
 \section{Uso de JSON como origen de datos}
  
@@ -411,7 +411,7 @@ En el siguiente fragmento de código se pueden ver los pasos a seguir para reali
 
 Este es la única funcionalidad que no se ejecuta como un script de {\tt NPM} debido a que no es un módulo de {\tt Node.js}, sino una aplicación externa. Para ejecutarla, desde introducimos el comando:
 
-\begin{lstlisting}[language=consola,caption={Línea de comando de Ansible},label={lst:ejec_ansible}]
+\begin{lstlisting}[language=bash,captionpos=b,caption={Línea de comando de Ansible},label={lst:ejec_ansible}]
 ANSIBLE_HOSTS=provisioning/ansible_hosts ansible-playbook provisioning/transparente.yml --extra-vars ``user=USUARIO''
 \end{lstlisting}
 
