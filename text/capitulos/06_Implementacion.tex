@@ -8,6 +8,12 @@ su significado y funcionamiento.
  
 \section{Uso de JSON como origen de datos}
  
+El desarrollo del portal de transparencia fue iniciado por \textbf{Jaime Torres Benavente}, también becario anteriormente en la \textbf{Oficina de Software Libre de la Universidad de Granada} que se encargó de establecer las bases del proyecto:
+
+\begin{itemize}}
+	\item \
+\end{itemize}
+ 
 Inicialmente el origen de datos para las tablas de las páginas del portal de transparencia era una base de datos \textit{NoSQL} montada sobre un sistema {\tt MongoDB}. Aunque funcionaba, había problemas relacionados con el funcionamiento asíncrono de {\tt Node.js}; por dicho funcionamiento \textit{asíncrono} el proceso de generar la página del portal y el proceso de acceder a la información de la base de datos eran independientes en su ejecución aunque dependientes en su funcionamiento, por lo que a no ser que ambos procesos estuvieran perfectamente sincronizados esto derivaría en la aparición de problemas.
 
 \bigskip
