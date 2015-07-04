@@ -1,10 +1,14 @@
 \chapter{Implementacion}
  
-Para explicar la implementación realizada se van a incluir pequeños fragmento del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento.
+Para explicar la implementación realizada se van a incluir pequeños
+fragmentos del código de los archivos escritos para la
+aplicación. Estos fragmentos solo contendrán las líneas más
+significativas, que además irán acompañados de una descripción sobre
+su significado y funcionamiento. 
  
 \section{Uso de JSON como origen de datos}
  
-Inicialmente el origen de datos para las tablas de las páginas del portal de transparencia era una base de datos \textit{NoSQL} montada sobre un sistema {\tt MongoDB}. Aunque inicialmente funcionaba, había problemas relacionados con el funcionamiento asíncrono de {\tt Node.js}; por dicho funcionamiento \textit{asíncrono} el proceso de generar la página del portal y el proceso de acceder a la información de la base de datos eran independientes en su ejecución aunque dependientes en su funcionamiento, por lo que a no ser que ambos procesos estuvieran perfectamente sincronizados esto derivaría en la aparición de problemas.
+Inicialmente el origen de datos para las tablas de las páginas del portal de transparencia era una base de datos \textit{NoSQL} montada sobre un sistema {\tt MongoDB}. Aunque funcionaba, había problemas relacionados con el funcionamiento asíncrono de {\tt Node.js}; por dicho funcionamiento \textit{asíncrono} el proceso de generar la página del portal y el proceso de acceder a la información de la base de datos eran independientes en su ejecución aunque dependientes en su funcionamiento, por lo que a no ser que ambos procesos estuvieran perfectamente sincronizados esto derivaría en la aparición de problemas.
 
 \bigskip
 Como no se consiguió que se sincronizaran los \textit{callbacks} de ambos procesos eventualmente se producía uno de las situaciones cuando se intentaba cargar una página:
@@ -20,7 +24,7 @@ Después de replantear la situación, se consideró que como todos los datos iba
 \begin{itemize}
 	\item \textbf{nombre}: es la subcategoría en el portal de transparencia.
 	\item \textbf{plantilla}: el archivo de plantilla a partir del que se generan las páginas del portal de transparencia.
-	\item \textbf{cotenido}: conjunto con la información de cada una de las tablas que muestran en las páginas del portal de transparencia.
+	\item \textbf{contenido}: conjunto con la información de cada una de las tablas que muestran en las páginas del portal de transparencia.
 	\begin{itemize}
 		\item \textbf{encabezado}: nombre de la tabla.
 		\item \textbf{link}: salto a la posición de la página donde empieza la tabla.
