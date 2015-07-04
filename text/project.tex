@@ -33,14 +33,14 @@
 \newcommand{\asunto}{Trabajo de Fin de Grado}
 \newcommand{\titulo}{Un portal de transparencia para datos libres}
 \newcommand{\tituloEng}{A transparency portal for open data}
-\newcommand{\titulacion}{Grado en Ingeniería Informática}
+\newcommand{\grado}{Grado en Ingeniería Informática}
 \newcommand{\autor}{Germán Martínez Maldonado}
 \newcommand{\email}{germaaan@gmail.com}
 \newcommand{\tutor}{Juan Julián Merelo Guervós}
 \newcommand{\escuela}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación}
 \newcommand{\universidad}{Universidad de Granada}
 \newcommand{\ciudad}{Granada}
-\newcommand{\version}{Version 0.1}
+\newcommand{\vers}{Versión 0.1}
 
 \hypersetup{
 pdfauthor = {\autor\ (\email)},
@@ -81,8 +81,8 @@ pdfproducer = {pdflatex}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %Definimos los tipos ejemplo y definición podremos usar estos tipos
-\newtheorem{ejemplo}{Ejemplo}[chapter]
-\newtheorem{definicion}{Definición}[chapter]
+\newtheorem{ejemp}{Ejemplo}[chapter]
+\newtheorem{defi}{Definición}[chapter]
 
 \definecolor{gray97}{gray}{.97}
 \definecolor{gray75}{gray}{.75}
@@ -180,19 +180,6 @@ pdfproducer = {pdflatex}
      {ñ}{{\~{n}}}1
      ,
 }
- 
-%\lstdefinelanguage{consola}{
-%  basicstyle=\footnotesize,
-%  numbers=left,
-%  numberstyle=\scriptsize,
-%  stepnumber=1,
-%  captionpos=b,
-%  numbersep=8pt,
-%  showstringspaces=false,
-%  breaklines=true,
-%  frame=lines,
-%  backgroundcolor=\color{background},
-%}
 
 \newcommand{\bigrule}{\titlerule[0.5mm]}
 
@@ -217,9 +204,9 @@ pdfproducer = {pdflatex}
 \usepackage{pdfpages}
 
 \begin{document}
-\input{portada/portada}
+\input{front/front}
 \frontmatter
-\input{prefacios/prefacio}
+\input{prefaces/prefaces}
 
 \begingroup
 \let\cleardoublepage\clearpage
@@ -233,17 +220,17 @@ pdfproducer = {pdflatex}
 \thispagestyle{empty}
 \
 \mainmatter
-\input{capitulos/01_Introduccion}
-\input{capitulos/02_Objetivos}
-\input{capitulos/03_Planificacion}
-\input{capitulos/04_Analisis}
-\input{capitulos/05_Diseno}
-\input{capitulos/06_Implementacion}
-\input{capitulos/07_Pruebas}
-\input{capitulos/08_Conclusiones}
+\input{chapters/01_Introduccion}
+\input{chapters/02_Objetivos}
+\input{chapters/03_Planificacion}
+\input{chapters/04_Analisis}
+\input{chapters/05_Diseno}
+\input{chapters/06_Implementacion}
+\input{chapters/07_Pruebas}
+\input{chapters/08_Conclusiones}
 %\backmatter
 %\nocite{*}
-%\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
+%\bibliography{bibliography/bibliography}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
 %
 %\appendix
