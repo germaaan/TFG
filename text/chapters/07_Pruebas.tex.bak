@@ -61,7 +61,7 @@ Por ejemplo, vamos a comprobar más detalladamente la cobertura en el código de
 	\end{center}
 \end{figure}
 
-En el caso de que alguna sentencia no estuviera cubierta por los test unitarios, esta aparecería en rojo; esto es lo que sucede por ejemplo en uno de los módulos desarrollado: cuando se captura una excepción espera que sea lanzada a un nivel superior sin embargo solo se muestra un mensaje por pantalla, {\tt Istanbul} aprecia esto como un fallo de cobertura y por eso destaca esa línea en rojo.
+En el caso de que alguna sentencia no estuviera cubierta por los test unitarios, esta aparecería en rojo; esto es lo que sucede por ejemplo en uno de los módulos desarrollado: cuando se captura una excepción espera que sea lanzadaa a un nivel superior sin embargo solo se muestra un mensaje por pantalla, {\tt Istanbul} aprecia esto como un fallo de cobertura y por eso destaca esa línea en rojo.
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -409,7 +409,7 @@ Una vez analizados los resultados de las pruebas realizadas la conclusión a la 
 es que la aplicación puede aguantar perfectamente la carga de trabajo que tiene en la actualidad (alrededor de 13 peticiones al día), y que tampoco no habría ningún problema en que esta se duplicara como hemos visto en los resultados de las pruebas de 30 conexiones. El problema aparecería si este volumen de visitas siguiera creciendo, ya que como hemos visto en las pruebas de 50 conexiones, en cuanto empieza a aumentar la concurrencia de las solicitudes el rendimiento de la aplicación cae, llegando a un punto de las pruebas de 100 conexiones en el la aplicación comienza a estar sobrecargada.
 
 \bigskip
-Viendo el volumen de visitas actual, es difícil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy}, cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo, o incluso cambiar el sistema operativo por otro que pudiera dar un mayor rendimiento en entornos de servidores.
+Viendo el volumen de visitas actual, es dificil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy}, cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo, o incluso cambiar el sistema operativo por otro que pudiera dar un mayor rendimiento en entornos de servidores.
 
 \newpage
 \section{Acceso web}

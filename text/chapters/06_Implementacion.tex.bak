@@ -1,4 +1,4 @@
-\chapter{Implementación}
+\chapter{Implementacion}
 
 El desarrollo del portal de transparencia fue iniciado por \textbf{Jaime Torres Benavente}, también becario anteriormente en la \textbf{Oficina de Software Libre de la Universidad de Granada} que se encargó de establecer las bases del proyecto:
 
@@ -48,23 +48,23 @@ Después de replantear la situación, se consideró que como todos los datos iba
 \end{itemize}
 
 \newpage
-\begin{lstlisting}[language=json,caption={Archivo JSON con información de personal},label={lst:json_personal}]
+\begin{lstlisting}[language=json,caption={Archivo JSON con informacion de personal},label={lst:json_personal}]
 {
   "nombre":"Personal",
   "plantilla":"personal",
   "contenido":[
     {
-      "encabezado":"Información Salarial 2015",
+      "encabezado":"Informacion Salarial 2015",
       "link":"informacion-salarial-2015",
-      "texto":"Información relativa a la oferta..."
+      "texto":"Informacion relativa a la oferta..."
     },
     
   ],
   "datos":[
     {
-      "dataset":"Información Salarial 2015",
+      "dataset":"Informacion Salarial 2015",
       "id_dataset":"informacion-salarial-2015",
-      "nombre":"Análisis total plantilla: género",
+      "nombre":"Analisis total plantilla: genero",
       "vista":1,
       "url":"51d53138-0408-4257-9909-57acea137a58",
       "descarga":"985a8e1e-734b-432a-ac65-a7da..."
