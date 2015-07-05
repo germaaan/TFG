@@ -1,39 +1,14 @@
 \documentclass[a4paper,11pt]{book}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish,es-tabla]{babel}
-\usepackage{pdflscape}
-% \usepackage{geometry}
-
-
-
-\usepackage{xcolor}
-
-
-
 \usepackage{titlesec}
-%\usepackage{pailatino}
-
-\decimalpoint
-\usepackage{dcolumn}
-\newcolumntype{.}{D{.}{\esperiod}{-1}}
-\makeatletter
-\addto\shorthandsspanish{\let\esperiod\es@period@code}
-\makeatother
-
-%\RequirePackage{verbatim}
-%\RequirePackage[Glenn]{fncychap}
 \usepackage{fancyhdr}
-\usepackage{graphicx}
-\usepackage{afterpage}
-\usepackage{longtable}
-\usepackage[pdfborder={000}]{hyperref}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{pdfpages}
 
-
-
-% ********************************************************************
 % Información reutilizable
-% ********************************************************************
 \newcommand{\asunto}{Trabajo de Fin de Grado}
 \newcommand{\titulo}{Un portal de transparencia para datos libres}
 \newcommand{\tituloEng}{A transparency portal for open data}
@@ -46,47 +21,32 @@
 \newcommand{\ciudad}{Granada}
 \newcommand{\vers}{Versión 0.1}
 
+% Información archivo
 \hypersetup{
-pdfauthor = {\autor\ (\email)},
-pdftitle = {\titulo},
-pdfsubject = {\asunto},
-pdfkeywords = {software libre, transparencia, datos abiertos, sistema de control de versiones, provisionamiento, tests, 
-integración continua, despliegue automático},
-pdfcreator = {LaTeX con el paquete texlive},
-pdfproducer = {pdflatex}
+	pdfauthor = {\autor\ (\email)},
+	pdftitle = {\titulo},
+	pdfsubject = {\asunto},
+	pdfkeywords = {software libre, transparencia, datos abiertos, sistema de control de versiones, provisionamiento, tests, 
+	integración continua, despliegue automático},
+	pdfcreator = {LaTeX con el paquete texlive},
+	pdfproducer = {pdflatex}
 }
 
-%\hyphenation{}
-
-\usepackage{url}
-\usepackage{colortbl,longtable}
-\usepackage[stable]{footmisc}
-%\usepackage{index}
-
-%\makeindex
-
-
-
-% Redefinición de comandos
-\renewcommand{\lstlistingname}{Fragmento de código}
-\renewcommand{\lstlistlistingname}{Índice de fragmentos de código}
-\renewcommand{\indexname}{Índice alfabético}
-
+% Estilo de cabeceras
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LO]{\leftmark}
 \fancyhead[RE]{\rightmark}
 \fancyhead[RO,LE]{\textbf{\thepage}}
+\setlength{\headheight}{1.5\headheight}
+
+% Redefinición de comandos
+\renewcommand{\lstlistingname}{Fragmento de código}
+\renewcommand{\lstlistlistingname}{Índice de fragmentos de código}
 \renewcommand{\chaptermark}[1]{\markboth{\textbf{#1}}{}}
 \renewcommand{\sectionmark}[1]{\markright{\textbf{\thesection. #1}}}
 
-\setlength{\headheight}{1.5\headheight}
-
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-%Definimos los tipos ejemplo y definición podremos usar estos tipos
-\newtheorem{ejemp}{Ejemplo}[chapter]
-\newtheorem{defi}{Definición}[chapter]
-
+% Definición de colores
 \definecolor{gray97}{gray}{.97}
 \definecolor{gray75}{gray}{.75}
 \definecolor{gray45}{gray}{.45}
@@ -96,33 +56,31 @@ pdfproducer = {pdflatex}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 \definecolor{background}{HTML}{EEEEEE}
 \definecolor{delim}{RGB}{20,105,176}
-
 \colorlet{punct}{red!60!black}
 \colorlet{numb}{magenta!60!black}
 
+% Listados
 \lstset{
+	aboveskip=0.5cm,
+	backgroundcolor=\color{gray97},
+	basicstyle=\scriptsize\ttfamily,
+	breaklines=true,
+	commentstyle=\color{gray45},
 	frame=Ltb,
 	framerule=0.5pt,
-	aboveskip=0.5cm,
-	framextopmargin=3pt,
+	framesep=0pt,
 	framexbottommargin=3pt,
 	framexleftmargin=0.1cm,
-	framesep=0pt,
-	rulesep=.4pt,
-	backgroundcolor=\color{gray97},
-	rulesepcolor=\color{black},
-	%
-	stringstyle=\ttfamily,
-	showstringspaces = false,
-	basicstyle=\scriptsize\ttfamily,
-	commentstyle=\color{gray45},
+	framextopmargin=3pt,
 	keywordstyle=\bfseries,
-	%
+	numberfirstline = false,
 	numbers=left,
 	numbersep=6pt,
 	numberstyle=\tiny,
-	numberfirstline = false,
-	breaklines=true,
+	rulesep=.4pt,
+	rulesepcolor=\color{black},
+	showstringspaces = false,
+	stringstyle=\ttfamily,
 	literate={á}{{\'a}}1
 	         {é}{{\'e}}1
 	         {í}{{\'i}}1
@@ -135,56 +93,80 @@ pdfproducer = {pdflatex}
 \lstnewenvironment{listing}[1][]
 	{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
 
+% Listado definido para JavaScript
 % http://tex.stackexchange.com/questions/89574/language-option-supported-in-listings/89576#89576
 \lstdefinelanguage{javascript}{
-  basicstyle=\footnotesize,
-  numbers=left,
-  numberstyle=\scriptsize,
-  stepnumber=1,
-  numbersep=8pt,
-  captionpos=b,
-  showstringspaces=false,
-  breaklines=true,
-  frame=lines,
-  backgroundcolor=\color{background},
-  keywords={typeof,new,true,false,catch,function,return,null,catch,switch,var,if,in,while,do,else,case,break},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywords={class,export,boolean,throw,implements,import,this},
-  ndkeywordstyle=\color{darkgray}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
- }
-
-% http://tex.stackexchange.com/questions/83085/how-to-improve-listings-display-of-json-files/83100#83100
-\lstdefinelanguage{json}{
-  basicstyle=\footnotesize,
-  numbers=left,
-  numberstyle=\scriptsize,
-  stepnumber=1,
-  captionpos=b,
-  numbersep=8pt,
-  showstringspaces=false,
-  breaklines=true,
-  frame=lines,
-  backgroundcolor=\color{background},
-  literate=
-    *{:}{{{\color{punct}{:}}}}{1}
-     {,}{{{\color{punct}{,}}}}{1}
-     {\{}{{{\color{delim}{\{}}}}{1}
-     {\}}{{{\color{delim}{\}}}}}{1}
-     {[}{{{\color{delim}{[}}}}{1}
-     {]}{{{\color{delim}{]}}}}{1}
-     {ñ}{{\~{n}}}1
-     ,
+	backgroundcolor=\color{background},
+	basicstyle=\footnotesize,
+	breaklines=true,
+	captionpos=b,
+	comment=[l]{//},
+	commentstyle=\color{purple}\ttfamily,
+	frame=lines,
+	identifierstyle=\color{black},
+	keywordstyle=\color{blue}\bfseries,
+	morecomment=[s]{/*}{*/},
+	morestring=[b]',
+	morestring=[b]",
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\scriptsize,
+	sensitive=false,
+	showstringspaces=false,
+	stepnumber=1,
+	stringstyle=\color{red}\ttfamily,
+	keywords={
+		break,
+		case,
+		catch,
+		catch,
+		do,
+		else,
+		false,
+		function,
+		if,
+		in,
+		new,
+		null,
+		return,
+		switch,
+		true,
+		typeof,
+		var,
+		while},
+	ndkeywords={
+		boolean,
+		class,
+		export,
+		implements,
+		import,
+		this,
+		throw}
 }
 
-\newcommand{\bigrule}{\titlerule[0.5mm]}
+% Listado definido para JSON
+% http://tex.stackexchange.com/questions/83085/how-to-improve-listings-display-of-json-files/83100#83100
+\lstdefinelanguage{json}{
+	backgroundcolor=\color{background},
+	basicstyle=\footnotesize,
+	breaklines=true,
+	captionpos=b,
+	frame=lines,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\scriptsize,
+	showstringspaces=false,
+	stepnumber=1,
+	literate=
+		*{:}{{{\color{punct}{:}}}}{1}
+		{,}{{{\color{punct}{,}}}}{1}
+	    {\{}{{{\color{delim}{\{}}}}{1}
+	    {\}}{{{\color{delim}{\}}}}}{1}
+	    {[}{{{\color{delim}{[}}}}{1}
+	    {]}{{{\color{delim}{]}}}}{1}
+	    {ñ}{{\~{n}}}{1}
+}
 
 % Para que las páginas en blanco no tengan cabecera
 \makeatletter
@@ -203,12 +185,6 @@ pdfproducer = {pdflatex}
   \penalty -\@Mi
 }
 \makeatother
-
-
-
-
-
-\usepackage{pdfpages}
 
 \begin{document}
 \input{front/front}
@@ -235,21 +211,21 @@ pdfproducer = {pdflatex}
 \input{chapters/06_Implementacion}
 \input{chapters/07_Pruebas}
 \input{chapters/08_Conclusiones}
+
 \backmatter
 \begingroup
 	\setlength\parindent{0pt}
 	\input{back/glossary}
 \endgroup
-%\addcontentsline{toc}{chapter}{Glosario}
-%\nocite{*}
-%\bibliography{bibliography/bibliography}\addcontentsline{toc}{chapter}{Bibliografía}
-%\bibliographystyle{miunsrturl}
-%
-%\appendix
-%\input{apendices/manual_usuario/manual_usuario}
 
+\input{back/appendix}
+%\input{back/manual_usuario}
 
-%\newpage
-%\thispagestyle{empty}
+\newpage
+\begin{thebibliography}{99}
+	\input{back/bibliography}
+\end{thebibliography}
 
+\newpage
+\thispagestyle{empty}
 \end{document}
