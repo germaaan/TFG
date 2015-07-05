@@ -255,7 +255,7 @@ Enumeración de las pruebas a realizar en el experimento:
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			\multicolumn{4}{|c|}{{\bf Tiempo de ejecución}}                                                           \\ \hline
-			{\bf N.º conexiones} & {\bf Concurrencia (\%)} & {\bf Segundos} & {\bf Desviación} \\ \hline
+			{\bf N.º conexiones} & {\bf Concurrencia (\%)} & {\bf Tiempo (s)} & {\bf Desviación} \\ \hline
 			{\it 30}                   & {\it 25}                  & 8,823              & 0,199                     \\ \hline
 			{\it 30}                   & {\it 50}                  & 7,552              & 0,214                     \\ \hline
 			{\it 30}                   & {\it 75}                  & 6,827              & 0,970                     \\ \hline
@@ -317,7 +317,7 @@ Enumeración de las pruebas a realizar en el experimento:
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			\multicolumn{4}{|c|}{{\bf Tiempo por solicitud concurrente}}                               \\ \hline
-			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf Promedio (ms)} & {\bf Desviación} \\ \hline
+			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf Tiempo (ms)} & {\bf Desviación} \\ \hline
 			{\it 30}                & {\it 25}                & 294,087             & 6,645            \\ \hline
 			{\it 30}                & {\it 50}                & 251,733             & 7,129            \\ \hline
 			{\it 30}                & {\it 75}                & 227,563             & 32,347           \\ \hline
@@ -348,7 +348,7 @@ Enumeración de las pruebas a realizar en el experimento:
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			\multicolumn{4}{|c|}{{\bf Velocidad de transferencia}}                            \\ \hline
-			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf KB/s} & {\bf Desviación} \\ \hline
+			{\bf N.º de conexiones} & {\bf Concurrencia (\%)} & {\bf Velocidad (KB/s)} & {\bf Desviación} \\ \hline
 			{\it 30}                & {\it 25}                & 747,735    & 17,116           \\ \hline
 			{\it 30}                & {\it 50}                & 873,789    & 24,798           \\ \hline
 			{\it 30}                & {\it 75}                & 982,389    & 116,778          \\ \hline
@@ -411,6 +411,7 @@ es que la aplicación puede aguantar perfectamente la carga de trabajo que tiene
 \bigskip
 Viendo el volumen de visitas actual, es dificil que a corto plazo se llegarán a producir este tipo de problemas de saturación, sin embargo, en futuro se deberían aplicar técnicas de balanceo de carga sobre la aplicación usando algún otro módulo de {\tt Node.js} como puede ser {\tt node-http-proxy}, cambiar la estructura de la aplicación para que esta no tenga problemas a unos niveles altos de carga de trabajo, o incluso cambiar el sistema operativo por otro que pudiera dar un mayor rendimiento en entornos de servidores.
 
+\newpage
 \section{Acceso web}
 
 El resultado final es que el portal de transparencia sigue siendo accesible, y aunque visualmente no se aprecia ningún cambio, por debajo su funcionamiento y su desarrollo han cambiado completamente a como se ha descrito a lo largo de todo el documento.
