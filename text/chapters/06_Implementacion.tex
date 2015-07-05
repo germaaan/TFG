@@ -274,7 +274,7 @@ La configuración por defecto de {\tt Travis} es que se compruebe la integració
 
 Para terminar, solo nos queda crear el archivo de configuración {\tt .travis.yml} que será el que {\tt Travis} siga para comprobar la integración continua. Aspectos básicos de este archivo son indicar en {\tt language} el lenguaje en el que está escrita la aplicación y con el propio nombre del lenguaje, indicar también las versiones del mismo para las que se va a comprobar la aplicación. Para el portal hemos decidido que se comprueba la integración en las versiones estables más recientes {\tt Node.js} que son las \textit{0.10}, \textit{0.11} y \textit{0.12}, además de \textit{iojs}, que es un derivado del propio {\tt Node.js}.
 
-\begin{lstlisting}[language=json,caption={Archivo de configuración de Travis CI},label={lst:json_personal}]
+\begin{lstlisting}[language=json,caption={Archivo de configuración de Travis CI},label={lst:conf_travis}]
 # language setting
 language: node_js
 
@@ -313,7 +313,7 @@ Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre 
 
 En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples, además de que cada una está acompañada de una salida por pantalla que describe brevemente lo que realiza.
 
-\begin{lstlisting}[language=javascript,caption={Archivo flightplan.js},label={lst:testjs}]
+\begin{lstlisting}[language=javascript,caption={Archivo flightplan.js},label={lst:flightplanjs}]
 var plan = require('flightplan');
 
 plan.target('transparente', {
