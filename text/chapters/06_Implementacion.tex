@@ -355,17 +355,17 @@ Al finalizar el despliegue el portal estará operativo como lo estaría normalme
 
 \section{Provisionamiento}
 
-Al igual que para el despliegue automático, para el aprovisionamiento necesitamos poder conectarnos al servidor mediante {\t SSH}. {\tt Ansible} necesita que le indiquemos la dirección de nuestro servidor en un formato específico y mediante un archivo que se conoce como {\tt ansible\_hosts}. Un ejemplo de esta configuración se puede ver en el siguiente fragmento de código.
+Al igual que para el despliegue automático, para el provisionamiento necesitamos poder conectarnos al servidor mediante {\t SSH}. {\tt Ansible} necesita que le indiquemos la dirección de nuestro servidor en un formato específico y mediante un archivo que se conoce como {\tt ansible\_hosts}. Un ejemplo de esta configuración se puede ver en el siguiente fragmento de código.
 
 \begin{lstlisting}[language=json,caption={Archivo de hosts de Ansible},label={lst:hosts}]
 [transparente]
 transparente.ugr.es
 \end{lstlisting}
 
-El archivo de configuración de {\tt Ansible} (al que se suele referir como \textit{``playbook''}) es un archivo con formato \textit{YAML} que contiene todos las ordenes que se ejecutarán en proceso de aprovisionar nuestro servidor. El esquema general del archivo es el siguiente:
+El archivo de configuración de {\tt Ansible} (al que se suele referir como \textit{``playbook''}) es un archivo con formato \textit{YAML} que contiene todos las ordenes que se ejecutarán en proceso de provisionar nuestro servidor. El esquema general del archivo es el siguiente:
 
 \begin{itemize}
-	\item \textbf{hosts}: el nombre con el que nos referimos a la máquina de la que hemos indicado la dirección de acceso en el archivo {\tt ansible\_host} al que se le realizará el aprovisionamiento.
+	\item \textbf{hosts}: el nombre con el que nos referimos a la máquina de la que hemos indicado la dirección de acceso en el archivo {\tt ansible\_host} al que se le realizará el provisionamiento.
 	\item \textbf{sudo}: indica que los comandos que se ejecuten lo harán con permiso de administrador.
 	\item \textbf{remote\_user}: es el usuario con el que nos conectaremos al equipo, el que tiene que tener acceso mediante {\tt SSH} al servidor.
 	\item \textbf{tasks}: la lista de tareas que {\tt Ansible} ejecutará de forma secuencial en el ordenador remoto.
@@ -375,7 +375,7 @@ El archivo de configuración de {\tt Ansible} (al que se suele referir como \tex
 	\end{itemize}
 \end{itemize}
 
-En el siguiente fragmento de código se pueden ver los pasos a seguir para realizar el aprovisionamiento de un equipo, la descripción de las acciones que realizan vuelven ser bastante simples como se la descripción {\tt name} de cada tarea.
+En el siguiente fragmento de código se pueden ver los pasos a seguir para realizar el provisionamiento de un equipo, la descripción de las acciones que realizan vuelven ser bastante simples como se la descripción {\tt name} de cada tarea.
 
 \begin{lstlisting}[language=json,caption={Playbook de Ansible},label={lst:ansible}]
 ---

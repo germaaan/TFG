@@ -117,9 +117,9 @@ También vamos a comprobar que el despliegue automático funciona correctamente.
 \end{figure}
 
 \newpage
-\section{Aprovisionamiento}
+\section{Provisionamiento}
 
-Como el sitio de {\tt UGR Transparente} está funcionando sin problemas en este momento, para probar el aprovisionamiento crearemos una máquina virtual con {\tt Vagrant} con el mismo sistema operativo que se encuentra en el servidor de la plataforma ({\tt Ubuntu 14.04}) para realizarle el aprovisionamiento con el {\tt playbook} escrito para {\tt Ansible}.
+Como el sitio de {\tt UGR Transparente} está funcionando sin problemas en este momento, para probar el provisionamiento crearemos una máquina virtual con {\tt Vagrant} con el mismo sistema operativo que se encuentra en el servidor de la plataforma ({\tt Ubuntu 14.04}) para realizarle el provisionamiento con el {\tt playbook} escrito para {\tt Ansible}.
 
 \bigskip
 Las órdenes a introducir para crear la máquina virtual son las que aparecen en el siguiente fragmento de código.
@@ -150,9 +150,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 \end{lstlisting}
 
-Lo siguiente será cambiar en el archivo {\tt ansible\_hosts} la dirección del portal por la dirección de nuestra máquina virtual (comando {\tt sed}), declarar como variable de entorno archivo {\tt ansible\_hosts} (comando {\tt export}), y finalmente con {\tt Vagrant}, recargar la configuración del {\tt Vagrantfile} ({\tt vagrant reload}) y ordenar el aprovisionamiento de la máquina virtual ({\tt vagrant provision}). En el siguiente fragmento de código se listan todos estos comandos y en la imagen que le sigue se puede comprobar la ejecución, obteniendo como resultado un aprovisionamiento completamente exitoso.
+Lo siguiente será cambiar en el archivo {\tt ansible\_hosts} la dirección del portal por la dirección de nuestra máquina virtual (comando {\tt sed}), declarar como variable de entorno archivo {\tt ansible\_hosts} (comando {\tt export}), y finalmente con {\tt Vagrant}, recargar la configuración del {\tt Vagrantfile} ({\tt vagrant reload}) y ordenar el provisionamiento de la máquina virtual ({\tt vagrant provision}). En el siguiente fragmento de código se listan todos estos comandos y en la imagen que le sigue se puede comprobar la ejecución, obteniendo como resultado un provisionamiento completamente exitoso.
 
-\begin{lstlisting}[language=bash,captionpos=b,caption={Órdenes para aprovisionar máquina Vagrant},label={lst:aprov_vagrant}]
+\begin{lstlisting}[language=bash,captionpos=b,caption={Órdenes para provisionar máquina Vagrant},label={lst:aprov_vagrant}]
 sed "s/transparente.ugr.es/192.168.2.50/" -i ansible_hosts
 export ANSIBLE_HOSTS=ansible_hosts
 vagrant reload
@@ -162,7 +162,7 @@ vagrant provision
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../images/provision.png}
-		\caption{Prueba de aprovisionamiento con Ansible}
+		\caption{Prueba de provisionamiento con Ansible}
 		\label{fig:provision}
 	\end{center}
 \end{figure}

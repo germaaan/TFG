@@ -43,7 +43,7 @@ Cada uno de estos módulos de las diversas secciones, obtendrá la información 
 Cada vez que un usuario quiere consultar la información de una subsección, el portal de transparencia ({\tt UGR Transparente}) hace una llamada al método de generación de la página de la sección elegida para su subsección determinada; ese método, procesará la plantilla {\tt Jade} para la página pasándole el archivo \textit{JSON} de datos y el resultado final será la página web que será visible en el portal.
 
 \bigskip
-De igual forma a lo mencionado de la aplicación del portal de transparencia, los test unitarios ({\tt test.js}) y el despliegue automático ({\tt flightplan.js}) son otros módulos que ejecutan dichas acciones, el test de cobertura se realiza automáticamente a partir de los test unitarios, la integración continua se realiza en base a la configuración del archivo {\tt .travis.yml}, y finalmente, el aprovisionamiento sigue las tareas en el archivo de configuración {\tt transparente.yml}. Todos estos módulos son independientes del funcionamiento del módulo principal, y simplemente llamaremos cuando queramos hacer uso de sus funcionalidades.
+De igual forma a lo mencionado de la aplicación del portal de transparencia, los test unitarios ({\tt test.js}) y el despliegue automático ({\tt flightplan.js}) son otros módulos que ejecutan dichas acciones, el test de cobertura se realiza automáticamente a partir de los test unitarios, la integración continua se realiza en base a la configuración del archivo {\tt .travis.yml}, y finalmente, el provisionamiento sigue las tareas en el archivo de configuración {\tt transparente.yml}. Todos estos módulos son independientes del funcionamiento del módulo principal, y simplemente llamaremos cuando queramos hacer uso de sus funcionalidades.
 
 \newpage
 \section{Diseño de una aplicación con desarrollo colaborativo}
@@ -57,7 +57,7 @@ La plataforma de desarrollo colaborativo y la herramienta de control de versione
 Una metodología de desarrollo \textit{DevOps} consiste inicialmente en no hacer distinción entre el desarrollo del software y la administración del mismo, todo estará comunicado para que sea posible realizar entregas del software de forma frecuente asegurándose de que esas mismas entregas continuas no sea el origen de fallos futuros. La forma de asegurarse de que esos fallos no se producirán es dividir todo el desarrollo en fases que tengan que realizarse secuencialmente, controlando a cada fase que no se produzcan errores en la misma; como una cadena de montaje en la que podemos estar seguro de que el producto que llega al final está en perfectas condiciones, porque en caso contrario hubiera sido retirado durante el proceso.
 
 \bigskip
-En este proyecto, hemos considerado que las fases que nos permitirían asegurarnos que el producto que sale de la cadena de montaje en perfectas condiciones sean los test unitarios, la integración continua y el despliegue automático, todo esto apoyado en un sistema de control de versiones y una plataforma de desarrollo colaborativo abierto. Además, también se usará aprovisionamiento para facilitar la portabilidad del portal de una infraestructura a otra distinta. 
+En este proyecto, hemos considerado que las fases que nos permitirían asegurarnos que el producto que sale de la cadena de montaje en perfectas condiciones sean los test unitarios, la integración continua y el despliegue automático, todo esto apoyado en un sistema de control de versiones y una plataforma de desarrollo colaborativo abierto. Además, también se usará provisionamiento para facilitar la portabilidad del portal de una infraestructura a otra distinta. 
 
 \section{Diseño de los tests unitarios y test de cobertura}
 
@@ -109,9 +109,9 @@ Antes de pasar a implementar el despliegue automático, hay que pensar que tarea
 Todas las tareas descritas, queremos que sean ejecutadas de forma secuencial una tras otra, de forma automática y necesitar la interacción con el usuario. Para cumplir esto usaremos {\tt Flightplan}, un módulo de {\tt Node.js} que nos permite coordinar de forma automática el despliegue de aplicaciones con tareas de administración del sistema.
 
 \newpage
-\section{Diseño del aprovisionamiento}
+\section{Diseño del provisionamiento}
 
-Con toda la aplicación ya realizada, para su instalación inicial en un plataforma determinada primero tenemos que aprovisionarla con todos los recursos software necesarios. Encontraremos una mayor cantidad de referencias a este procedimiento por su término en ingles, \textit{software provisioning}, ya que el termino en español es una traducción literal que salvo por el acompañamiento del termino \textit{``software''}, puede referirse a abastecimientos de recursos necesarios en general no necesariamente relacionado con el campo de la informática.
+Con toda la aplicación ya realizada, para su instalación inicial en un plataforma determinada primero tenemos que provisionarla con todos los recursos software necesarios. Encontraremos una mayor cantidad de referencias a este procedimiento por su término en ingles, \textit{software provisioning}, ya que el termino en español es una traducción literal que salvo por el acompañamiento del termino \textit{``software''}, puede referirse a abastecimientos de recursos necesarios en general no necesariamente relacionado con el campo de la informática.
 
 \bigskip
 Entre el software básico necesario hay que considerar para instalar la propia plataforma del desarrollo de la aplicación ({\tt Node.js}) y la herramienta de control de versiones ({\tt Git}). Con esto instalado, se clona el repositorio en {\tt GitHub} del proyecto en un directorio local, y una vez instalada las dependencias de la aplicación y establecidos los parámetros de acceso, se arrancará el servidor para que el portal esté funcionando.
