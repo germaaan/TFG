@@ -58,7 +58,7 @@ Después de replantear la situación, se consideró que como todos los datos iba
       "link":"informacion-salarial-2015",
       "texto":"Información relativa a la oferta..."
     },
-    
+
   ],
   "datos":[
     {
@@ -69,7 +69,7 @@ Después de replantear la situación, se consideró que como todos los datos iba
       "url":"51d53138-0408-4257-9909-57acea137a58",
       "descarga":"985a8e1e-734b-432a-ac65-a7da..."
     },
-        
+
   ]
 }
 \end{lstlisting}
@@ -84,7 +84,7 @@ Para que estos archivos puedan ser utilizados desde la aplicación, tenemos que 
 Es importante aclarar que en {\tt Node.js} los módulos, independientemente de si son creados por nosotros o no, se importan para se usados dentro de módulo con la palabra clave ``\textit{require}'' y se exportan para ser utilizables por otros módulos con la palabra clave ``\textit{export}''.
 
 \newpage
-\begin{lstlisting}[language=javascript,caption={Archivo cargar.js},label={lst:cargarjs}]
+\begin{lstlisting}[language=javascript,caption={Módulo para cargar archivos JSON},label={lst:cargarjs}]
 var fs = require("fs");
  
 var cargar = function (archivo){
@@ -118,7 +118,7 @@ Otro de los aspectos esenciales en el código de la aplicación principal es cre
 
 Ya solo nos quedaría crear el servidor. Con la línea 8 creamos una instancia del módulo {\tt Express}, ahora mediante el módulo {\tt Http} creamos el servidor sobre esa instancia e indicamos las opciones de accesibilidad necesarias, en este caso el puerto de escucha del servidor ({\tt port}) y la dirección de acceso al portal ({\tt ip}). Finalmente exportamos el módulo de la aplicación principal para más adelante poder realizarle los test los tests unitarios.
 
-\begin{lstlisting}[language=javascript,caption={Archivo app.js},label={lst:appjs}]
+\begin{lstlisting}[language=javascript,caption={Módulo principal de la aplicación},label={lst:appjs}]
 var express = require('express');
 var http = require('http');
 
@@ -199,7 +199,7 @@ Para comprobar que las páginas son accesibles, realizamos una solicitud de la m
 Acabamos de describir las comprobaciones que realizan los tests, pero nos falta por explicar como se evalúan dichas comprobaciones, los tests unitarios van a ser ejecutados por {\tt Mocha}. Para {\tt Mocha} la ejecución de las pruebas se divide en dos procesos, una descripción que indica qué está evaluando un test unitario o un conjunto de los mismos y la propia evaluación de un test unitario que nos informa si la aplicación supera el test o no; la descripción se realiza con la orden {\tt describe} mientras que la evaluación se realiza con {\tt it}. Un ejemplo de todo esto se puede ver en el \textit{fragmento de código 6.7}.
 
 \newpage
-\begin{lstlisting}[language=javascript,caption={Archivo test.js},label={lst:testjs}]
+\begin{lstlisting}[language=javascript,caption={Módulo de tests unitarios},label={lst:testjs}]
 var should = require("should"),
 request = require("supertest");
 
@@ -313,7 +313,7 @@ Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre 
 
 En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples, además de que cada una está acompañada de una salida por pantalla que describe brevemente lo que realiza.
 
-\begin{lstlisting}[language=javascript,caption={Archivo flightplan.js},label={lst:flightplanjs}]
+\begin{lstlisting}[language=javascript,caption={Módulo de despliegue automático},label={lst:flightplanjs}]
 var plan = require('flightplan');
 
 plan.target('transparente', {
