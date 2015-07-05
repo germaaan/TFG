@@ -5,10 +5,12 @@
 \usepackage{pdflscape}
 % \usepackage{geometry}
 
+
+
 \usepackage{xcolor}
 
 
-%\usepackage[style=list,number=none]{glossary}
+
 \usepackage{titlesec}
 %\usepackage{pailatino}
 
@@ -25,7 +27,9 @@
 \usepackage{graphicx}
 \usepackage{afterpage}
 \usepackage{longtable}
-\usepackage[pdfborder={000}]{hyperref} %referencia
+\usepackage[pdfborder={000}]{hyperref}
+
+
 
 % ********************************************************************
 % Información reutilizable
@@ -60,14 +64,13 @@ pdfproducer = {pdflatex}
 %\usepackage{index}
 
 %\makeindex
-%\usepackage[style=long,cols=2,border=plain,toc=true,number=none]{glossary}
-%\makeglossary
+
+
 
 % Redefinición de comandos
 \renewcommand{\lstlistingname}{Fragmento de código}
 \renewcommand{\lstlistlistingname}{Índice de fragmentos de código}
-%\renewcommand{\indexname}{Índice alfabético}
-%\renewcommand{\glossaryname}{Glosario}
+\renewcommand{\indexname}{Índice alfabético}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -201,6 +204,10 @@ pdfproducer = {pdflatex}
 }
 \makeatother
 
+
+
+
+
 \usepackage{pdfpages}
 
 \begin{document}
@@ -228,18 +235,21 @@ pdfproducer = {pdflatex}
 \input{chapters/06_Implementacion}
 \input{chapters/07_Pruebas}
 \input{chapters/08_Conclusiones}
-%\backmatter
+\backmatter
+\begingroup
+	\setlength\parindent{0pt}
+	\input{back/glossary}
+\endgroup
+%\addcontentsline{toc}{chapter}{Glosario}
 %\nocite{*}
 %\bibliography{bibliography/bibliography}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
 %
 %\appendix
 %\input{apendices/manual_usuario/manual_usuario}
-%\input{glosario/entradas_glosario}
-%\addcontentsline{toc}{chapter}{Glosario}
-%\printglossary
 
-\newpage
-\thispagestyle{empty}
-\
+
+%\newpage
+%\thispagestyle{empty}
+
 \end{document}
