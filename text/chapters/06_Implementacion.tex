@@ -1,16 +1,15 @@
 \chapter{Implementación}
 
-El desarrollo del portal de transparencia fue iniciado por \textbf{Jaime Torres Benavente}, también becario anteriormente en la \textbf{Oficina de Software Libre de la Universidad de Granada} que se encargó de establecer las bases del proyecto:
+El desarrollo del portal de transparencia fue iniciado por \textbf{Jaime Torres Benavente}, también becario anteriormente en la \textbf{Oficina de Software Libre de la Universidad de Granada} que se encargó de establecer las bases del proyecto. A su finalización del periodo de prácticas el estado del proyecto era el siguiente:
 
 \begin{itemize}
-\item \
-\end{itemize}
+	\item {\tt OpenData UGR}: utilizando la plataforma de código abierto {\tt CKAN} para crear el portal de datos, se desarrolló {\tt OpenData UGR} aplicándole un capa de personalización a la plataforma original, con la ventaja de proveer una API con la que crear, borrar y consultar todos los datos almacenados.
+	\item {\tt UGR Transparente}: el portal de transparencia funcionando bajo el funcionamiento conjunto de la plataforma de desarrollo {\tt Node.js}, el framework web {\tt Express} y el motor de plantillas {\tt Jade}, que obtiene la información mediante consultas a una base de datos no relacional {\tt MongoDB}.
+	\item \textbf{Backend}: una base de datos que almacena la información referente a cada conjunto de datos que se muestra en el portal. Entre los datos almacenados, se encuentran las \textit{URLs} para realizar peticiones a la API de nuestro {\tt CKAN} ({\tt OpenData UGR}) que nos permiten descargar la información contenida en sus tablas, bien en formato \textit{CSV} o en formato \textit{PDF}.
+	\item \textbf{Frontend}: en primer lugar se convirtió una página con el formato de la página institucional de la \textbf{UGR} al lenguaje de plantillas {\tt Jade} y se publicó en un repositorio de {\tt GitHub}: \url{https://github.com/oslugr/PlantillaNeutraUGR}. Como el objetivo del portal de transparencia es el de visualizar y descargar los datos abiertos, las plantillas las \textit{URLs} de {\tt CKAN} para, mediante el uso de llamadas {\tt AJAX}, descargar los datos de esas direcciones proporcionadas. Una vez procesados todos los datos del archivo recibido, se muestran todas las tablas recibidas; teniendo además la opción de descargar o visualizar los datos de esas tablas. Esta visualización se hace abriendo una ventana modal en la que tras descargar el archivo \textit{CSV} desde {\tt CKAN} con {\tt AJAX}, utilizamos {\tt Google Charts} para generar las tablas con los datos recibidos.
 
-Para explicar la implementación realizada se van a incluir pequeños
-fragmentos del código de los archivos escritos para la
-aplicación. Estos fragmentos solo contendrán las líneas más
-significativas, que además irán acompañados de una descripción sobre
-su significado y funcionamiento. 
+\bigskip
+Una vez comentado el trabajo previo existente, para explicar la implementación que he realizado se van a incluir pequeños fragmentos del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento. 
  
 \section{Uso de JSON como origen de datos}
  
@@ -25,6 +24,7 @@ Como no se consiguió que se sincronizaran los \textit{callbacks} de ambos proce
 	\item Solo si la llamada a la base de datos se resolvía antes de que se intentara mostrar la información, la página se mostraba correctamente. 
 \end{itemize}
 
+\newpage
 Después de replantear la situación, se consideró que como todos los datos iban a estar finalmente almacenados en la plataforma {\tt OpenData UGR}, la solución más recomendable era eliminar la base de datos y usar en su lugar archivos \textit{JSON} que hicieran de índices de enlaces hacía los conjuntos de datos {\tt OpenData UGR} desde el portal de transparencia. La ventaja de usar archivos \textit{JSON} es la gran flexibilidad que proporcionan a la hora de realizar estructuras de datos; aprovechando esto se diseñaron estos archivos con los siguientes campos (ejemplo en el \textit{fragmento de código 6.1}):
 
 \begin{itemize}
@@ -36,7 +36,7 @@ Después de replantear la situación, se consideró que como todos los datos iba
 		\item \textbf{link}: salto a la posición de la página donde empieza la tabla.
 		\item \textbf{texto}: descripción de los datos que contiene la tabla.
 	\end{itemize}
-	\item datos: conjunto con los elementos que componen cada una de las tablas.
+	\item \textbf{datos}: conjunto con los elementos que componen cada una de las tablas.
 	\begin{itemize}
 		\item \textbf{dataset}: tabla a la que pertenece el elemento.
 		\item \textbf{id\_dataset}: conjunto de datos en {\tt OpenData UGR} al que pertenece el elemento.
@@ -173,8 +173,9 @@ Con los parámetros especificados, el servidor comenzará a correr ejecutado med
 \bigskip
 Para detener el servidor no tenemos que indicar nada, simplemente ejecutar el script de parada; este se encargará de buscar todos los procesos abiertos por la aplicación principal y mandarles la señal de terminación. Se ejecuta con {\tt ``npm run-script kill''} por no estar reconocido como uno de los scripts por defecto de {\tt NPM}.
 
+\newpage
 \begin{lstlisting}[language=json,caption={Scripts de inicio y detención},label={lst:ini_para}]
-"scripts": {
+``scripts'': {
   "start": "PORT=3000 IP=127.0.0.1 forever start -l /var/log/forever.log -a -o /var/log/out.log -e /var/log/err.log ./app.js",
   "kill": "ps aux | grep 'app.js' | grep -v grep | awk '{print \"sudo kill -9 \" $2}' | sh"
 }
@@ -194,11 +195,9 @@ En el caso de los archivos \textit{JSON} los comportamientos que tenemos que com
 
 Para comprobar que las páginas son accesibles, realizamos una solicitud de la misma a la que el servidor responderá con un código numérico, si ese código tiene el valor \textbf{200} significará que la petición se ha resuelto correctamente, por lo que significará que la página está accesible. Podemos ver como se hace esto observando las líneas 28 a 36.
 
-\bigskip
-
-Acabamos de describir las comprobaciones que realizan los tests, pero nos falta por explicar como se evalúan dichas comprobaciones, los tests unitarios van a ser ejecutados por {\tt Mocha}. Para {\tt Mocha} la ejecución de las pruebas se divide en dos procesos, una descripción que indica qué está evaluando un test unitario o un conjunto de los mismos y la propia evaluación de un test unitario que nos informa si la aplicación supera el test o no; la descripción se realiza con la orden {\tt describe} mientras que la evaluación se realiza con {\tt it}. Un ejemplo de todo esto se puede ver en el \textit{fragmento de código 6.7}.
-
 \newpage
+Hemos descrito las comprobaciones que realizan los tests, nos falta por explicar como se evalúan dichas comprobaciones, los tests unitarios son ejecutados por {\tt Mocha}. La ejecución de las pruebas se divide en dos procesos, una descripción que indica qué se está evaluando y la propia evaluación de un test unitario que nos informa si la aplicación supera el test o no; la descripción se realiza con la orden {\tt describe} mientras que la evaluación se realiza con {\tt it}. Un ejemplo de todo esto se puede ver en el \textit{fragmento de código 6.7}.
+
 \begin{lstlisting}[language=javascript,caption={Módulo de tests unitarios},label={lst:testjs}]
 var should = require("should"),
 request = require("supertest");
@@ -243,7 +242,6 @@ describe('Prueba de acceso', function(){
 
 Al igual que los scripts de inicio y parada de la aplicación principal, los test se ejecutarán mediante un script de {\tt NPM}. Se ha comentado el uso de {\tt Mocha} para pasar los tests unitarios, pero no se ha comentado nada de los tests de cobertura; esto se debe a que el módulo elegido para realizar los tests de cobertura, {\tt Istanbul}, está integrado con {\tt Mocha} para poder realizar automáticamente los tests de cobertura a los tests unitarios que se ejecuten con este último. Ambos se ejecutarán con {\tt ``npm test''}.
 
-\newpage
 \begin{lstlisting}[language=json,caption={Scripts de test},label={lst:test}]
 "scripts": {
   "test": "istanbul cover _mocha ./test --recursive"
@@ -264,6 +262,7 @@ Haber elegido realizar la integración continua con {\tt Travis CI} hace que inc
 
 La configuración por defecto de {\tt Travis} es que se compruebe la integración continua con cada \textit{``push''} o \textit{``pull request''} que se haga a nuestro repositorio, aunque esto se puede cambiar en función de nuestras preferencias.
 
+\newpage
 \begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.6\textwidth]{../images/config_travis.png}
@@ -298,7 +297,6 @@ Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre 
 	\item \textbf{plan.target}: podemos configurar el despliegue para uno o varios objetivos, por lo que tenemos que indicar un nombre para diferenciar el destino de nuestro despliegue.
 	\begin{itemize}
 		\item \textbf{host}: la dirección del servidor en el que vamos a desplegar la aplicación es necesario para que {\tt Flightplan} sepa dónde hacerlo.
-		\newpage
 		\item \textbf{username}: el usuario que ejecutará las tareas en el despliegue, hay que tener en cuenta que este usuario debe tener los permisos necesarios para ejecutar esas tareas. Por razones de seguridad/comodidad no definimos ningún usuario concreto, sino que lo introduciremos como argumento en la ejecución.
 		\item \textbf{agent}: será el método que usaremos para conectarnos al servidor, en nuestro caso será una conexión {\tt SSH}.
 	\end{itemize}
@@ -313,6 +311,7 @@ Para realizar el despliegue tenemos que escribir un nuevo módulo con el nombre 
 
 En el siguiente fragmento de código se puede ver como se realiza el despliegue del portal en el servidor de {\tt UGR Transparente}. Las acciones a realizar son muy simples, además de que cada una está acompañada de una salida por pantalla que describe brevemente lo que realiza.
 
+\newpage
 \begin{lstlisting}[language=javascript,caption={Módulo de despliegue automático},label={lst:flightplanjs}]
 var plan = require('flightplan');
 
@@ -419,6 +418,7 @@ En el siguiente fragmento de código se pueden ver los pasos a seguir para reali
       command: chdir=ugr-transparente-servidor npm start
 \end{lstlisting}
 
+\newpage
 Este es la única funcionalidad que no se ejecuta como un script de {\tt NPM} debido a que no es un módulo de {\tt Node.js}, sino una aplicación externa. Para ejecutarla, desde introducimos el comando:
 
 \begin{lstlisting}[language=bash,captionpos=b,caption={Línea de comando de Ansible},label={lst:ejec_ansible}]
