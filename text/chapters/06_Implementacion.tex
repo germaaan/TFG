@@ -7,8 +7,8 @@ El desarrollo del portal de transparencia fue iniciado por \textbf{Jaime Torres 
 	\item {\tt UGR Transparente}: el portal de transparencia funcionando bajo el funcionamiento conjunto de la plataforma de desarrollo {\tt Node.js}, el framework web {\tt Express} y el motor de plantillas {\tt Jade}, que obtiene la información mediante consultas a una base de datos no relacional {\tt MongoDB}.
 	\item \textbf{Backend}: una base de datos que almacena la información referente a cada conjunto de datos que se muestra en el portal. Entre los datos almacenados, se encuentran las \textit{URLs} para realizar peticiones a la API de nuestro {\tt CKAN} ({\tt OpenData UGR}) que nos permiten descargar la información contenida en sus tablas, bien en formato \textit{CSV} o en formato \textit{PDF}.
 	\item \textbf{Frontend}: en primer lugar se convirtió una página con el formato de la página institucional de la \textbf{UGR} al lenguaje de plantillas {\tt Jade} y se publicó en un repositorio de {\tt GitHub}: \url{https://github.com/oslugr/PlantillaNeutraUGR}. Como el objetivo del portal de transparencia es el de visualizar y descargar los datos abiertos, las plantillas las \textit{URLs} de {\tt CKAN} para, mediante el uso de llamadas {\tt AJAX}, descargar los datos de esas direcciones proporcionadas. Una vez procesados todos los datos del archivo recibido, se muestran todas las tablas recibidas; teniendo además la opción de descargar o visualizar los datos de esas tablas. Esta visualización se hace abriendo una ventana modal en la que tras descargar el archivo \textit{CSV} desde {\tt CKAN} con {\tt AJAX}, utilizamos {\tt Google Charts} para generar las tablas con los datos recibidos.
+\end{itemize}
 
-\bigskip
 Una vez comentado el trabajo previo existente, para explicar la implementación que he realizado se van a incluir pequeños fragmentos del código de los archivos escritos para la aplicación. Estos fragmentos solo contendrán las líneas más significativas, que además irán acompañados de una descripción sobre su significado y funcionamiento. 
  
 \section{Uso de JSON como origen de datos}
@@ -433,3 +433,10 @@ Estando dividido en tres partes:
 	\item \textbf{ansible-playbook provisioning/transparente.yml}: ejecutamos el \textit{playbook} {\tt transparente.yml} con {\tt Ansible}.
 	\item \textbf{--extra-vars `user=USUARIO'}: le pasamos a {\tt Ansible} como variable el nombre del usuario con el que se va a conectar al ordenador.
 \end{itemize}
+
+\section{Repositorio con el desarrollo}
+
+Todo la implementación descrita en este capítulo se puede encontrar en el contenido del repositorio del portal de transparencia: \url{https://github.com/oslugr/ugr-transparente-servidor}.
+
+\bigskip
+Además, esta aplicación está funcionando y es accesible desde la siguiente dirección: \url{http://transparente.ugr.es/}

@@ -793,6 +793,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 \newpage
 \section{Diagrama de paquetes}
 
+Este diagrama representa la estructura lógica del sistema basado en las depencias existentes entre sí. El paquete de \textbf{Configuración automática} depende del paquete \textbf{Administración portal} porque necesita de tareas de administración como es iniciar el servidor.
+
 \begin{figure}[!ht]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{../images/diagrama_paquetes.png}
@@ -802,6 +804,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 \end{figure}
  
 \section{Diagramas de casos de uso}
+
+Los diagramas de casos de uso representa como los diferentes actores se relacionan con el sistema para usar sus funciones. Por ejemplo, en el primer caso de uso vemos como el \textbf{desarrollador} se relaciona con el sistema para iniciar el servidor del portal, mientras, en el segundo vemos como el \textbf{usuario} se relaciona con el sistema para consultar la información de las diferentes secciones del portal.
 
 \begin{figure}[!ht]
   \begin{center}
@@ -818,6 +822,11 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \label{fig:diag_cu_ai}
   \end{center}
 \end{figure}
+
+\newpage
+\
+\newpage
+En el tercer diagrama vemos como el \textbf{desarrollador} se relaciona con los procesos relacionadas con las pruebas (que a su vez son dependientes entre sí); y en el cuarto vemos como también el \textbf{desarrollador} se relaciona con el sistema para realizar las tareas de configuración automática, como son el despliegue automático y el provisionamiento.
 
 \begin{figure}[!ht]
   \begin{center}
@@ -836,9 +845,9 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 \end{figure}
 
 \newpage
-\
-\newpage
 \section{Diagramas de actividad}
+
+Los diagramas de actividad sirven para representar la descomposición de un proceso en las diferentes acciones de las que está compuesto. Las actividades de consultar algún tipo de información son procedimiento secuenciales en los que la ejecución es bastante simple; pero la actividad de iniciar el servidor del portal, realizar los test unitarios, realizar los test de cobertura, usar la integración continua tienen situaciones condicionales que son los que dan lugar a cursos alternos de la ejecución. Las actividades de despliegue automático y provisionamiento además tienen también puntos de sincronización que harán que el proceso siga el mismo cauce en su ejecución.
 
 \begin{figure}[!ht]
   \begin{center}
@@ -940,6 +949,8 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
 
 \section{Diagrama conceptual}
 
+En el diagrama conceptual podemos ver una representación de la estructura de la implementación. A excepción de la clase \textbf{test}, todas las clases son parte de la aplicación principal (\textbf{app}) por lo que tienen una relación de composición con la misma y no tienen sentido sin esta. Las clases de \textbf{test} y \textbf{app} tiene una relación de agrupación, porque el módulo test puede realizar las pruebas sobre cualquier módulo de aplicación que sea recibido.
+
 \begin{figure}[!ht]
   \begin{center}
   \includegraphics[width=1\textwidth]{../images/diagrama_conceptual.png}
@@ -947,3 +958,10 @@ Aunque ya se ha indicado que la parte funcional ya se encuentra implementada de 
   \label{fig:diagrama_conceptual}
   \end{center}
 \end{figure}
+
+\section{Otros diagramas o interfaces}
+
+Gran parte de la implementación no va a ser de la aplicación principal en si mismo, sino herramientras que se le van a agregar para obtener diferentes funcionalidades que se usarán durante su desarrollo, de ahí que no se considere necesario el realizar diagramas de comunicación ni diagramas de secuencia.
+
+\bigskip
+En cuanto a la interfaz gráfica, no será necesaria porque todas las herramientas solo tienen modo de funcionamiento a través de terminal.
