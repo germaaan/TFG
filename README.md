@@ -6,7 +6,9 @@
 Documentación realizada con LaTeX, para generar el archivo PDF introducir las siguientes órdenes:
 
 ```
-sudo apt-get install texlive texlive-lang-spanish
+sudo apt-get install texlive texlive-latex-extra texlive-lang-spanish xzdec
+tlmgr init-usertree
+tlmgr install xcolor
 ./makePDF.sh
 ```
 
